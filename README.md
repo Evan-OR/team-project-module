@@ -6,29 +6,30 @@ Project created by **Evan O'Rourke**, **Kevin Glennon**, **Ryan Heary** and **Al
 
 # How To Use
 
-## Frontend
+**Frontend**
 
-1. open terminal and run _cd frontend_
-2. run _npm i_
-3. then run _npm run dev_
-4. enjoy!
+1. open terminal and run `cd frontend`
+2. run `npm i`
+3. then run `npm run dev`
+4. open [http://localhost:5173](http://localhost:5173)
+5. enjoy!
 
-## Backend
+**Backend**
 
-1. open terminal and run _cd backend_
-2. run _npm i_
-3. then run _node ._
+1. open terminal and run `cd backend`
+2. run `npm i`
+3. then run `node .`
 4. enjoy!
 
 # Technologies
 
-### Frontend
+**Frontend**
 
 React.js <br>
 TypeScript <br>
 SCSS
 
-### Backend
+**Backend**
 
 Node.js <br>
 express <br>
