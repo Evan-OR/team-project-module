@@ -2,6 +2,18 @@
 
 ## Overview
 
-Project created by Evan O'Rourke, Kevin Glennon, Ryan Heary and Alex Mc Laughlin Glynn :)
+Project created by **Evan O'Rourke**, **Kevin Glennon**, **Ryan Heary** and **Alex Mc Laughlin Glynn** :)
 
-TEST
+## Technologies
+
+### Frontend
+
+React.js
+TypeScript
+SCSS
+
+### Backend
+
+Node.js
+express
+MySQL
