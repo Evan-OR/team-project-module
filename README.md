@@ -26,12 +26,8 @@ Project created by **Evan O'Rourke**, **Kevin Glennon**, **Ryan Heary** and **Al
 
 **Frontend**
 
-React.js <br>
-TypeScript <br>
-SCSS
+React.js, TypeScript, SCSS
 
 **Backend**
 
-Node.js <br>
-express <br>
-MySQL
+Node.js, express, MySQL, Azure
