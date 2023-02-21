@@ -6,8 +6,8 @@ function Navbar() {
     <div>
       <ul className={navStyles.ul}>
         <li className={navStyles.li}> <a href="/">Home</a></li>
-        <li className={navStyles.li}> <a href="/about">About</a></li>
-        <li className={navStyles.li}> <a href="/contact">Contact</a></li>
+        <li className={navStyles.li}> <a href="/about">Food</a></li>
+        <li className={navStyles.li}> <a href="/contact">Drinks</a></li>
       </ul>
     </div>
   )
