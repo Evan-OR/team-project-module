@@ -1,9 +1,13 @@
+import Hello from './components/Hello.js';
+import Navbar from './components/Navbar.js';
+
 function App() {
   return (
     <div className="App">
-      {/* YOUR CODE GOES HERE BOIS */}
+      {/* //!Your code goes here bois */}
+      <Navbar />
       <h1>TEAM PROJECT</h1>
-      <div>{':)'}</div>
+      <Hello />
     </div>
   );
 }
