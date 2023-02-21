@@ -1,3 +1,11 @@
+/*
+Black = #272727
+Grey = #747474
+Orange = #FF652F
+Yellow = #FFE400
+Green = #14A76C
+*/
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -5,7 +13,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #747474;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -18,4 +26,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+body{
+  margin: 0;
 }
