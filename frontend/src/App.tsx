@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { UserContext, UserContextProvider } from './components/context/UserContext.js';
 import LoginPage from './components/LoginPage.js';
 import Navbar from './components/Navbar.js';
+import Hero from './components/Hero.js';
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -22,8 +23,9 @@ function App() {
           <LoginPage />
         ) : (
           <>
+            {/* Your code goes here bois */}
             <Navbar />
-            <h1>TEAM PROJECT</h1>
+            <Hero />
           </>
         )}
       </UserContextProvider>
