@@ -16,16 +16,18 @@ Green = #14A76C
 .paragraphContainer{
     background-color: #272727;
     color: #FFE400;
-    padding-right: 3%; //Pushes the text from the right
-    padding-left: 3%; //Pushes the text from the left
-    margin-top: 4%; //Pushes box from the top
-    margin-right: 58%; //Pushes box from the right
+    margin-top: 1%; //Pushes box from the top
+    margin-right: 65%; //Pushes box from the right
     margin-left: 5%; //Pushes box from the left
-    margin-bottom: 4%; //Pushes box from the bottom
-    font-size: small; //Turns font to small
+    margin-bottom: 1%; //Pushes box from the bottom
     border-radius: 25px; //Rounds the corners
 }
 
+.paragraphContent{
+    padding-left: 4%;
+    padding-right: 4%;
+    font-size: small;
+}
 .Header{
     color: #14A76C;
     text-align: center;

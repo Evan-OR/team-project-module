@@ -3,6 +3,7 @@ import { UserContext, UserContextProvider } from './components/context/UserConte
 import LoginPage from './components/LoginPage.js';
 import Navbar from './components/Navbar.js';
 import Hero from './components/Hero.js';
+import Instruction from './components/Instruction.js';
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -26,6 +27,7 @@ function App() {
             {/* Your code goes here bois */}
             <Navbar />
             <Hero />
+            <Instruction />
           </>
         )}
       </UserContextProvider>
