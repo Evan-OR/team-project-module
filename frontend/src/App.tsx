@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { UserContext, UserContextProvider } from './components/context/UserContext.js';
-import LoginPage from './components/LoginPage.js';
 import Navbar from './components/Navbar.js';
 import Hero from './components/Hero.js';
 import Instruction from './components/Instruction.js';
+import LoginAndRegisterPage from './components/LoginAndRegisterPage.js';
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -21,7 +21,7 @@ function App() {
         {/* Your code goes here bois */}
 
         {showLogin ? (
-          <LoginPage />
+          <LoginAndRegisterPage />
         ) : (
           <>
             {/* Your code goes here bois */}

@@ -1,9 +1,14 @@
 import { useContext, useEffect, useState } from 'react';
 import styles from '../styles/loginPageStyles.module.scss';
-import { UserInfo } from '../Types/UserTypes';
 import { UserContext } from './context/UserContext';
 
-function LoginPage() {
+type LoginPageProps = {
+  toggleLoginOrRegister: () => void;
+};
+
+function LoginPage(props: LoginPageProps) {
+  const { toggleLoginOrRegister } = props;
+
   const userContext = useContext(UserContext);
 
   const [username, setUsername] = useState('');
@@ -46,14 +51,17 @@ function LoginPage() {
         </div>
 
         <div className={styles.formElement}>
-          {/* Will be set to type password in the future */}
           <input placeholder="Password" onChange={passwordHandler} value={password} type="password"></input>
         </div>
 
         <div className={styles.formElement}>
           <button className={styles.submitButton} disabled={disableBtn} onClick={handleSubmit} type="button">
-            Submit
+            Login
           </button>
+        </div>
+
+        <div>
+          Don't have an account? <a onClick={toggleLoginOrRegister}>Sign Up!</a>
         </div>
       </form>
     </div>

@@ -1,8 +1,88 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { UserContext } from './context/UserContext';
 import styles from '../styles/loginPageStyles.module.scss';
 
-function RegisterPage() {
-  return <div>RegisterPage</div>;
+type LoginPageProps = {
+  toggleLoginOrRegister: () => void;
+};
+
+function RegisterPage(props: LoginPageProps) {
+  const { toggleLoginOrRegister } = props;
+
+  const userContext = useContext(UserContext);
+
+  const [username, setUsername] = useState('');
+  const [passwordOne, setPasswordOne] = useState('');
+  const [passwordTwo, setPasswordTwo] = useState('');
+  const [disableBtn, setDisableBtn] = useState(false);
+
+  const handleSubmit = async () => {
+    if (passwordOne !== passwordTwo) {
+      alert('Passwords must be the same');
+      return;
+    }
+
+    setDisableBtn(true);
+    try {
+      const res = await fetch(`http://localhost:3000/signup/${username}/${passwordOne}`, {
+        method: 'post',
+      });
+      const message = await res.json();
+      console.log(message);
+
+      if (message.userInfo != null) {
+        userContext?.setUser(message.userInfo);
+      }
+    } catch (err) {
+      alert('ERROR WITH signup SYSTEM! IDK');
+    }
+
+    setDisableBtn(false);
+  };
+
+  const usernameHandler = (e: any) => {
+    setUsername(e.target.value);
+  };
+  const passwordOneHandler = (e: any) => {
+    setPasswordOne(e.target.value);
+  };
+  const passwordTwoHandler = (e: any) => {
+    setPasswordTwo(e.target.value);
+  };
+
+  return (
+    <div className={styles.loginPageWrapper}>
+      <div className={styles.title}>SIGN UP</div>
+      <form className={styles.loginForm}>
+        <div className={styles.formElement}>
+          <input placeholder="Username" onChange={usernameHandler} value={username} type="text"></input>
+        </div>
+
+        <div className={styles.formElement}>
+          <input placeholder="Password" onChange={passwordOneHandler} value={passwordOne} type="password"></input>
+        </div>
+
+        <div className={styles.formElement}>
+          <input
+            placeholder="Confirm Password"
+            onChange={passwordTwoHandler}
+            value={passwordTwo}
+            type="password"
+          ></input>
+        </div>
+
+        <div className={styles.formElement}>
+          <button className={styles.submitButton} disabled={disableBtn} onClick={handleSubmit} type="button">
+            Sign Up
+          </button>
+        </div>
+
+        <div>
+          Already have an account? <a onClick={toggleLoginOrRegister}>Login!</a>
+        </div>
+      </form>
+    </div>
+  );
 }
 
 export default RegisterPage;
