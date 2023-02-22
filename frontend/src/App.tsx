@@ -1,5 +1,6 @@
 import Navbar from './components/Navbar.js';
 import Hero from './components/Hero.js';
+import Instruction from './components/Instruction.js';
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
       {/* Your code goes here bois */}
       <Navbar />
       <Hero />
+      <Instruction />
     </div>
   );
 }
