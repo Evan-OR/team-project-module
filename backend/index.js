@@ -52,12 +52,12 @@ app.get('/', (req, res) => {
 });
 
 //Login endpoint
-app.post('/login/:username/:password', (req, res) => {
+app.get('/login/:username/:password', (req, res) => {
   const { username, password } = req.params;
 
   const checkForUserSQL = 'SELECT * FROM users where username = ? and password = ?';
 
-  connection.query(checkForUserSQL, [username, password], (err, results, fields) => {
+  connection.query(checkForUserSQL, [username, password], (err, results) => {
     if (err) throw err;
 
     if (results.length > 0) {
@@ -67,14 +67,15 @@ app.post('/login/:username/:password', (req, res) => {
       });
     } else {
       res.status(200).send({
-        message: 'User does not exist!',
+        message: 'Incorrect Credentials!',
       });
     }
   });
 });
 
-app.post('/register/:username/:password', (res, req) => {
-  const { username, password } = req.body;
+app.post('/signup/:username/:password', (res, req) => {
+  const { username, password } = req.params;
+  console.log(username, password);
 
   const checkForUserSQL = 'SELECT * FROM users where username = ? and password = ?';
   const regesterUserSQL = 'INSERT INTO users (username, password) VALUES (?,?)';
@@ -92,7 +93,7 @@ app.post('/register/:username/:password', (res, req) => {
   //       message: 'User Already Exists',
   //     });
   //   } else {
-  //     //user should be regestered
+  //user should be regestered
   //     connection.execute(regesterUserSQL, [username, password], (err, results, fields) => {
   //       if (err) throw err;
   //       console.log(results, fields);
@@ -105,5 +106,5 @@ app.post('/register/:username/:password', (res, req) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on http://localhost:${port}`);
+  console.log(`Server listening on http://localhost:${port}`);
 });
