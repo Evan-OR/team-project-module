@@ -4,10 +4,11 @@ import styles from '../styles/loginPageStyles.module.scss';
 
 type LoginPageProps = {
   toggleLoginOrRegister: () => void;
+  switchToLoginAndRegisterPage: () => void;
 };
 
 function RegisterPage(props: LoginPageProps) {
-  const { toggleLoginOrRegister } = props;
+  const { toggleLoginOrRegister, switchToLoginAndRegisterPage } = props;
 
   const userContext = useContext(UserContext);
 
@@ -28,10 +29,15 @@ function RegisterPage(props: LoginPageProps) {
         method: 'post',
       });
       const message = await res.json();
-      console.log(message);
+      console.log(message, res);
+
+      if (res.status === 220) {
+        alert('username already exists!');
+      }
 
       if (message.userInfo != null) {
         userContext?.setUser(message.userInfo);
+        switchToLoginAndRegisterPage();
       }
     } catch (err) {
       alert('ERROR WITH signup SYSTEM! IDK');

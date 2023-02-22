@@ -6,34 +6,34 @@ Yellow = #FFE400
 Green = #14A76C
 */
 
-.navContainer{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #272727;
+.navContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #272727;
 }
 
-.ul{
-    display: flex;
-    justify-content: center;
-    list-style-type: none;
+.ul {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
 }
 
-.li{
-    margin: 25px;
+.li {
+  margin: 25px;
 }
 
-.logo{
-    width: 50px;
-    height: 50px;
+.logo {
+  width: 50px;
+  height: 50px;
 }
 
-a{
-    text-decoration: none;
-    color: #14A76C;
+a {
+  text-decoration: none;
+  color: #14a76c;
 }
 
-a:hover{
-    text-decoration: underline;
+a:hover {
+  text-decoration: underline;
 }

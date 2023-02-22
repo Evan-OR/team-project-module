@@ -4,10 +4,11 @@ import { UserContext } from './context/UserContext';
 
 type LoginPageProps = {
   toggleLoginOrRegister: () => void;
+  switchToLoginAndRegisterPage: () => void;
 };
 
 function LoginPage(props: LoginPageProps) {
-  const { toggleLoginOrRegister } = props;
+  const { toggleLoginOrRegister, switchToLoginAndRegisterPage } = props;
 
   const userContext = useContext(UserContext);
 
@@ -27,6 +28,7 @@ function LoginPage(props: LoginPageProps) {
 
       if (message.userInfo != null) {
         userContext?.setUser(message.userInfo);
+        switchToLoginAndRegisterPage();
       }
     } catch (err) {
       alert('ERROR WITH LOGIN SYSTEM! IDK');

@@ -8,20 +8,20 @@ import LoginAndRegisterPage from './components/LoginAndRegisterPage.js';
 function App() {
   const [showLogin, setShowLogin] = useState(false);
 
-  const switchToLogin = () => {
+  const switchToLoginAndRegisterPage = () => {
     setShowLogin(!showLogin);
   };
 
   return (
     <div className="App">
       <UserContextProvider>
-        <button onClick={switchToLogin} type="button">
+        <button onClick={switchToLoginAndRegisterPage} type="button">
           Go To Login Page
         </button>
         {/* Your code goes here bois */}
 
         {showLogin ? (
-          <LoginAndRegisterPage />
+          <LoginAndRegisterPage switchToLoginAndRegisterPage={switchToLoginAndRegisterPage} />
         ) : (
           <>
             {/* Your code goes here bois */}
