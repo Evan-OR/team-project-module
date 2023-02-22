@@ -73,16 +73,16 @@ app.get('/login/:username/:password', (req, res) => {
   });
 });
 
-app.post('/signup/:username/:password', (res, req) => {
+app.post('/signup/:username/:password', (req, res) => {
   const { username, password } = req.params;
   console.log(username, password);
 
-  const checkForUserSQL = 'SELECT * FROM users where username = ? and password = ?';
-  const regesterUserSQL = 'INSERT INTO users (username, password) VALUES (?,?)';
+  // const checkForUserSQL = 'SELECT * FROM users where username = ? and password = ?';
+  // const regesterUserSQL = 'INSERT INTO users (username, password) VALUES (?,?)';
 
   res.status(200).send({
-    username,
-    password,
+    username: username,
+    password: password,
   });
 
   // connection.query(checkForUserSQL, [username, password], (err, results, fields) => {

@@ -6,7 +6,7 @@ function LoginPage() {
   const [password, setPassword] = useState('');
 
   const handleSubmit = async () => {
-    const req = await fetch(`http://localhost:3000/register/${username}/${password}`, {
+    const req = await fetch(`http://localhost:3000/signup/${username}/${password}`, {
       method: 'post',
     });
     const res = await req.json();
@@ -21,8 +21,8 @@ function LoginPage() {
   };
 
   useEffect(() => {
-    // console.log(username);
-  }, []);
+    console.log(username, password);
+  }, [username, password]);
 
   return (
     <div className={styles.loginPageWrapper}>
