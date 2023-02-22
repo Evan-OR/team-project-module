@@ -76,30 +76,32 @@ app.get('/login/:username/:password', (req, res) => {
 
 app.post('/signup/:username/:password', (req, res) => {
   const { username, password } = req.params;
-  console.log(username, password);
 
   const checkForUserSQL = 'SELECT * FROM users where username = ?';
   const regesterUserSQL = 'INSERT INTO users (username, password) VALUES (?,?)';
 
-  res.status(200).send({
-    username: username,
-    password: password,
-  });
-
-  connection.query(checkForUserSQL, [username, password], (err, results, fields) => {
+  //Check if user already exists
+  connection.query(checkForUserSQL, [username], (err, results, fields) => {
     if (err) throw err;
 
     if (results.length > 0) {
-      res.status(200).send({
+      res.status(220).send({
         message: 'Username Already Exists',
+        userInfo: null,
       });
     } else {
-      // user should be regestered
+      // Create User
       connection.execute(regesterUserSQL, [username, password], (err, results, fields) => {
         if (err) throw err;
-        console.log(results, fields);
-        res.status(201).send({
-          message: 'User was created',
+
+        //Get the record just created
+        connection.query(checkForUserSQL, [username], (err, results, fields) => {
+          if (err) throw err;
+
+          res.status(200).send({
+            message: 'User was created',
+            userInfo: results[0],
+          });
         });
       });
     }
