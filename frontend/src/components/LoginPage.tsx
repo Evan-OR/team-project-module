@@ -1,16 +1,33 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import styles from '../styles/loginPageStyles.module.scss';
+import { UserInfo } from '../Types/UserTypes';
+import { UserContext } from './context/UserContext';
 
 function LoginPage() {
+  const userContext = useContext(UserContext);
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [disableBtn, setDisableBtn] = useState(false);
 
   const handleSubmit = async () => {
-    const req = await fetch(`http://localhost:3000/signup/${username}/${password}`, {
-      method: 'post',
-    });
-    const res = await req.json();
-    console.log(res);
+    setDisableBtn(true);
+
+    try {
+      const res = await fetch(`http://localhost:3000/login/${username}/${password}`, {
+        method: 'get',
+      });
+      const message = await res.json();
+      console.log(message);
+
+      if (message.userInfo != null) {
+        userContext?.setUser(message.userInfo);
+      }
+    } catch (err) {
+      alert('ERROR WITH LOGIN SYSTEM! IDK');
+    }
+
+    setDisableBtn(false);
   };
 
   const usernameHandler = (e: any) => {
@@ -20,26 +37,21 @@ function LoginPage() {
     setPassword(e.target.value);
   };
 
-  useEffect(() => {
-    console.log(username, password);
-  }, [username, password]);
-
   return (
     <div className={styles.loginPageWrapper}>
+      <div className={styles.title}>LOGIN</div>
       <form className={styles.loginForm}>
         <div className={styles.formElement}>
-          <label>Username</label>
-          <input onChange={usernameHandler} value={username} type="text"></input>
+          <input placeholder="Username" onChange={usernameHandler} value={username} type="text"></input>
         </div>
 
         <div className={styles.formElement}>
-          <label>Password</label>
           {/* Will be set to type password in the future */}
-          <input onChange={passwordHandler} value={password} type="text"></input>
+          <input placeholder="Password" onChange={passwordHandler} value={password} type="password"></input>
         </div>
 
         <div className={styles.formElement}>
-          <button onClick={handleSubmit} type="button">
+          <button className={styles.submitButton} disabled={disableBtn} onClick={handleSubmit} type="button">
             Submit
           </button>
         </div>

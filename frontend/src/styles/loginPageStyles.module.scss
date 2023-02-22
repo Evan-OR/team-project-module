@@ -1,19 +1,38 @@
 .loginPageWrapper {
   display: flex;
   flex-direction: column;
+  align-items: center;
 
-  padding: 5px;
-  border: solid 1px white;
-  border-radius: 4px;
+  padding: 15px;
 }
 
 .loginForm {
   width: 300px;
 }
 
+.title {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
 .formElement {
   display: flex;
   flex-direction: column;
 
-  margin: 10px 0;
+  margin: 5px 0;
+
+  .submitButton {
+    margin-top: 8px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    padding: 5px;
+  }
+
+  input[type='text'],
+  input[type='password'] {
+    width: 100%;
+    padding: 6px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
 }

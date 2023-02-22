@@ -62,12 +62,13 @@ app.get('/login/:username/:password', (req, res) => {
 
     if (results.length > 0) {
       res.status(200).send({
-        message: 'User Already Exists',
+        message: 'User Found',
         userInfo: results[0],
       });
     } else {
-      res.status(200).send({
+      res.status(220).send({
         message: 'Incorrect Credentials!',
+        userInfo: null,
       });
     }
   });
@@ -77,32 +78,32 @@ app.post('/signup/:username/:password', (req, res) => {
   const { username, password } = req.params;
   console.log(username, password);
 
-  // const checkForUserSQL = 'SELECT * FROM users where username = ? and password = ?';
-  // const regesterUserSQL = 'INSERT INTO users (username, password) VALUES (?,?)';
+  const checkForUserSQL = 'SELECT * FROM users where username = ?';
+  const regesterUserSQL = 'INSERT INTO users (username, password) VALUES (?,?)';
 
   res.status(200).send({
     username: username,
     password: password,
   });
 
-  // connection.query(checkForUserSQL, [username, password], (err, results, fields) => {
-  //   if (err) throw err;
+  connection.query(checkForUserSQL, [username, password], (err, results, fields) => {
+    if (err) throw err;
 
-  //   if (results.length > 0) {
-  //     res.status(200).send({
-  //       message: 'User Already Exists',
-  //     });
-  //   } else {
-  //user should be regestered
-  //     connection.execute(regesterUserSQL, [username, password], (err, results, fields) => {
-  //       if (err) throw err;
-  //       console.log(results, fields);
-  //       res.status(200).send({
-  //         message: 'User was created',
-  //       });
-  //     });
-  //   }
-  // });
+    if (results.length > 0) {
+      res.status(200).send({
+        message: 'Username Already Exists',
+      });
+    } else {
+      // user should be regestered
+      connection.execute(regesterUserSQL, [username, password], (err, results, fields) => {
+        if (err) throw err;
+        console.log(results, fields);
+        res.status(201).send({
+          message: 'User was created',
+        });
+      });
+    }
+  });
 });
 
 app.listen(port, () => {
