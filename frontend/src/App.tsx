@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { UserContext, UserContextProvider } from './components/context/UserContext.js';
 import Navbar from './components/Navbar.js';
 import Hero from './components/Hero.js';
-import Instruction from './components/Instruction.js';
+import CardWrapper from './components/CardWrapper.js';
 import LoginAndRegisterPage from './components/LoginAndRegisterPage.js';
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
             {/* Your code goes here bois */}
             <Navbar switchToLoginAndRegisterPage={switchToLoginAndRegisterPage} />
             <Hero />
-            <Instruction />
+            <CardWrapper />
           </>
         )}
       </UserContextProvider>
