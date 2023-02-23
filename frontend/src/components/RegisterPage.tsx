@@ -61,15 +61,28 @@ function RegisterPage(props: LoginPageProps) {
       <div className={styles.title}>SIGN UP</div>
       <form className={styles.loginForm}>
         <div className={styles.formElement}>
-          <input placeholder="Username" onChange={usernameHandler} value={username} type="text"></input>
-        </div>
-
-        <div className={styles.formElement}>
-          <input placeholder="Password" onChange={passwordOneHandler} value={passwordOne} type="password"></input>
+          <input
+            className={styles.inputField}
+            placeholder="Username"
+            onChange={usernameHandler}
+            value={username}
+            type="text"
+          ></input>
         </div>
 
         <div className={styles.formElement}>
           <input
+            className={styles.inputField}
+            placeholder="Password"
+            onChange={passwordOneHandler}
+            value={passwordOne}
+            type="password"
+          ></input>
+        </div>
+
+        <div className={styles.formElement}>
+          <input
+            className={styles.inputField}
             placeholder="Confirm Password"
             onChange={passwordTwoHandler}
             value={passwordTwo}
