@@ -1,5 +1,5 @@
 import { createContext, useState } from 'react';
-import { UserInfo } from '../../Types/UserTypes';
+import { UserInfo } from '../../types/UserTypes';
 
 type UserContextProviderProps = {
   children: React.ReactNode;
