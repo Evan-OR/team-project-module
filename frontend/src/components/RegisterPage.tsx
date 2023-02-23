@@ -94,10 +94,21 @@ function RegisterPage(props: LoginPageProps) {
           <button className={styles.submitButton} disabled={disableBtn} onClick={handleSubmit} type="button">
             Sign Up
           </button>
+          <button
+            className={styles.backButton}
+            disabled={disableBtn}
+            onClick={switchToLoginAndRegisterPage}
+            type="button"
+          >
+            Back
+          </button>
         </div>
 
         <div>
-          Already have an account? <a onClick={toggleLoginOrRegister}>Login!</a>
+          Already have an account?{' '}
+          <a className={styles.link} onClick={toggleLoginOrRegister}>
+            Login!
+          </a>
         </div>
       </form>
     </div>
