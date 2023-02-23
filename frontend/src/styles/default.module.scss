@@ -1,2 +1,10 @@
 $highlight-colour: #50d471;
 $background-colour: #202020;
+
+.link {
+  color: $highlight-colour;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
