@@ -1,0 +1,29 @@
+@import './default.module.scss';
+.cardDisplayWrapper {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+
+  margin-top: 60px;
+}
+
+.cardWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 300px;
+
+  .icon {
+    width: 70px;
+    fill: $highlight-colour;
+    margin: 10px;
+  }
+  .title {
+    font-weight: bold;
+    font-size: 2.2rem;
+  }
+  .text {
+    font-size: 0.85rem;
+  }
+}
