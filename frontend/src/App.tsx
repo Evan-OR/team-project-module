@@ -15,9 +15,6 @@ function App() {
   return (
     <div className="App">
       <UserContextProvider>
-        <button onClick={switchToLoginAndRegisterPage} type="button">
-          Go To Login Page
-        </button>
         {/* Your code goes here bois */}
 
         {showLogin ? (
@@ -25,7 +22,7 @@ function App() {
         ) : (
           <>
             {/* Your code goes here bois */}
-            <Navbar />
+            <Navbar switchToLoginAndRegisterPage={switchToLoginAndRegisterPage} />
             <Hero />
             <Instruction />
           </>
