@@ -104,7 +104,7 @@ function RegisterPage(props: LoginPageProps) {
           </button>
         </div>
 
-        <div>
+        <div className={styles.switch}>
           Already have an account?{' '}
           <a className={styles.link} onClick={toggleLoginOrRegister}>
             Login!
