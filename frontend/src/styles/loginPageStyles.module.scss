@@ -33,15 +33,10 @@
     cursor: pointer;
   }
 
-  input[type='text'],
-  input[type='password'] {
+  .inputField {
     width: 100%;
     padding: 6px 10px;
     margin: 8px 0;
     box-sizing: border-box;
   }
-}
-
-a:hover {
-  cursor: pointer;
 }

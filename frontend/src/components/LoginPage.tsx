@@ -49,11 +49,23 @@ function LoginPage(props: LoginPageProps) {
       <div className={styles.title}>LOGIN</div>
       <form className={styles.loginForm}>
         <div className={styles.formElement}>
-          <input placeholder="Username" onChange={usernameHandler} value={username} type="text"></input>
+          <input
+            className={styles.inputField}
+            placeholder="Username"
+            onChange={usernameHandler}
+            value={username}
+            type="text"
+          ></input>
         </div>
 
         <div className={styles.formElement}>
-          <input placeholder="Password" onChange={passwordHandler} value={password} type="password"></input>
+          <input
+            className={styles.inputField}
+            placeholder="Password"
+            onChange={passwordHandler}
+            value={password}
+            type="password"
+          ></input>
         </div>
 
         <div className={styles.formElement}>

@@ -6,33 +6,33 @@ Yellow = #FFE400
 Green = #14A76C
 */
 
-.Container{
-    display: flex;
-    flex-direction: row;
-    width: 100%;     
+.Container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 }
 
-.infoBoxContainers{
-    margin-top: 1%;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-bottom: 1%;
-    padding: 2%;
-    background-color: #272727;
-    border-radius: 25px;
+.infoBoxContainers {
+  margin-top: 1%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 1%;
+  padding: 2%;
+  background-color: #272727;
+  border-radius: 25px;
 }
 
-.logo{
-    width: 50px;
-    height: 50px;
+.logo {
+  width: 50px;
+  height: 50px;
 }
 
-h1{
-    display: flex;
-    justify-content: center;
-    color: #14A76C;
+.title {
+  display: flex;
+  justify-content: center;
+  color: #14a76c;
 }
-p{
-    font-size: small;
-    color: #FFE400;
+.paragraph {
+  font-size: small;
+  color: #ffe400;
 }
