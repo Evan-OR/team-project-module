@@ -11,20 +11,23 @@ const DrinkSec = () => {
         />
       </form>
 
-      <h2 className={drinksecStyles.title}>Suggested Drinks</h2>
-
       <div className={drinksecStyles.DrinkMenuContainer}>
-        <div className={drinksecStyles.DrinkItem}>
-          <h3 className={drinksecStyles.drinkTitle}>Drink Item</h3>
+        <div>
+          <h2 className={drinksecStyles.title}>Suggested Drinks</h2>
         </div>
-        <div className={drinksecStyles.DrinkItem}>
-          <h3 className={drinksecStyles.drinkTitle}>Drink Item</h3>
-        </div>
-        <div className={drinksecStyles.DrinkItem}>
-          <h3 className={drinksecStyles.drinkTitle}>Drink Item</h3>
-        </div>
-        <div className={drinksecStyles.DrinkItem}>
-          <h3 className={drinksecStyles.drinkTitle}>Drink Item</h3>
+        <div className={drinksecStyles.drinkCardWrapper}>
+          <div className={drinksecStyles.DrinkItem}>
+            <h3 className={drinksecStyles.drinkTitle}>Drink Item</h3>
+          </div>
+          <div className={drinksecStyles.DrinkItem}>
+            <h3 className={drinksecStyles.drinkTitle}>Drink Item</h3>
+          </div>
+          <div className={drinksecStyles.DrinkItem}>
+            <h3 className={drinksecStyles.drinkTitle}>Drink Item</h3>
+          </div>
+          <div className={drinksecStyles.DrinkItem}>
+            <h3 className={drinksecStyles.drinkTitle}>Drink Item</h3>
+          </div>
         </div>
       </div>
     </div>

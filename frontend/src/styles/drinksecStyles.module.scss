@@ -14,7 +14,7 @@
   width: 100%;
   max-width: 500px;
   justify-content: space-around;
-  background-color: #202020;
+  background-color: $background-colour;
   border-radius: 50px;
   padding: 10px 20px;
 }
@@ -29,6 +29,21 @@
 
 .DrinkMenuContainer {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.titleWrapper {
+  width: 100%;
+}
+.title {
+  color: $highlight-colour;
+  text-decoration: underline;
+}
+
+.drinkCardWrapper {
+  display: flex;
 }
 
 .DrinkItem {
@@ -40,8 +55,4 @@
   display: flex;
   justify-content: center;
   margin: 20px;
-}
-
-.title {
-  color: $highlight-colour;
 }
