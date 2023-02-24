@@ -1,8 +1,9 @@
 @import './default.module.scss';
 .cardDisplayWrapper {
   display: flex;
-  justify-content: space-evenly;
   width: 100%;
+  justify-content: space-evenly;
+  height: 100%;
 
   margin: 60px 0;
 }
