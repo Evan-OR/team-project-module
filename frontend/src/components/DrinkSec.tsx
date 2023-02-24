@@ -12,7 +12,7 @@ const DrinkSec = () => {
       </form>
 
       <div className={drinksecStyles.DrinkMenuContainer}>
-        <div>
+        <div className={drinksecStyles.titleWrapper}>
           <h2 className={drinksecStyles.title}>Suggested Drinks</h2>
         </div>
         <div className={drinksecStyles.drinkCardWrapper}>
