@@ -1,4 +1,6 @@
+import { useContext } from 'react';
 import navStyles from '../styles/navbarStyles.module.scss';
+import { UserContext } from './context/UserContext';
 
 type NavbarProps = {
   switchToLoginAndRegisterPage: () => void;
@@ -6,6 +8,13 @@ type NavbarProps = {
 
 function Navbar(props: NavbarProps) {
   const { switchToLoginAndRegisterPage } = props;
+  const userContext = useContext(UserContext);
+
+  //Change user icon colour if user context is set (user is logged in)
+  const setUserIconColour = (): string => {
+    if (userContext?.user) return `${navStyles.userIcon} ${navStyles.userIconLoggedIn}`;
+    return `${navStyles.userIcon}`;
+  };
 
   return (
     <nav className={navStyles.navContainer}>
@@ -16,8 +25,8 @@ function Navbar(props: NavbarProps) {
         <div className={navStyles.pageOption}>DRINKS</div>
         <div className={navStyles.pageOption}>FOOD</div>
         <svg
-          onClick={switchToLoginAndRegisterPage}
-          className={navStyles.userIcon}
+          onClick={userContext?.user ? undefined : switchToLoginAndRegisterPage}
+          className={setUserIconColour()}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 448 512"
         >
