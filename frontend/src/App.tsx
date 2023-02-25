@@ -8,6 +8,7 @@ import Hero from "./components/Hero.js";
 import CardWrapper from "./components/CardWrapper.js";
 import LoginAndRegisterPage from "./components/LoginAndRegisterPage.js";
 import DrinkSec from "./components/DrinkSec.js";
+import FoodSec from "./components/FoodSec.js";
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -33,10 +34,10 @@ function App() {
             />
             <Hero />
             <CardWrapper />
+            <FoodSec />
           </>
         )}
       </UserContextProvider>
-      <DrinkSec />
     </div>
   );
 }
