@@ -7,10 +7,9 @@ $border-width: 2px;
   flex-direction: column;
   z-index: auto;
   user-select: none;
-  width: fit-content;
-  min-width: 120px;
+  width: 120px;
 
-  left: -34%;
+  left: -35%;
 
   margin-top: 10px;
   transform: translateX(0);
@@ -45,6 +44,7 @@ $border-width: 2px;
     z-index: 100;
     padding: 0 10px;
     font-weight: bold;
+    word-wrap: break-word;
   }
 }
 
