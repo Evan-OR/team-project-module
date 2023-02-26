@@ -29,10 +29,14 @@ function Navbar(props: NavbarProps) {
           </Link>
         </div>
         <div className={navStyles.pageOption}>
-          <Link to="/drinks">DRINKS</Link>
+          <Link to="/drinks" className={navStyles.pageLink}>
+            DRINKS
+          </Link>
         </div>
         <div className={navStyles.pageOption}>
-          <Link to="/food">FOOD</Link>
+          <Link to="/food" className={navStyles.pageLink}>
+            FOOD
+          </Link>
         </div>
         <svg
           onClick={userContext?.user ? undefined : switchToLoginAndRegisterPage}

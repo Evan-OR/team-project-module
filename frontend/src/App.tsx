@@ -29,20 +29,18 @@ function App() {
           ) : (
             <>
               <switch>
-                <Route path="/">
+                <Route exact path="/">
                   <Navbar
                     switchToLoginAndRegisterPage={switchToLoginAndRegisterPage}
                   />
                   <Hero />
                   <CardWrapper />
-                  <Route exact path="/drinks">
-                    <Navbar
-                      switchToLoginAndRegisterPage={
-                        switchToLoginAndRegisterPage
-                      }
-                    />
-                    <DrinkSec />
-                  </Route>
+                </Route>
+                <Route exact path="/drinks">
+                  <Navbar
+                    switchToLoginAndRegisterPage={switchToLoginAndRegisterPage}
+                  />
+                  <DrinkSec />
                 </Route>
                 <Route exact path="/food">
                   <Navbar
