@@ -2,15 +2,10 @@ import React from 'react';
 import FoodSec from './FoodSec';
 import Navbar from '../Navbar';
 
-type FoodPageProps = {
-  switchToLoginAndRegisterPage: () => void;
-};
-
-function FoodPage(props: FoodPageProps) {
-  const { switchToLoginAndRegisterPage } = props;
+function FoodPage() {
   return (
     <>
-      <Navbar switchToLoginAndRegisterPage={switchToLoginAndRegisterPage} currentPage={'Food'} />
+      <Navbar currentPage={'Food'} />
       <FoodSec />
     </>
   );

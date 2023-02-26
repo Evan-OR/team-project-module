@@ -2,15 +2,10 @@ import React from 'react';
 import DrinkSec from './DrinkSec';
 import Navbar from '../Navbar';
 
-type DrinksPageProps = {
-  switchToLoginAndRegisterPage: () => void;
-};
-
-function DrinksPage(props: DrinksPageProps) {
-  const { switchToLoginAndRegisterPage } = props;
+function DrinksPage() {
   return (
     <>
-      <Navbar currentPage={'Drinks'} switchToLoginAndRegisterPage={switchToLoginAndRegisterPage} />
+      <Navbar currentPage={'Drinks'} />
       <DrinkSec />
     </>
   );

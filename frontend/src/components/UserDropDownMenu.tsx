@@ -1,4 +1,4 @@
-import navStyles from '../styles/navbarStyles.module.scss';
+import navStyles from '../styles/dropDownStyles.module.scss';
 import { UserInfo } from '../types/UserTypes';
 
 type UserDropDownMenuProps = {
@@ -11,24 +11,23 @@ function UserDropDownMenu(props: UserDropDownMenuProps) {
 
   return (
     <div className={navStyles.dropDownWrapper}>
-      <div>
-        <div className={navStyles.dropDownCarrotWrapper}>
-          <div className={navStyles.dropDownCarrot}></div>
-        </div>
+      <div className={navStyles.dropDownCarrotWrapper}>
+        <div className={navStyles.dropDownCarrot}></div>
+      </div>
 
-        <div className={navStyles.dropDownSection}>
-          <div className={navStyles.dropDownTitle}>
-            Signed in as <span style={{ fontWeight: 'bold' }}>{user?.username}</span>
-          </div>
-        </div>
-        <div className={navStyles.dropDownSection}>
-          <div className={navStyles.dropDownOption}>Your Likes</div>
-          <div className={navStyles.dropDownOption}>Account</div>
-        </div>
-        <div className={navStyles.dropDownSection}>
-          <div onClick={signOut} className={navStyles.dropDownOption}>
-            Sign Out
-          </div>
+      <div className={navStyles.dropDownSection}>
+        <div className={navStyles.dropDownTitle}>{user ? <>{user?.username}</> : <>Evan</>}</div>
+      </div>
+
+      {/* USER INFO */}
+      <div className={navStyles.dropDownSection}>
+        <div className={navStyles.dropDownOption}>Your Likes</div>
+        <div className={navStyles.dropDownOption}>Account</div>
+      </div>
+
+      <div className={navStyles.dropDownSection}>
+        <div onClick={signOut} className={navStyles.dropDownOption}>
+          {user ? <>Sign Out</> : <>Sign In</>}
         </div>
       </div>
     </div>

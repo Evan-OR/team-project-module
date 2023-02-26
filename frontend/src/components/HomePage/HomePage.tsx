@@ -3,15 +3,10 @@ import CardWrapper from './CardWrapper';
 import Hero from './Hero';
 import Navbar from '../Navbar';
 
-type HomePageProps = {
-  switchToLoginAndRegisterPage: () => void;
-};
-
-function HomePage(props: HomePageProps) {
-  const { switchToLoginAndRegisterPage } = props;
+function HomePage() {
   return (
     <>
-      <Navbar switchToLoginAndRegisterPage={switchToLoginAndRegisterPage} currentPage={'Home'} />
+      <Navbar currentPage={'Home'} />
       <Hero />
       <CardWrapper />
     </>

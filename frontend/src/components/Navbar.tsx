@@ -5,12 +5,11 @@ import { UserContext } from './context/UserContext';
 import UserDropDownMenu from './UserDropDownMenu';
 
 type NavbarProps = {
-  switchToLoginAndRegisterPage: () => void;
   currentPage: 'Home' | 'Drinks' | 'Food';
 };
 
 function Navbar(props: NavbarProps) {
-  const { switchToLoginAndRegisterPage, currentPage } = props;
+  const { currentPage } = props;
   const userContext = useContext(UserContext);
   const [showUserDropDown, setShowUserDropDown] = useState(false);
 
@@ -49,9 +48,10 @@ function Navbar(props: NavbarProps) {
             FOOD
           </Link>
         </div>
-        <div>
+
+        <div className={navStyles.loginIconWrapper}>
           <svg
-            onClick={userContext?.user ? toggleUserDropDown : switchToLoginAndRegisterPage}
+            onClick={toggleUserDropDown}
             className={setUserIconColour()}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 448 512"

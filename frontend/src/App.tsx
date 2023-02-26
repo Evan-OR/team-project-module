@@ -6,23 +6,14 @@ import DrinksPage from './components/DrinksPage/DrinksPage.js';
 import FoodPage from './components/FoodPage/FoodPage.js';
 
 function App() {
-  const [showLogin, setShowLogin] = useState(false);
-
-  const switchToLoginAndRegisterPage = () => {
-    setShowLogin(!showLogin);
-  };
-
   return (
     <Router>
       <div className="App">
         <UserContextProvider>
           <Routes>
-            <Route path="/" element={<HomePage switchToLoginAndRegisterPage={switchToLoginAndRegisterPage} />} />
-            <Route
-              path="/drinks"
-              element={<DrinksPage switchToLoginAndRegisterPage={switchToLoginAndRegisterPage} />}
-            />
-            <Route path="/food" element={<FoodPage switchToLoginAndRegisterPage={switchToLoginAndRegisterPage} />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/drinks" element={<DrinksPage />} />
+            <Route path="/food" element={<FoodPage />} />
           </Routes>
         </UserContextProvider>
       </div>
