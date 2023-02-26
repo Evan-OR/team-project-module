@@ -1,4 +1,4 @@
-@import "./default.module.scss";
+@import './default.module.scss';
 
 a {
   text-decoration: none;
@@ -30,9 +30,7 @@ $border-width: 2px;
 }
 
 .pageLink {
-  &:visited {
-    text-decoration: none;
-  }
+  color: white;
 }
 
 .active {

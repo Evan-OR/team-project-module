@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import navStyles from '../styles/navbarStyles.module.scss';
 import { UserContext } from './context/UserContext';
 import UserDropDownMenu from './UserDropDownMenu';
@@ -15,8 +15,7 @@ function Navbar(props: NavbarProps) {
 
   //Change user icon colour if user context is set (user is logged in)
   const setUserIconColour = (): string => {
-    if (userContext?.user)
-      return `${navStyles.userIcon} ${navStyles.userIconLoggedIn}`;
+    if (userContext?.user) return `${navStyles.userIcon} ${navStyles.userIconLoggedIn}`;
     return `${navStyles.userIcon}`;
   };
 
