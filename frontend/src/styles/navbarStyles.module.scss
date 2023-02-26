@@ -30,10 +30,11 @@ $border-width: 2px;
 }
 
 .pageLink {
-  color: white;
+  color: inherit;
 }
 
 .active {
+  color: $highlight-colour;
   border-bottom: solid 2px $highlight-colour;
 }
 

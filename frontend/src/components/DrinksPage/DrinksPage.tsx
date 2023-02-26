@@ -10,7 +10,7 @@ function DrinksPage(props: DrinksPageProps) {
   const { switchToLoginAndRegisterPage } = props;
   return (
     <>
-      <Navbar switchToLoginAndRegisterPage={switchToLoginAndRegisterPage} />
+      <Navbar currentPage={'Drinks'} switchToLoginAndRegisterPage={switchToLoginAndRegisterPage} />
       <DrinkSec />
     </>
   );

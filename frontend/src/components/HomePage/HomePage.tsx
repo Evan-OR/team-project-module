@@ -11,7 +11,7 @@ function HomePage(props: HomePageProps) {
   const { switchToLoginAndRegisterPage } = props;
   return (
     <>
-      <Navbar switchToLoginAndRegisterPage={switchToLoginAndRegisterPage} />
+      <Navbar switchToLoginAndRegisterPage={switchToLoginAndRegisterPage} currentPage={'Home'} />
       <Hero />
       <CardWrapper />
     </>

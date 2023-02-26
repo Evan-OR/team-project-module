@@ -6,10 +6,11 @@ import UserDropDownMenu from './UserDropDownMenu';
 
 type NavbarProps = {
   switchToLoginAndRegisterPage: () => void;
+  currentPage: 'Home' | 'Drinks' | 'Food';
 };
 
 function Navbar(props: NavbarProps) {
-  const { switchToLoginAndRegisterPage } = props;
+  const { switchToLoginAndRegisterPage, currentPage } = props;
   const userContext = useContext(UserContext);
   const [showUserDropDown, setShowUserDropDown] = useState(false);
 
@@ -33,17 +34,17 @@ function Navbar(props: NavbarProps) {
       <div className={navStyles.logo}>LOGO HERE</div>
 
       <div className={navStyles.pagesWrapper}>
-        <div className={`${navStyles.pageOption} ${navStyles.active}`}>
-          <Link to="/" className={navStyles.link}>
+        <div className={`${navStyles.pageOption} ${currentPage === 'Home' ? navStyles.active : ''}`}>
+          <Link to="/" className={navStyles.pageLink}>
             HOME
           </Link>
         </div>
-        <div className={navStyles.pageOption}>
+        <div className={`${navStyles.pageOption} ${currentPage === 'Drinks' ? navStyles.active : ''}`}>
           <Link to="/drinks" className={navStyles.pageLink}>
             DRINKS
           </Link>
         </div>
-        <div className={navStyles.pageOption}>
+        <div className={`${navStyles.pageOption} ${currentPage === 'Food' ? navStyles.active : ''}`}>
           <Link to="/food" className={navStyles.pageLink}>
             FOOD
           </Link>

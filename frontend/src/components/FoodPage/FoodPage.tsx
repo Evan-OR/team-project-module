@@ -10,7 +10,7 @@ function FoodPage(props: FoodPageProps) {
   const { switchToLoginAndRegisterPage } = props;
   return (
     <>
-      <Navbar switchToLoginAndRegisterPage={switchToLoginAndRegisterPage} />
+      <Navbar switchToLoginAndRegisterPage={switchToLoginAndRegisterPage} currentPage={'Food'} />
       <FoodSec />
     </>
   );
