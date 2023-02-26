@@ -1,15 +1,9 @@
-import { useState } from "react";
-import {
-  UserContext,
-  UserContextProvider,
-} from "./components/context/UserContext.js";
-import Navbar from "./components/Navbar.js";
-import Hero from "./components/Hero.js";
-import CardWrapper from "./components/CardWrapper.js";
-import LoginAndRegisterPage from "./components/LoginAndRegisterPage.js";
-import DrinkSec from "./components/DrinkSec.js";
-import FoodSec from "./components/FoodSec.js";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { useState } from 'react';
+import { UserContext, UserContextProvider } from './components/context/UserContext.js';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './components/HomePage/HomePage.js';
+import DrinksPage from './components/DrinksPage/DrinksPage.js';
+import FoodPage from './components/FoodPage/FoodPage.js';
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -22,35 +16,14 @@ function App() {
     <Router>
       <div className="App">
         <UserContextProvider>
-          {showLogin ? (
-            <LoginAndRegisterPage
-              switchToLoginAndRegisterPage={switchToLoginAndRegisterPage}
+          <Routes>
+            <Route path="/" element={<HomePage switchToLoginAndRegisterPage={switchToLoginAndRegisterPage} />} />
+            <Route
+              path="/drinks"
+              element={<DrinksPage switchToLoginAndRegisterPage={switchToLoginAndRegisterPage} />}
             />
-          ) : (
-            <>
-              <switch>
-                <Route exact path="/">
-                  <Navbar
-                    switchToLoginAndRegisterPage={switchToLoginAndRegisterPage}
-                  />
-                  <Hero />
-                  <CardWrapper />
-                </Route>
-                <Route exact path="/drinks">
-                  <Navbar
-                    switchToLoginAndRegisterPage={switchToLoginAndRegisterPage}
-                  />
-                  <DrinkSec />
-                </Route>
-                <Route exact path="/food">
-                  <Navbar
-                    switchToLoginAndRegisterPage={switchToLoginAndRegisterPage}
-                  />
-                  <FoodSec />
-                </Route>
-              </switch>
-            </>
-          )}
+            <Route path="/food" element={<FoodPage switchToLoginAndRegisterPage={switchToLoginAndRegisterPage} />} />
+          </Routes>
         </UserContextProvider>
       </div>
     </Router>

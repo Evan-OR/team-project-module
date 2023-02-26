@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import styles from '../styles/loginPageStyles.module.scss';
+import styles from '../../styles/loginPageStyles.module.scss';
 import { UserContext } from './context/UserContext';
 
 type LoginPageProps = {

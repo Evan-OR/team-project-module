@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
-import { UserContext } from './context/UserContext';
-import styles from '../styles/loginPageStyles.module.scss';
+import { UserContext } from '../context/UserContext';
+import styles from '../../styles/loginPageStyles.module.scss';
 
 type LoginPageProps = {
   toggleLoginOrRegister: () => void;

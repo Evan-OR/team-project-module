@@ -1,4 +1,4 @@
-import heroStyles from '../styles/heroStyles.module.scss';
+import heroStyles from '../../styles/heroStyles.module.scss';
 
 const Hero = () => {
   return (
@@ -20,3 +20,4 @@ const Hero = () => {
 };
 
 export default Hero;
+0;

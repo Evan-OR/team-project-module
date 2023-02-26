@@ -1,14 +1,10 @@
-import React from "react";
-import foodsecStyles from "../styles/foodsecStyles.module.scss";
+import React from 'react';
+import foodsecStyles from '../../styles/foodsecStyles.module.scss';
 const DrinkSec = () => {
   return (
     <div className={foodsecStyles.foodDisplayWrapper}>
       <form action="" className={foodsecStyles.foodSearchbar}>
-        <input
-          type="text"
-          placeholder="Search for Food!"
-          className={foodsecStyles.foodInput}
-        />
+        <input type="text" placeholder="Search for Food!" className={foodsecStyles.foodInput} />
       </form>
 
       <div className={foodsecStyles.foodMenuContainer}>

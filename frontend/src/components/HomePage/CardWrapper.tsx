@@ -1,4 +1,4 @@
-import styles from '../styles/cardStyles.module.scss';
+import styles from '../../styles/cardStyles.module.scss';
 
 function CardWrapper() {
   return (
