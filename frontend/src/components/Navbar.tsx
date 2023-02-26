@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react';
+import { Link } from "react-router-dom";
 import navStyles from '../styles/navbarStyles.module.scss';
 import { UserContext } from './context/UserContext';
 import UserDropDownMenu from './UserDropDownMenu';
@@ -14,7 +15,8 @@ function Navbar(props: NavbarProps) {
 
   //Change user icon colour if user context is set (user is logged in)
   const setUserIconColour = (): string => {
-    if (userContext?.user) return `${navStyles.userIcon} ${navStyles.userIconLoggedIn}`;
+    if (userContext?.user)
+      return `${navStyles.userIcon} ${navStyles.userIconLoggedIn}`;
     return `${navStyles.userIcon}`;
   };
 
@@ -32,9 +34,21 @@ function Navbar(props: NavbarProps) {
       <div className={navStyles.logo}>LOGO HERE</div>
 
       <div className={navStyles.pagesWrapper}>
-        <div className={`${navStyles.pageOption} ${navStyles.active}`}>HOME</div>
-        <div className={navStyles.pageOption}>DRINKS</div>
-        <div className={navStyles.pageOption}>FOOD</div>
+        <div className={`${navStyles.pageOption} ${navStyles.active}`}>
+          <Link to="/" className={navStyles.link}>
+            HOME
+          </Link>
+        </div>
+        <div className={navStyles.pageOption}>
+          <Link to="/drinks" className={navStyles.pageLink}>
+            DRINKS
+          </Link>
+        </div>
+        <div className={navStyles.pageOption}>
+          <Link to="/food" className={navStyles.pageLink}>
+            FOOD
+          </Link>
+        </div>
         <div>
           <svg
             onClick={userContext?.user ? toggleUserDropDown : switchToLoginAndRegisterPage}

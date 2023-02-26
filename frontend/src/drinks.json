@@ -1,0 +1,39 @@
+[
+  {
+    "id": "1",
+    "name": "Sex on the beach",
+    "ingredients": [
+      "Orange Juice",
+      "Cranberry Juice",
+      "1 oz Vodka",
+      "3/4 oz Peach Schnapps"
+    ],
+    "instructions": "Build all ingredients in a highball glass filled with ice. Garnish with orange slice."
+  },
+  {
+    "id": "2",
+    "name": "Strawberry Daiquiri",
+    "ingredients": [
+      "1/2 Strawberry Schnapps",
+      "1 oz Light Rum",
+      "1 oz Lime Juice",
+      "1 tsp Powdered sugar",
+      "1 oz Strawberries"
+    ],
+    "instructions": "Pour all ingredients into shaker with ice cubes. Shake well. Strain in chilled cocktail glass."
+  },
+  {
+    "id": "3",
+    "name": "Zombie",
+    "ingredients": [
+      "1 1/2 oz Rum",
+      "1 1/2 oz Gold Rum",
+      "1 oz 151 proof Rum",
+      "1 tsp Pernod",
+      "1 tsp grenadine",
+      "1 tsp Lime Juice",
+      "1 drop Angostura Bitters"
+    ],
+    "instructions": "Blend at high speed for no more than 5 seconds. Pour into a glass, add ice cubes to fill, then add garnish. *Donn's mix: Bring 3 crushed cinnamon sticks, 1 cup of sugar and 1 cup of water to a boil, stirring until the sugar is dissolved.Simmer for 2 minutes, then remove from the heat and let sit for at least 2 hours before straining into a clean glass bottle.Then add 1 part of the syrup and 2 parts of fresh grapefruit juice together."
+  }
+]

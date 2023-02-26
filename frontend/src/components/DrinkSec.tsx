@@ -1,5 +1,7 @@
 import React from "react";
 import drinksecStyles from "../styles/drinksecStyles.module.scss";
+import DrinkCards from "../components/DrinkCards";
+
 const DrinkSec = () => {
   return (
     <div className={drinksecStyles.DrinkDisplayWrapper}>
@@ -10,25 +12,11 @@ const DrinkSec = () => {
           className={drinksecStyles.drinkInput}
         />
       </form>
-
       <div className={drinksecStyles.DrinkMenuContainer}>
         <div className={drinksecStyles.titleWrapper}>
           <h2 className={drinksecStyles.title}>Suggested Drinks</h2>
         </div>
-        <div className={drinksecStyles.drinkCardWrapper}>
-          <div className={drinksecStyles.DrinkItem}>
-            <h3 className={drinksecStyles.drinkTitle}>Drink Item</h3>
-          </div>
-          <div className={drinksecStyles.DrinkItem}>
-            <h3 className={drinksecStyles.drinkTitle}>Drink Item</h3>
-          </div>
-          <div className={drinksecStyles.DrinkItem}>
-            <h3 className={drinksecStyles.drinkTitle}>Drink Item</h3>
-          </div>
-          <div className={drinksecStyles.DrinkItem}>
-            <h3 className={drinksecStyles.drinkTitle}>Drink Item</h3>
-          </div>
-        </div>
+        <DrinkCards />
       </div>
     </div>
   );

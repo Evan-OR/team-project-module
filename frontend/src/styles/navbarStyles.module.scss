@@ -1,4 +1,8 @@
-@import './default.module.scss';
+@import "./default.module.scss";
+
+a {
+  text-decoration: none;
+}
 
 $border-width: 2px;
 
@@ -22,6 +26,12 @@ $border-width: 2px;
 
   &:hover {
     cursor: pointer;
+  }
+}
+
+.pageLink {
+  &:visited {
+    text-decoration: none;
   }
 }
 
