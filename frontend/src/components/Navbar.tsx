@@ -1,6 +1,7 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import navStyles from '../styles/navbarStyles.module.scss';
+import { LoginModalContext } from './context/LoginModalContext';
 import { UserContext } from './context/UserContext';
 import UserDropDownMenu from './UserDropDownMenu';
 
@@ -12,12 +13,6 @@ function Navbar(props: NavbarProps) {
   const { currentPage } = props;
   const userContext = useContext(UserContext);
   const [showUserDropDown, setShowUserDropDown] = useState(false);
-
-  //Change user icon colour if user context is set (user is logged in)
-  const setUserIconColour = (): string => {
-    if (userContext?.user) return `${navStyles.userIcon} ${navStyles.userIconLoggedIn}`;
-    return `${navStyles.userIcon}`;
-  };
 
   const toggleUserDropDown = () => {
     setShowUserDropDown(!showUserDropDown);
@@ -52,14 +47,18 @@ function Navbar(props: NavbarProps) {
         <div className={navStyles.loginIconWrapper}>
           <svg
             onClick={toggleUserDropDown}
-            className={setUserIconColour()}
+            className={`${navStyles.userIcon} ${userContext?.user ? navStyles.userIconLoggedIn : ''}`}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 448 512"
           >
             <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
           </svg>
 
-          {showUserDropDown ? <UserDropDownMenu user={userContext?.user} signOut={signOut} /> : <></>}
+          {showUserDropDown ? (
+            <UserDropDownMenu toggleUserDropDown={toggleUserDropDown} user={userContext?.user} signOut={signOut} />
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </nav>

@@ -2,9 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './styles/index.scss';
+import { LoginModalContextProvider } from './components/context/LoginModalContext';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <App />
+    <LoginModalContextProvider>
+      <App />
+    </LoginModalContextProvider>
   </React.StrictMode>
 );

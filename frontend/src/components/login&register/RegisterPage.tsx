@@ -1,21 +1,26 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext, useRef } from 'react';
 import { UserContext } from '../context/UserContext';
 import styles from '../../styles/loginPageStyles.module.scss';
+import { LoginModalContext } from '../context/LoginModalContext';
+import { assertIsNode } from '../../utils/utils';
 
 type LoginPageProps = {
   toggleLoginOrRegister: () => void;
-  switchToLoginAndRegisterPage: () => void;
 };
 
 function RegisterPage(props: LoginPageProps) {
-  const { toggleLoginOrRegister, switchToLoginAndRegisterPage } = props;
+  const { toggleLoginOrRegister } = props;
 
   const userContext = useContext(UserContext);
+  const { showLoginModal, setShowLoginModal } = useContext(LoginModalContext);
 
   const [username, setUsername] = useState('');
   const [passwordOne, setPasswordOne] = useState('');
   const [passwordTwo, setPasswordTwo] = useState('');
   const [disableBtn, setDisableBtn] = useState(false);
+
+  const modal = useRef<HTMLDivElement>(null);
+  const usernameRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = async () => {
     if (passwordOne !== passwordTwo) {
@@ -37,7 +42,7 @@ function RegisterPage(props: LoginPageProps) {
 
       if (message.userInfo != null) {
         userContext?.setUser(message.userInfo);
-        switchToLoginAndRegisterPage();
+        setShowLoginModal(!showLoginModal);
       }
     } catch (err) {
       alert('ERROR WITH signup SYSTEM! IDK');
@@ -56,12 +61,27 @@ function RegisterPage(props: LoginPageProps) {
     setPasswordTwo(e.target.value);
   };
 
+  useEffect(() => {
+    const handler = (event: MouseEvent) => {
+      assertIsNode(event.target);
+      if (!modal.current?.contains(event.target)) {
+        setShowLoginModal(!showLoginModal);
+      }
+    };
+    document.addEventListener('mousedown', handler);
+
+    usernameRef.current?.focus();
+
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
+
   return (
-    <div className={styles.loginPageWrapper}>
+    <div ref={modal} className={styles.loginPageWrapper}>
       <div className={styles.title}>SIGN UP</div>
       <form className={styles.loginForm}>
         <div className={styles.formElement}>
           <input
+            ref={usernameRef}
             className={styles.inputField}
             placeholder="Username"
             onChange={usernameHandler}
@@ -96,8 +116,8 @@ function RegisterPage(props: LoginPageProps) {
           </button>
           <button
             className={styles.backButton}
+            onClick={() => setShowLoginModal(!showLoginModal)}
             disabled={disableBtn}
-            onClick={switchToLoginAndRegisterPage}
             type="button"
           >
             Back

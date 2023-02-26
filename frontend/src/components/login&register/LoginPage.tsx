@@ -1,20 +1,25 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import styles from '../../styles/loginPageStyles.module.scss';
-import { UserContext } from './context/UserContext';
+import { assertIsNode } from '../../utils/utils';
+import { LoginModalContext } from '../context/LoginModalContext';
+import { UserContext } from '../context/UserContext';
 
 type LoginPageProps = {
   toggleLoginOrRegister: () => void;
-  switchToLoginAndRegisterPage: () => void;
 };
 
 function LoginPage(props: LoginPageProps) {
-  const { toggleLoginOrRegister, switchToLoginAndRegisterPage } = props;
+  const { toggleLoginOrRegister } = props;
 
   const userContext = useContext(UserContext);
+  const { showLoginModal, setShowLoginModal } = useContext(LoginModalContext);
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [disableBtn, setDisableBtn] = useState(false);
+
+  const modal = useRef<HTMLDivElement>(null);
+  const usernameRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = async () => {
     setDisableBtn(true);
@@ -28,7 +33,7 @@ function LoginPage(props: LoginPageProps) {
 
       if (message.userInfo != null) {
         userContext?.setUser(message.userInfo);
-        switchToLoginAndRegisterPage();
+        setShowLoginModal(!showLoginModal);
       }
     } catch (err) {
       alert('ERROR WITH LOGIN SYSTEM! IDK');
@@ -44,12 +49,27 @@ function LoginPage(props: LoginPageProps) {
     setPassword(e.target.value);
   };
 
+  useEffect(() => {
+    const handler = (event: MouseEvent) => {
+      assertIsNode(event.target);
+      if (!modal.current?.contains(event.target)) {
+        setShowLoginModal(!showLoginModal);
+      }
+    };
+    document.addEventListener('mousedown', handler);
+
+    usernameRef.current?.focus();
+
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
+
   return (
-    <div className={styles.loginPageWrapper}>
+    <div ref={modal} className={styles.loginPageWrapper}>
       <div className={styles.title}>LOGIN</div>
       <form className={styles.loginForm}>
         <div className={styles.formElement}>
           <input
+            ref={usernameRef}
             className={styles.inputField}
             placeholder="Username"
             onChange={usernameHandler}
@@ -72,10 +92,11 @@ function LoginPage(props: LoginPageProps) {
           <button className={styles.submitButton} disabled={disableBtn} onClick={handleSubmit} type="button">
             Login
           </button>
+          {/* TOGGLE MODAL HERE ONCLICK */}
           <button
             className={styles.backButton}
+            onClick={() => setShowLoginModal(!showLoginModal)}
             disabled={disableBtn}
-            onClick={switchToLoginAndRegisterPage}
             type="button"
           >
             Back
