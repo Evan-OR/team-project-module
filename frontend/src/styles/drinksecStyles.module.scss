@@ -36,23 +36,38 @@
 
 .titleWrapper {
   width: 100%;
+  font-size: small;
 }
+
 .title {
   color: $highlight-colour;
   text-decoration: underline;
+  margin-left: 20%;
 }
 
 .drinkCardWrapper {
-  display: flex;
+  width: 100%;
+  flex-direction: row;
 }
 
 .DrinkItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: $background-colour;
-  height: 250px;
-  width: 200px;
+  height: 350px;
+  width: 275px;
   border-radius: 25px;
   font-size: small;
-  display: flex;
   justify-content: center;
   margin: 20px;
+}
+
+.drinkcardHolder {
+  display: flex;
+  flex-direction: row;
+}
+
+.cardPara {
+  font-size: x-small;
 }

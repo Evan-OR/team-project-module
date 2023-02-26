@@ -1,5 +1,9 @@
 @import "./default.module.scss";
 
+a {
+  text-decoration: none;
+}
+
 .navContainer {
   width: 80%;
   margin: 20px 0;
