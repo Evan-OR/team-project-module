@@ -1,11 +1,11 @@
-@import "./default.module.scss";
+@import './default.module.scss';
 
 .DrinkDisplayWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 10px;
-  width: 80%;
+  width: 100%;
   margin-bottom: 60px;
 }
 
@@ -31,15 +31,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 60%;
+  width: 100%;
 }
 
 .titleWrapper {
   width: 100%;
-  font-size: small;
+  justify-content: center;
+  text-align: center;
 }
 
 .title {
   color: $highlight-colour;
-  text-decoration: underline;
+}
+
+.cardDisplayWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: fit-content;
 }

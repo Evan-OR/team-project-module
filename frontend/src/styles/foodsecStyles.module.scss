@@ -1,11 +1,11 @@
-@import "./default.module.scss";
+@import './default.module.scss';
 
 .foodDisplayWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 10px;
-  width: 80%;
+  width: 100%;
   margin-bottom: 60px;
 }
 
