@@ -5,11 +5,11 @@
   flex-direction: column;
   align-items: center;
   margin-top: 10px;
-  width: 100%;
+  width: 80%;
   margin-bottom: 60px;
 }
 
-.foodSearchbar {
+.Searchbar {
   display: flex;
   width: 100%;
   max-width: 500px;
@@ -31,31 +31,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  margin-left: 10%;
-  margin-right: 10%;
+  width: 60%;
 }
 
 .titleWrapper {
   width: 100%;
+  font-size: small;
 }
+
 .title {
   color: $highlight-colour;
   text-decoration: underline;
-  margin-left: 20%;
-}
-
-.foodCardWrapper {
-  display: flex;
-}
-
-.foodItem {
-  background-color: $background-colour;
-  height: 250px;
-  width: 200px;
-  border-radius: 25px;
-  font-size: small;
-  display: flex;
-  justify-content: center;
-  margin: 20px;
 }

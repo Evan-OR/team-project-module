@@ -1,12 +1,16 @@
-import React from 'react';
-import drinksecStyles from '../../styles/drinksecStyles.module.scss';
-import DrinkCards from './DrinkCards';
+import React from "react";
+import drinksecStyles from "../../styles/drinksecStyles.module.scss";
+import DrinkCards from "./DrinkCards";
 
 const DrinkSec = () => {
   return (
     <div className={drinksecStyles.DrinkDisplayWrapper}>
       <form action="" className={drinksecStyles.Searchbar}>
-        <input type="text" placeholder="Search for drink!" className={drinksecStyles.drinkInput} />
+        <input
+          type="text"
+          placeholder="Search for drink!"
+          className={drinksecStyles.drinkInput}
+        />
       </form>
       <div className={drinksecStyles.DrinkMenuContainer}>
         <div className={drinksecStyles.titleWrapper}>
