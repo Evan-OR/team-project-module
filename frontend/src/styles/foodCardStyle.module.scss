@@ -1,21 +1,21 @@
 @import "./default.module.scss";
 
-.drinkMenu {
+.foodMenu {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-.drinkCardWrapper {
-  padding: 0 10px;
+.foodCardWrapper {
+  padding: 0, 10px;
   margin-bottom: 20px;
 }
-.drinkCard {
+
+.foodCard {
   display: flex;
-  justify-content: space-between;
 }
 
-.drinkItem {
+.foodItem {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,20 +25,19 @@
   border: 1px solid $highlight-colour;
 }
 
-.drinkImg {
-  //! Cant get this to space properly the way I had it working
+.foodImg {
   margin-top: 3%;
   border-radius: 25px;
   width: 95%;
 }
 
-.drinkSmallInfo {
+.foodSmallInfo {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.drinkMoreInfoBtn {
+.foodMoreInfoBtn {
   border-radius: 25px;
   border: none;
   background-color: $highlight-colour;

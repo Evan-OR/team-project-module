@@ -1,0 +1,70 @@
+[
+  {
+    "id": "1",
+    "name": "Sex on the beach",
+    "ingredients": [
+      "Orange Juice",
+      "Cranberry Juice",
+      "1 oz Vodka",
+      "3/4 oz Peach Schnapps"
+    ],
+    "instructions": "Build all ingredients in a highball glass filled with ice. Garnish with orange slice."
+  },
+  {
+    "id": "2",
+    "name": "Strawberry Daiquiri",
+    "ingredients": [
+      "1/2 Strawberry Schnapps",
+      "1 oz Light Rum",
+      "1 oz Lime Juice",
+      "1 tsp Powdered sugar",
+      "1 oz Strawberries"
+    ],
+    "instructions": "Pour all ingredients into shaker with ice cubes. Shake well. Strain in chilled cocktail glass."
+  },
+  {
+    "id": "3",
+    "name": "Zombie",
+    "ingredients": [
+      "1 1/2 oz Rum",
+      "1 1/2 oz Gold Rum",
+      "1 oz 151 proof Rum",
+      "1 tsp Pernod",
+      "1 tsp grenadine",
+      "1 tsp Lime Juice",
+      "1 drop Angostura Bitters"
+    ],
+    "instructions": "Blend at high speed for no more than 5 seconds. Pour into a glass, add ice cubes to fill, then add garnish. *Donn's mix: Bring 3 crushed cinnamon sticks, 1 cup of sugar and 1 cup of water to a boil, stirring until the sugar is dissolved.Simmer for 2 minutes, then remove from the heat and let sit for at least 2 hours before straining into a clean glass bottle.Then add 1 part of the syrup and 2 parts of fresh grapefruit juice together."
+  },
+  {
+    "id": "4",
+    "name": "Mojito",
+    "ingredients": [
+      "2-3 oz Light Rum",
+      "Juice of one Lime",
+      "2 tsp Sugar",
+      "2-4 Mint",
+      "Soda water"
+    ],
+    "instructions": "Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with cracked ice. Pour the rum and top with soda water.Garnish and serve with straw in Highball glass."
+  },
+  {
+    "id": "5",
+    "name": "Long Island Tea",
+    "ingredients": [
+      "1/2 oz Vodka",
+      "1/2 oz Light rum",
+      "1/2 oz Gin",
+      "1/2 oz Tequila",
+      "Juice of 1/2 Lemon",
+      "1 spalsh Coca-Cola"
+    ],
+    "instructions": "Combine all ingredients (except cola) and pour over ice in a highball glass. Add the splash of cola for color. Decorate with a slice of lemon and serve in Highball glass."
+  },
+  {
+    "id": "6",
+    "name": "Blue Lagoon",
+    "ingredients": ["1 oz Vodka", "1 oz Blue Curacao", "Lemonade", "Cherry"],
+    "instructions": "Pour vodka and curacao over ice in a highball glass. Fill with lemonade, top with the cherry, and serve."
+  }
+]
