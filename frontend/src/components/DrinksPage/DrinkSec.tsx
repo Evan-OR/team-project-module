@@ -7,17 +7,19 @@ import DrinkModal from './DrinkModal';
 
 const DrinkSec = () => {
   const [modalToggle, setToggleModal] = useState(false);
+  const [currentDrink, setCurrentDrink] = useState(drinks[0]);
 
   const toggleModal = (index: number | null) => {
     setToggleModal(!modalToggle);
 
-    if (!index) return;
-    console.log(drinks[index]);
+    if (index === null) return;
+    console.log(currentDrink.idDrink);
+    setCurrentDrink(drinks[index]);
   };
 
   return (
     <div className={drinksecStyles.DrinkDisplayWrapper}>
-      {modalToggle ? <DrinkModal toggleModal={toggleModal} /> : <></>}
+      {modalToggle ? <DrinkModal toggleModal={toggleModal} drink={currentDrink} /> : <></>}
       <form className={drinksecStyles.Searchbar}>
         <input type="text" placeholder="Search for drink!" className={drinksecStyles.drinkInput} />
       </form>

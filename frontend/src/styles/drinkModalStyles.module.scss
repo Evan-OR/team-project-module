@@ -1,5 +1,34 @@
 @import './default.module.scss';
 
 .modalWrapper {
-  position: absolute;
+  z-index: 12;
+  position: fixed;
+  width: 100%;
+  height: 150vh;
+  background-color: rgba(32, 32, 32, 0.7);
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  // So modal background covers top of page
+  transform: translateY(-200px);
+
+  .modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    position: relative;
+
+    margin-top: 12%;
+    padding: 45px;
+    border-radius: 10px;
+    background-color: $background-colour;
+    filter: drop-shadow(2px 2px 4px #ffffff10);
+    border: solid 2px $transparent-hightlight;
+
+    // So modal is more centered
+    transform: translateY(200px);
+  }
 }
