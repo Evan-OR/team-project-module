@@ -2,18 +2,20 @@ import React from 'react';
 import img from '../../images/drinkImgs/sexonthebeach.jpg';
 import styles from '../../styles/drinkCardStyle.module.scss';
 import { Drink } from '../../types/UserTypes';
-import FilledStar from '../icons/FilledStar';
-import HollowStar from '../icons/HollowStar';
+import FilledStar from '../../icons/FilledStar';
+import HollowStar from '../../icons/HollowStar';
 
 type DrinkCardProps = {
   drink: Drink;
+  index: number;
+  toggleModal: (index: number) => void;
 };
 
 function DrinkCard(props: DrinkCardProps) {
-  const { drink } = props;
+  const { drink, index, toggleModal } = props;
 
   return (
-    <div className={styles.drinkCardWrapper2}>
+    <div onClick={() => toggleModal(index)} className={styles.drinkCardWrapper2}>
       <img draggable="false" src={img}></img>
       <div className={styles.infoWrapper}>
         <div className={styles.title}>{drink.strDrink}</div>

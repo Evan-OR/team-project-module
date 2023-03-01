@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import drinksecStyles from '../../styles/drinksecStyles.module.scss';
 import DrinkCard from './DrinkCard';
 import DrinkCards from './DrinkCards';
 import drinks from '../../dataset/drinks.json';
+import DrinkModal from './DrinkModal';
 
 const DrinkSec = () => {
+  const [modalToggle, setToggleModal] = useState(false);
+
+  const toggleModal = (index: number | null) => {
+    setToggleModal(!modalToggle);
+
+    if (!index) return;
+    console.log(drinks[index]);
+  };
+
   return (
     <div className={drinksecStyles.DrinkDisplayWrapper}>
-      <form action="" className={drinksecStyles.Searchbar}>
+      {modalToggle ? <DrinkModal toggleModal={toggleModal} /> : <></>}
+      <form className={drinksecStyles.Searchbar}>
         <input type="text" placeholder="Search for drink!" className={drinksecStyles.drinkInput} />
       </form>
       <div className={drinksecStyles.DrinkMenuContainer}>
@@ -15,8 +26,8 @@ const DrinkSec = () => {
           <h2 className={drinksecStyles.title}>Suggested Drinks</h2>
         </div>
         <div className={drinksecStyles.cardDisplayWrapper}>
-          {drinks.map((drink) => (
-            <DrinkCard key={drink.idDrink} drink={drink} />
+          {drinks.map((drink, index) => (
+            <DrinkCard key={drink.idDrink} drink={drink} toggleModal={toggleModal} index={index} />
           ))}
         </div>
       </div>
