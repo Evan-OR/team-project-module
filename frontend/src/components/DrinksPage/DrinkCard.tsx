@@ -16,7 +16,7 @@ function DrinkCard(props: DrinkCardProps) {
 
   return (
     <div onClick={() => toggleModal(index)} className={styles.drinkCardWrapper2}>
-      <img draggable="false" src={img}></img>
+      <img draggable="false" src={drink.strDrinkThumb}></img>
       <div className={styles.infoWrapper}>
         <div className={styles.title}>{drink.strDrink}</div>
         <div className={styles.tagWrapper}>

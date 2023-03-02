@@ -23,10 +23,12 @@ const DrinkSec = () => {
       <form className={drinksecStyles.Searchbar}>
         <input type="text" placeholder="Search for drink!" className={drinksecStyles.drinkInput} />
       </form>
+
       <div className={drinksecStyles.DrinkMenuContainer}>
         <div className={drinksecStyles.titleWrapper}>
           <h2 className={drinksecStyles.title}>Suggested Drinks</h2>
         </div>
+
         <div className={drinksecStyles.cardDisplayWrapper}>
           {drinks.map((drink, index) => (
             <DrinkCard key={drink.idDrink} drink={drink} toggleModal={toggleModal} index={index} />

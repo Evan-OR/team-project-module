@@ -20,6 +20,7 @@ export type Drink = {
   strAlcoholic: string;
   strGlass: string;
   strInstructions: string;
+  strDrinkThumb: string;
   strIngredient1: string | null;
   strIngredient2: string | null;
   strIngredient3: string | null;
