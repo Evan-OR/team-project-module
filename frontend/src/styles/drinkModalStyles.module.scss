@@ -37,12 +37,14 @@
       width: inherit;
 
       width: 350px;
+      height: 350px;
     }
 
     .infoWrapper {
       display: flex;
       flex-direction: column;
       align-items: center;
+      height: 100%;
 
       padding: 20px;
 
@@ -58,20 +60,61 @@
         justify-content: space-evenly;
 
         .modalDivide {
-          width: 100%;
+          width: 400px;
           padding: 0 15px;
+        }
+
+        .ingredientsWrapper {
+          width: max-content;
+          padding: 0 25px;
 
           .ingredients {
-            list-style: disc;
-            div {
-              display: list-item;
-            }
+            display: flex;
+            flex-direction: column;
           }
         }
 
         .subTitle {
           font-weight: bold;
           font-size: 1.1rem;
+          margin-bottom: 10px;
+        }
+      }
+
+      .ratingAndLikesWrapper {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        align-self: flex-end;
+
+        .ratingWrapper {
+          .filled {
+            height: 30px;
+            width: 30px;
+            fill: white;
+          }
+        }
+
+        .likesWrapper {
+          display: flex;
+          justify-content: space-around;
+          width: 100px;
+
+          .likeBtn,
+          .dislikeBtn {
+            width: 32px;
+            height: 32px;
+            fill: white;
+
+            &:hover {
+              cursor: pointer;
+            }
+          }
+          .dislikeBtn {
+            margin-top: 6px;
+            transform: scaleY(-1);
+          }
         }
       }
     }
