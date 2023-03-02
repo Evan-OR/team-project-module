@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import styles from '../../styles/loginPageStyles.module.scss';
-import { assertIsNode } from '../../utils/utils';
+import { assertIsNode, parseUserInfo } from '../../utils/utils';
 import { LoginModalContext } from '../context/LoginModalContext';
 import { UserContext } from '../context/UserContext';
 
@@ -32,7 +32,7 @@ function LoginPage(props: LoginPageProps) {
       console.log(message);
 
       if (message.userInfo != null) {
-        userContext?.setUser(message.userInfo);
+        userContext?.setUser(parseUserInfo(message.userInfo));
         setShowLoginModal(!showLoginModal);
       }
     } catch (err) {

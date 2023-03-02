@@ -1,3 +1,9 @@
+export type UserInfoUnParsed = {
+  userID: number;
+  username: string;
+  likes: string;
+};
+
 export type LoginResponse = {
   message: string;
   userInfo: UserInfo;
@@ -6,11 +12,11 @@ export type LoginResponse = {
 export type UserInfo = {
   userID: number;
   username: string;
-  password: string;
+  likes: number[];
 };
 
 export type Drink = {
-  idDrink: string;
+  idDrink: number;
   strDrink: string;
   strDrinkAlternate: string | null;
   strTags: string | null;

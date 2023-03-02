@@ -78,7 +78,7 @@ app.post('/signup/:username/:password', (req, res) => {
   const { username, password } = req.params;
 
   const checkForUserSQL = 'SELECT * FROM users where username = ?';
-  const regesterUserSQL = 'INSERT INTO users (username, password) VALUES (?,?)';
+  const regesterUserSQL = 'INSERT INTO users (username, password, likes) VALUES (?,?,?)';
 
   //Check if user already exists
   connection.query(checkForUserSQL, [username], (err, results, fields) => {
@@ -91,7 +91,7 @@ app.post('/signup/:username/:password', (req, res) => {
       });
     } else {
       // Create User
-      connection.execute(regesterUserSQL, [username, password], (err, results, fields) => {
+      connection.execute(regesterUserSQL, [username, password, '[]'], (err, results, fields) => {
         if (err) throw err;
 
         //Get the record just created
@@ -105,6 +105,25 @@ app.post('/signup/:username/:password', (req, res) => {
         });
       });
     }
+  });
+});
+
+app.post('/like/:userId/:newLikesArray', (req, res) => {
+  const { userId, newLikesArray } = req.params;
+
+  const sql = 'UPDATE users SET likes = ? WHERE userID = ?;';
+
+  connection.execute(sql, [newLikesArray, userId], (err) => {
+    if (err) {
+      res.status(500).send({
+        message: 'ERROR UPDATING DATABASE',
+      });
+    }
+
+    res.status(200).send({
+      message: 'User info updated',
+      newLikesArray: newLikesArray,
+    });
   });
 });
 

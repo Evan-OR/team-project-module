@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import drinksecStyles from '../../styles/drinksecStyles.module.scss';
 import DrinkCard from './DrinkCard';
 import DrinkCards from './DrinkCards';
 import drinks from '../../dataset/drinks.json';
 import DrinkModal from './DrinkModal';
+import { UserContext } from '../context/UserContext';
 
 const DrinkSec = () => {
   const [modalToggle, setToggleModal] = useState(false);
   const [currentDrink, setCurrentDrink] = useState(drinks[0]);
+  const userContext = useContext(UserContext);
 
   const toggleModal = (index: number | null) => {
     setToggleModal(!modalToggle);
@@ -22,6 +24,21 @@ const DrinkSec = () => {
       <form className={drinksecStyles.Searchbar}>
         <input type="text" placeholder="Search for drink!" className={drinksecStyles.drinkInput} />
       </form>
+      <button
+        onClick={() => {
+          if (userContext?.user?.likes === undefined || userContext?.user?.likes === null) return;
+          for (const drink of drinks) {
+            for (const id of userContext.user.likes) {
+              if (drink.idDrink === id) {
+                console.log(drink.strDrink);
+              }
+            }
+          }
+        }}
+        type="button"
+      >
+        Print User Likes
+      </button>
 
       <div className={drinksecStyles.DrinkMenuContainer}>
         <div className={drinksecStyles.titleWrapper}>

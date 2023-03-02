@@ -1,6 +1,6 @@
 [
   {
-    "idDrink": "1",
+    "idDrink": 1,
     "strDrink": "Margarita",
     "strDrinkAlternate": null,
     "strTags": "IBA,Contemporary Classic",
@@ -47,7 +47,7 @@
     "dateModified": "2015-08-18 14:42:59"
   },
   {
-    "idDrink": "2",
+    "idDrink": 2,
     "strDrink": "Sex on the Beach",
     "strDrinkAlternate": null,
     "strTags": "IBA,Contemporary Classic",
@@ -94,7 +94,7 @@
     "dateModified": "2016-07-21 10:12:45"
   },
   {
-    "idDrink": "3",
+    "idDrink": 3,
     "strDrink": "Old Fashioned",
     "strDrinkAlternate": null,
     "strTags": "IBA,Classic,Alcoholic,Expensive,Savory",
@@ -141,7 +141,7 @@
     "dateModified": "2016-11-04 09:46:42"
   },
   {
-    "idDrink": "4",
+    "idDrink": 4,
     "strDrink": "Long Island Tea",
     "strDrinkAlternate": null,
     "strTags": "Strong,Asia,Strong Flavor,Brunch,Vegetarian,Sour",
@@ -188,7 +188,7 @@
     "dateModified": "2015-08-18 14:54:32"
   },
   {
-    "idDrink": "5",
+    "idDrink": 5,
     "strDrink": "Daiquiri",
     "strDrinkAlternate": null,
     "strTags": "IBA,Classic,Beach",
@@ -235,7 +235,7 @@
     "dateModified": "2015-08-18 15:06:37"
   },
   {
-    "idDrink": "6",
+    "idDrink": 6,
     "strDrink": "Strawberry Daiquiri",
     "strDrinkAlternate": null,
     "strTags": null,
@@ -282,7 +282,7 @@
     "dateModified": "2017-09-06 23:15:36"
   },
   {
-    "idDrink": "7",
+    "idDrink": 7,
     "strDrink": "Negroni",
     "strDrinkAlternate": null,
     "strTags": "IBA,Classic",
@@ -329,7 +329,7 @@
     "dateModified": "2015-08-18 15:12:07"
   },
   {
-    "idDrink": "8",
+    "idDrink": 8,
     "strDrink": "Whiskey Sour",
     "strDrinkAlternate": null,
     "strTags": "IBA,Classic,Alcoholic,Contemporary Classic",
@@ -376,7 +376,7 @@
     "dateModified": "2017-09-02 12:45:25"
   },
   {
-    "idDrink": "9",
+    "idDrink": 9,
     "strDrink": "Gin Tonic",
     "strDrinkAlternate": null,
     "strTags": null,
@@ -423,7 +423,7 @@
     "dateModified": null
   },
   {
-    "idDrink": "10",
+    "idDrink": 10,
     "strDrink": "Vodka Tonic",
     "strDrinkAlternate": null,
     "strTags": null,
@@ -470,7 +470,7 @@
     "dateModified": null
   },
   {
-    "idDrink": "11",
+    "idDrink": 11,
     "strDrink": "Mojito",
     "strDrinkAlternate": null,
     "strTags": "IBA,Contemporary Classic,Alcoholic,USA,Asia,Vegan,Citrus,Brunch,Hangover,Mild",
@@ -517,7 +517,7 @@
     "dateModified": "2016-11-04 09:17:09"
   },
   {
-    "idDrink": "12",
+    "idDrink": 12,
     "strDrink": "Cocktail Horse\u2019s Neck",
     "strDrinkAlternate": null,
     "strTags": null,
@@ -564,7 +564,7 @@
     "dateModified": null
   },
   {
-    "idDrink": "13",
+    "idDrink": 13,
     "strDrink": "Moscow Mule",
     "strDrinkAlternate": null,
     "strTags": "IBA,Contemporary Classic",
@@ -611,7 +611,7 @@
     "dateModified": "2017-09-02 17:49:48"
   },
   {
-    "idDrink": "14",
+    "idDrink": 14,
     "strDrink": "Mai Tai",
     "strDrinkAlternate": null,
     "strTags": "IBA,Contemporary Classic",
@@ -658,7 +658,7 @@
     "dateModified": "2015-08-18 15:17:50"
   },
   {
-    "idDrink": "15",
+    "idDrink": 15,
     "strDrink": "Bloody Mary",
     "strDrinkAlternate": null,
     "strTags": "IBA,Contemporary Classic",
@@ -711,7 +711,7 @@
     "dateModified": "2015-08-18 15:09:14"
   },
   {
-    "idDrink": "16",
+    "idDrink": 16,
     "strDrink": "Manhattan",
     "strDrinkAlternate": null,
     "strTags": "IBA,Classic,Alcoholic",
@@ -764,7 +764,7 @@
     "dateModified": "2017-09-02 12:07:09"
   },
   {
-    "idDrink": "17",
+    "idDrink": 17,
     "strDrink": "Tom Collins",
     "strDrinkAlternate": null,
     "strTags": null,
@@ -811,7 +811,7 @@
     "dateModified": "2015-08-18 15:21:22"
   },
   {
-    "idDrink": "18",
+    "idDrink": 18,
     "strDrink": "Pina Colada",
     "strDrinkAlternate": null,
     "strTags": "IBA,Contemporary Classic",
@@ -858,7 +858,7 @@
     "dateModified": "2017-09-02 17:55:46"
   },
   {
-    "idDrink": "19",
+    "idDrink": 19,
     "strDrink": "Martini",
     "strDrinkAlternate": null,
     "strTags": null,
@@ -905,7 +905,7 @@
     "dateModified": "2017-09-02 12:51:35"
   },
   {
-    "idDrink": "20",
+    "idDrink": 20,
     "strDrink": "Dry Martini",
     "strDrinkAlternate": null,
     "strTags": "IBA,Classic,Christmas,Alcoholic",

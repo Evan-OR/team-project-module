@@ -1,10 +1,12 @@
-import { useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
+import { json } from 'react-router-dom';
 import FilledStar from '../../icons/FilledStar';
 import HollowStar from '../../icons/HollowStar';
 import ThumbsUp from '../../icons/ThumbsUp';
 import style from '../../styles/drinkModalStyles.module.scss';
 import { Drink } from '../../types/UserTypes';
 import { assertIsNode, dealWithStupidFuckingJson } from '../../utils/utils';
+import { UserContext } from '../context/UserContext';
 
 type DrinkModalProps = {
   toggleModal: (index: number | null) => void;
@@ -14,6 +16,7 @@ type DrinkModalProps = {
 function DrinkModal(props: DrinkModalProps) {
   const { toggleModal, drink } = props;
   const modal = useRef<HTMLDivElement>(null);
+  const userContext = useContext(UserContext);
 
   useEffect(() => {
     const handler = (event: MouseEvent) => {
@@ -26,6 +29,26 @@ function DrinkModal(props: DrinkModalProps) {
 
     return () => document.removeEventListener('mousedown', handler);
   }, []);
+
+  const likeDrink = async () => {
+    if (userContext?.user === null || userContext?.user === undefined) return;
+    // Client side check if user already liked drink
+    const userLikes = userContext?.user?.likes;
+    if (userLikes && userLikes.includes(drink.idDrink)) {
+      console.log('user already liked this');
+      return;
+    }
+
+    //Create new like array info
+    const newLikesArray = JSON.stringify([...userContext.user.likes, drink.idDrink]);
+
+    const req = await fetch(`http://localhost:3000/like/${userContext?.user?.userID}/${newLikesArray}`, {
+      method: 'post',
+    });
+
+    const res = await req.json();
+    userContext.setUser({ ...userContext.user, likes: JSON.parse(res.newLikesArray) });
+  };
 
   return (
     <div className={style.modalWrapper}>
@@ -57,7 +80,7 @@ function DrinkModal(props: DrinkModalProps) {
               <HollowStar styles={style.filled} />
             </div>
             <div className={style.likesWrapper}>
-              <ThumbsUp styles={style.likeBtn} />
+              <ThumbsUp likeDrink={likeDrink} styles={style.likeBtn} />
               <ThumbsUp styles={style.dislikeBtn} />
             </div>
           </div>
