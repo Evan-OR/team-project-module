@@ -16,19 +16,64 @@
 
   .modal {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+
+    max-width: 85vw;
+    width: fit-content;
 
     position: relative;
 
     margin-top: 12%;
-    padding: 45px;
     border-radius: 10px;
     background-color: $background-colour;
     filter: drop-shadow(2px 2px 4px #ffffff10);
     border: solid 2px $transparent-hightlight;
 
     // So modal is more centered
-    transform: translateY(200px);
+    transform: translateY(100px);
+    overflow: hidden;
+
+    img {
+      display: block;
+      width: inherit;
+
+      width: 350px;
+    }
+
+    .infoWrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      padding: 20px;
+
+      .title {
+        font-weight: bold;
+        font-size: 1.6rem;
+        margin-bottom: 15px;
+      }
+
+      .makingInfoWrapper {
+        display: flex;
+        width: 100%;
+        justify-content: space-evenly;
+
+        .modalDivide {
+          width: 100%;
+          padding: 0 15px;
+
+          .ingredients {
+            list-style: disc;
+            div {
+              display: list-item;
+            }
+          }
+        }
+
+        .subTitle {
+          font-weight: bold;
+          font-size: 1.1rem;
+        }
+      }
+    }
   }
 }

@@ -13,7 +13,6 @@ const DrinkSec = () => {
     setToggleModal(!modalToggle);
 
     if (index === null) return;
-    console.log(currentDrink.idDrink);
     setCurrentDrink(drinks[index]);
   };
 
