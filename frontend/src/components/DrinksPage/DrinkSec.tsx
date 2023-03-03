@@ -4,6 +4,7 @@ import DrinkCard from './DrinkCard';
 import drinks from '../../dataset/drinks.json';
 import DrinkModal from './DrinkModal';
 import { UserContext } from '../context/UserContext';
+import { loadUserFromLocalStorage } from '../../utils/userUtil';
 
 const DrinkSec = () => {
   const [modalToggle, setToggleModal] = useState(false);

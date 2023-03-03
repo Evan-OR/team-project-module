@@ -3,6 +3,7 @@ import { UserContext } from '../context/UserContext';
 import styles from '../../styles/loginPageStyles.module.scss';
 import { LoginModalContext } from '../context/LoginModalContext';
 import { assertIsNode } from '../../utils/utils';
+import { saveUserToLocalStorage } from '../../utils/userUtil';
 
 type LoginPageProps = {
   toggleLoginOrRegister: () => void;
@@ -42,6 +43,7 @@ function RegisterPage(props: LoginPageProps) {
 
       if (message.userInfo != null) {
         userContext?.setUser(message.userInfo);
+        saveUserToLocalStorage(message.userInfo);
         setShowLoginModal(!showLoginModal);
       }
     } catch (err) {
