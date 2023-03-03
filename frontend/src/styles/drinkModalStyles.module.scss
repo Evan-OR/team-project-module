@@ -115,6 +115,10 @@
             margin-top: 6px;
             transform: scaleY(-1);
           }
+
+          .liked {
+            fill: $highlight-colour;
+          }
         }
       }
     }

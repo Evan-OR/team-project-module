@@ -1,10 +1,10 @@
 import { useContext, useEffect, useRef } from 'react';
-import { json } from 'react-router-dom';
 import FilledStar from '../../icons/FilledStar';
 import HollowStar from '../../icons/HollowStar';
 import ThumbsUp from '../../icons/ThumbsUp';
 import style from '../../styles/drinkModalStyles.module.scss';
 import { Drink } from '../../types/UserTypes';
+import { checkIfAlreadyLiked } from '../../utils/drinksUtil';
 import { assertIsNode, dealWithStupidFuckingJson } from '../../utils/utils';
 import { UserContext } from '../context/UserContext';
 
@@ -36,6 +36,7 @@ function DrinkModal(props: DrinkModalProps) {
     const userLikes = userContext?.user?.likes;
     if (userLikes && userLikes.includes(drink.idDrink)) {
       console.log('user already liked this');
+      // MAYBE ADD REMOVE LIKE
       return;
     }
 
@@ -80,7 +81,11 @@ function DrinkModal(props: DrinkModalProps) {
               <HollowStar styles={style.filled} />
             </div>
             <div className={style.likesWrapper}>
-              <ThumbsUp likeDrink={likeDrink} styles={style.likeBtn} />
+              <ThumbsUp
+                likedStyle={checkIfAlreadyLiked(drink.idDrink, userContext?.user?.likes) ? style.liked : ''}
+                likeDrink={likeDrink}
+                styles={style.likeBtn}
+              />
               <ThumbsUp styles={style.dislikeBtn} />
             </div>
           </div>
