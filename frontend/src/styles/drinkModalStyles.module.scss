@@ -43,15 +43,26 @@
     .infoWrapper {
       display: flex;
       flex-direction: column;
-      align-items: center;
       height: 100%;
 
       padding: 20px;
 
-      .title {
-        font-weight: bold;
-        font-size: 1.6rem;
-        margin-bottom: 15px;
+      .titleWrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 25px;
+
+        .title {
+          font-weight: bold;
+          font-size: 2rem;
+          color: $highlight-colour;
+        }
+        .ratingIcon {
+          height: 30px;
+          width: 30px;
+          fill: $highlight-colour;
+        }
       }
 
       .makingInfoWrapper {
@@ -61,7 +72,7 @@
 
         .modalDivide {
           width: 400px;
-          padding: 0 15px;
+          // padding: 0 15px;
         }
 
         .ingredientsWrapper {
@@ -81,44 +92,31 @@
         }
       }
 
-      .ratingAndLikesWrapper {
-        margin-top: 20px;
+      .likesWrapper {
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         width: 100%;
-        align-self: flex-end;
+        justify-self: flex-end;
+        margin-top: 20px;
 
-        .ratingWrapper {
-          .filled {
-            height: 30px;
-            width: 30px;
-            fill: white;
+        .likeBtn,
+        .dislikeBtn {
+          width: 32px;
+          height: 32px;
+          fill: white;
+          margin: 0 20px;
+
+          &:hover {
+            cursor: pointer;
           }
         }
+        .dislikeBtn {
+          margin-top: 6px;
+          transform: scaleY(-1);
+        }
 
-        .likesWrapper {
-          display: flex;
-          justify-content: space-around;
-          width: 100px;
-
-          .likeBtn,
-          .dislikeBtn {
-            width: 32px;
-            height: 32px;
-            fill: white;
-
-            &:hover {
-              cursor: pointer;
-            }
-          }
-          .dislikeBtn {
-            margin-top: 6px;
-            transform: scaleY(-1);
-          }
-
-          .liked {
-            fill: $highlight-colour;
-          }
+        .liked {
+          fill: $highlight-colour;
         }
       }
     }

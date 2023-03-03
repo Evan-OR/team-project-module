@@ -58,7 +58,18 @@ function DrinkModal(props: DrinkModalProps) {
 
         {/* Instructions & Ingredients */}
         <div className={style.infoWrapper}>
-          <div className={style.title}>{drink.strDrink}</div>
+          <div className={style.titleWrapper}>
+            <div className={style.title}>{drink.strDrink}</div>
+            <div>
+              <FilledStar styles={style.ratingIcon} />
+              <FilledStar styles={style.ratingIcon} />
+              <FilledStar styles={style.ratingIcon} />
+              <FilledStar styles={style.ratingIcon} />
+              <HollowStar styles={style.ratingIcon} />
+            </div>
+          </div>
+
+          {/* Ingredients and Instructions */}
           <div className={style.makingInfoWrapper}>
             <div className={style.modalDivide}>
               <div className={style.subTitle}>Instructions</div>
@@ -72,22 +83,13 @@ function DrinkModal(props: DrinkModalProps) {
             </div>
           </div>
           {/* RATING AND LIKES STARTS HERE */}
-          <div className={style.ratingAndLikesWrapper}>
-            <div className={style.ratingWrapper}>
-              <FilledStar styles={style.filled} />
-              <FilledStar styles={style.filled} />
-              <FilledStar styles={style.filled} />
-              <FilledStar styles={style.filled} />
-              <HollowStar styles={style.filled} />
-            </div>
-            <div className={style.likesWrapper}>
-              <ThumbsUp
-                likedStyle={checkIfAlreadyLiked(drink.idDrink, userContext?.user?.likes) ? style.liked : ''}
-                likeDrink={likeDrink}
-                styles={style.likeBtn}
-              />
-              <ThumbsUp styles={style.dislikeBtn} />
-            </div>
+          <div className={style.likesWrapper}>
+            <ThumbsUp
+              likedStyle={checkIfAlreadyLiked(drink.idDrink, userContext?.user?.likes) ? style.liked : ''}
+              likeDrink={likeDrink}
+              styles={style.likeBtn}
+            />
+            <ThumbsUp styles={style.dislikeBtn} />
           </div>
         </div>
       </div>
