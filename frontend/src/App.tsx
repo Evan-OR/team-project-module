@@ -6,6 +6,7 @@ import HomePage from './components/HomePage/HomePage.js';
 import DrinksPage from './components/DrinksPage/DrinksPage.js';
 import FoodPage from './components/FoodPage/FoodPage.js';
 import LoginAndRegisterModal from './components/login&register/LoginAndRegisterModal.js';
+import LikesPage from './components/LikesPage/LikesPage.js';
 
 function App() {
   const { showLoginModal, setShowLoginModal } = useContext(LoginModalContext);
@@ -19,6 +20,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/drinks" element={<DrinksPage />} />
             <Route path="/food" element={<FoodPage />} />
+            <Route path="/likes" element={<LikesPage />} />
           </Routes>
         </UserContextProvider>
       </div>
