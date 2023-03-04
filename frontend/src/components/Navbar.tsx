@@ -6,7 +6,7 @@ import { UserContext } from './context/UserContext';
 import UserDropDownMenu from './UserDropDownMenu';
 
 type NavbarProps = {
-  currentPage: 'Home' | 'Drinks' | 'Food';
+  currentPage: 'Home' | 'Drinks' | 'Food' | undefined;
 };
 
 function Navbar(props: NavbarProps) {

@@ -24,21 +24,6 @@ const DrinkSec = () => {
       <form className={drinksecStyles.Searchbar}>
         <input type="text" placeholder="Search for drink!" className={drinksecStyles.drinkInput} />
       </form>
-      <button
-        onClick={() => {
-          if (userContext?.user?.likes === undefined || userContext?.user?.likes === null) return;
-          for (const drink of drinks) {
-            for (const id of userContext.user.likes) {
-              if (drink.idDrink === id) {
-                console.log(drink.strDrink);
-              }
-            }
-          }
-        }}
-        type="button"
-      >
-        Print User Likes
-      </button>
 
       <div className={drinksecStyles.DrinkMenuContainer}>
         <div className={drinksecStyles.titleWrapper}>

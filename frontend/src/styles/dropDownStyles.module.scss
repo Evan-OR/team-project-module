@@ -32,6 +32,9 @@ $border-width: 2px;
   .dropDownOption {
     padding: 0 10px;
     user-select: none;
+    width: 100%;
+    display: block;
+    color: white;
     cursor: pointer;
 
     &:hover {

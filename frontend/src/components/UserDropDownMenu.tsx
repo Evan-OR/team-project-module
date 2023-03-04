@@ -1,4 +1,5 @@
 import { useContext, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import navStyles from '../styles/dropDownStyles.module.scss';
 import { UserInfo } from '../types/UserTypes';
 import { assertIsNode } from '../utils/utils';
@@ -47,7 +48,9 @@ function UserDropDownMenu(props: UserDropDownMenuProps) {
       {user ? (
         <>
           <div className={navStyles.dropDownSection}>
-            <div className={navStyles.dropDownOption}>Your Likes</div>
+            <Link to="/likes" className={navStyles.dropDownOption}>
+              Likes
+            </Link>
             <div className={navStyles.dropDownOption}>Account</div>
           </div>
         </>
