@@ -4,7 +4,7 @@ import DrinkCard from './DrinkCard';
 import drinks from '../../dataset/drinks.json';
 import DrinkModal from './DrinkModal';
 import { UserContext } from '../context/UserContext';
-import { loadUserFromLocalStorage } from '../../utils/userUtil';
+import { getDrinkRecommendations } from '../../utils/drinksUtil';
 
 const DrinkSec = () => {
   const [modalToggle, setToggleModal] = useState(false);
@@ -17,6 +17,11 @@ const DrinkSec = () => {
     if (index === null) return;
     setCurrentDrink(drinks[index]);
   };
+
+  (() => {
+    if (userContext === null || userContext.user === null) return;
+    getDrinkRecommendations(drinks, userContext?.user?.likes);
+  })();
 
   return (
     <div className={drinksecStyles.DrinkDisplayWrapper}>
