@@ -5,6 +5,7 @@ import drinks from '../../dataset/drinks.json';
 import DrinkCard from '../DrinksPage/DrinkCard';
 import Navbar from '../Navbar';
 import { Drink } from '../../types/UserTypes';
+import DrinkModal from '../DrinksPage/DrinkModal';
 
 function LikesPage() {
   const [modalToggle, setToggleModal] = useState(false);
@@ -39,6 +40,7 @@ function LikesPage() {
     <>
       <Navbar currentPage={undefined} />
       <div className={drinksecStyles.DrinkDisplayWrapper}>
+        {modalToggle ? <DrinkModal toggleModal={toggleModal} drink={currentDrink} /> : <></>}
         <div className={drinksecStyles.DrinkMenuContainer}>
           <div className={drinksecStyles.titleWrapper}>
             <h2 className={drinksecStyles.title}>Drinks You've Liked</h2>
