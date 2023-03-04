@@ -1,16 +1,21 @@
-import React, { useContext, useState } from 'react';
-import drinksecStyles from '../../styles/drinksecStyles.module.scss';
-import DrinkCard from './DrinkCard';
-import drinks from '../../dataset/drinks.json';
-import DrinkModal from './DrinkModal';
-import { UserContext } from '../context/UserContext';
-import { loadUserFromLocalStorage } from '../../utils/userUtil';
+import React, { useContext, useState } from "react";
+import drinksecStyles from "../../styles/drinksecStyles.module.scss";
+import DrinkCard from "./DrinkCard";
+import drinks from "../../dataset/drinks.json";
+import DrinkModal from "./DrinkModal";
+import { UserContext } from "../context/UserContext";
+import { loadUserFromLocalStorage } from "../../utils/userUtil";
 
 const DrinkSec = () => {
   const [modalToggle, setToggleModal] = useState(false);
   const [currentDrink, setCurrentDrink] = useState(drinks[0]);
   const userContext = useContext(UserContext);
+  const [searchDrink, setSearchedDrink] = useState("");
 
+  const handleSearch = (e) => {
+    setSearchedDrink(e.target.value);
+    console.log(searchDrink);
+  };
   const toggleModal = (index: number | null) => {
     setToggleModal(!modalToggle);
 
@@ -20,13 +25,26 @@ const DrinkSec = () => {
 
   return (
     <div className={drinksecStyles.DrinkDisplayWrapper}>
-      {modalToggle ? <DrinkModal toggleModal={toggleModal} drink={currentDrink} /> : <></>}
+      {modalToggle ? (
+        <DrinkModal toggleModal={toggleModal} drink={currentDrink} />
+      ) : (
+        <></>
+      )}
       <form className={drinksecStyles.Searchbar}>
-        <input type="text" placeholder="Search for drink!" className={drinksecStyles.drinkInput} />
+        <input
+          type="text"
+          placeholder="Search for drink!"
+          className={drinksecStyles.drinkInput}
+          onChange={handleSearch}
+        />
       </form>
       <button
         onClick={() => {
-          if (userContext?.user?.likes === undefined || userContext?.user?.likes === null) return;
+          if (
+            userContext?.user?.likes === undefined ||
+            userContext?.user?.likes === null
+          )
+            return;
           for (const drink of drinks) {
             for (const id of userContext.user.likes) {
               if (drink.idDrink === id) {
@@ -46,9 +64,39 @@ const DrinkSec = () => {
         </div>
 
         <div className={drinksecStyles.cardDisplayWrapper}>
-          {drinks.map((drink, index) => (
-            <DrinkCard key={drink.idDrink} drink={drink} toggleModal={toggleModal} index={index} />
-          ))}
+          {!searchDrink ? (
+            <div className={drinksecStyles.cardDisplayWrapper}>
+              {drinks.map((drink, index) => (
+                <DrinkCard
+                  key={drink.idDrink}
+                  drink={drink}
+                  toggleModal={toggleModal}
+                  index={index}
+                />
+              ))}
+            </div>
+          ) : (
+            <div>
+              <h1>Condition Ran</h1>
+              {drinks.map((drink, index) => (
+                <DrinkCard
+                  key={drink.idDrink}
+                  drink={drink}
+                  toggleModal={toggleModal}
+                  index={index}
+                />
+              ))}
+            </div>
+          )}
+
+          {/* {drinks.map((drink, index) => (
+            <DrinkCard
+              key={drink.idDrink}
+              drink={drink}
+              toggleModal={toggleModal}
+              index={index}
+            />
+          ))} */}
         </div>
       </div>
     </div>
