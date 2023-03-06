@@ -25,7 +25,7 @@ function Navbar(props: NavbarProps) {
 
   return (
     <nav className={navStyles.navContainer}>
-      <div className={navStyles.logo}>LOGO HERE</div>
+      <div className={navStyles.logo}>FlavorFinds</div>
 
       <div className={navStyles.pagesWrapper}>
         <div className={`${navStyles.pageOption} ${currentPage === 'Home' ? navStyles.active : ''}`}>

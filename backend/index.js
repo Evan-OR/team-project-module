@@ -113,6 +113,8 @@ app.post('/like/:userId/:newLikesArray', (req, res) => {
 
   const sql = 'UPDATE users SET likes = ? WHERE userID = ?;';
 
+  console.log(newLikesArray);
+
   connection.execute(sql, [newLikesArray, userId], (err) => {
     if (err) {
       res.status(500).send({

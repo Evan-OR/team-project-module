@@ -2,7 +2,7 @@ import { useEffect, useState, useContext, useRef } from 'react';
 import { UserContext } from '../context/UserContext';
 import styles from '../../styles/loginPageStyles.module.scss';
 import { LoginModalContext } from '../context/LoginModalContext';
-import { assertIsNode } from '../../utils/utils';
+import { assertIsNode, parseUserInfo } from '../../utils/utils';
 import { saveUserToLocalStorage } from '../../utils/userUtil';
 
 type LoginPageProps = {
@@ -42,8 +42,8 @@ function RegisterPage(props: LoginPageProps) {
       }
 
       if (message.userInfo != null) {
-        userContext?.setUser(message.userInfo);
-        saveUserToLocalStorage(message.userInfo);
+        userContext?.setUser(parseUserInfo(message.userInfo));
+        saveUserToLocalStorage(parseUserInfo(message.userInfo));
         setShowLoginModal(!showLoginModal);
       }
     } catch (err) {
