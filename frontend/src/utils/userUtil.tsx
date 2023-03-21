@@ -1,24 +1,22 @@
 import { UserInfo, UserInfoUnParsed } from '../types/UserTypes';
 
-export const parseUserInfo = (response: UserInfoUnParsed): UserInfo => {
-  const { userID, username, stringifiedLikes } = response;
+export const parseUserInfo = (userInfo: UserInfoUnParsed): UserInfo => {
+  const { userID, username, likes } = userInfo;
   const user: UserInfo = {
     userID: userID,
     username: username,
-    likes: JSON.parse(stringifiedLikes),
+    likes: JSON.parse(likes),
   };
   return user;
 };
 
 export const saveUserToLocalStorage = (user: UserInfo) => {
-  console.log('saving user : ', user);
   localStorage.setItem('user', JSON.stringify(user));
 };
 
 export const loadUserFromLocalStorage = (): null | UserInfo => {
   const userStorage = localStorage.getItem('user');
   if (userStorage === null) return null;
-  console.log(JSON.parse(userStorage));
 
   return { ...JSON.parse(userStorage) };
 };
@@ -33,9 +31,11 @@ export const getUserFromDatabaseByID = async (userId: number): Promise<UserInfo 
       method: 'get',
     });
     const res = await req.json();
-    return parseUserInfo(res);
+    console.log(res);
+    return parseUserInfo(res.userInfo);
   } catch (err) {
-    console.error('Error Getting User (userUtils.tsx)');
+    console.log(err);
+    console.error(`Error Getting User By ID:${userId} (userUtils.tsx)`);
     return null;
   }
 };

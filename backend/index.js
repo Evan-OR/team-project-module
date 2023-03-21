@@ -114,10 +114,18 @@ app.get('/getUserById/:id', (req, res) => {
 
   connection.query(sql, [id], (err, results, fields) => {
     if (err) throw err;
-    res.status(200).send({
-      message: 'User info updated',
-      newLikesArray: results[0],
-    });
+    console.log(results[0]);
+    if (results.length === 0) {
+      res.status(400).send({
+        message: `No user with ID: ${id} found`,
+        userInfo: null,
+      });
+    } else {
+      res.status(200).send({
+        message: 'User info updated',
+        userInfo: results[0],
+      });
+    }
   });
 });
 
