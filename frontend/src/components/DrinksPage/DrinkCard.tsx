@@ -1,5 +1,4 @@
 import React from 'react';
-import img from '../../images/drinkImgs/sexonthebeach.jpg';
 import styles from '../../styles/drinkCardStyle.module.scss';
 import { Drink } from '../../types/UserTypes';
 import FilledStar from '../../icons/FilledStar';
@@ -25,13 +24,6 @@ function DrinkCard(props: DrinkCardProps) {
               {tag}
             </div>
           ))}
-        </div>
-        <div className={styles.ratingWrapper}>
-          <FilledStar styles={`${styles.filledStar}`} />
-          <FilledStar styles={`${styles.filledStar}`} />
-          <FilledStar styles={`${styles.filledStar}`} />
-          <HollowStar styles={`${styles.hollowStar}`} />
-          <HollowStar styles={`${styles.hollowStar}`} />
         </div>
       </div>
     </div>

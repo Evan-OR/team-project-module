@@ -108,6 +108,19 @@ app.post('/signup/:username/:password', (req, res) => {
   });
 });
 
+app.get('/getUserById/:id', (req, res) => {
+  const { id } = req.params;
+  const sql = 'SELECT * FROM users where userID = ?;';
+
+  connection.query(sql, [id], (err, results, fields) => {
+    if (err) throw err;
+    res.status(200).send({
+      message: 'User info updated',
+      newLikesArray: results[0],
+    });
+  });
+});
+
 app.post('/like/:userId/:newLikesArray', (req, res) => {
   const { userId, newLikesArray } = req.params;
 

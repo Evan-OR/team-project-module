@@ -17,13 +17,12 @@ export const checkIfAlreadyLiked = (drinkId: number, userLikes: number[] | undef
 };
 
 export const getDrinkRecommendations = (allDrinks: Drink[], likedDrinks: number[]): Drink[] => {
-  const likedUserDrinks = getUsersLikedDrinks(likedDrinks, allDrinks);
+  const likedUserDrinks = getDrinksByID(likedDrinks, allDrinks);
   const unqiueIngredientsList = getUnqiueIngredients(likedUserDrinks);
 
   const unlikedDrinks = getUsersUnLikedDrinks(likedDrinks, allDrinks);
 
   console.table(getDrinkSimilarityRating(unqiueIngredientsList, unlikedDrinks));
-
   return [];
 };
 
@@ -45,7 +44,7 @@ const getUnqiueIngredients = (allDrinks: Drink[]): string[] => {
   return [...new Set(ingredients)];
 };
 
-const getUsersLikedDrinks = (likes: number[], allDrinks: Drink[]): Drink[] => {
+export const getDrinksByID = (likes: number[], allDrinks: Drink[]): Drink[] => {
   const tempLikeArray = [];
 
   for (const drink of allDrinks) {
