@@ -1,7 +1,8 @@
 export type UserInfoUnParsed = {
   userID: number;
   username: string;
-  stringifiedLikes: string;
+  password: string;
+  likes: string;
 };
 
 export type LoginResponse = {

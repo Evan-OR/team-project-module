@@ -5,7 +5,6 @@ import drinks from '../../dataset/drinks.json';
 import DrinkModal from './DrinkModal';
 import { UserContext } from '../context/UserContext';
 import { getDrinkRecommendations } from '../../utils/drinksUtil';
-import { getUserFromDatabaseByID } from '../../utils/userUtil';
 
 const DrinkSec = () => {
   const [modalToggle, setToggleModal] = useState(false);
