@@ -1,6 +1,7 @@
 import { useContext, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import navStyles from '../styles/navbarStyles.module.scss';
+import { removeUserFromLocalStorage } from '../utils/userUtil';
 import { LoginModalContext } from './context/LoginModalContext';
 import { UserContext } from './context/UserContext';
 import UserDropDownMenu from './UserDropDownMenu';
@@ -20,6 +21,7 @@ function Navbar(props: NavbarProps) {
 
   const signOut = () => {
     userContext?.setUser(null);
+    removeUserFromLocalStorage();
     setShowUserDropDown(false);
   };
 
