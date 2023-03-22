@@ -31,10 +31,8 @@ export const getUserFromDatabaseByID = async (userId: number): Promise<UserInfo 
       method: 'get',
     });
     const res = await req.json();
-    console.log(res);
     return parseUserInfo(res.userInfo);
   } catch (err) {
-    console.log(err);
     console.error(`Error Getting User By ID:${userId} (userUtils.tsx)`);
     return null;
   }

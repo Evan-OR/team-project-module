@@ -114,7 +114,6 @@ app.get('/getUserById/:id', (req, res) => {
 
   connection.query(sql, [id], (err, results, fields) => {
     if (err) throw err;
-    console.log(results[0]);
     if (results.length === 0) {
       res.status(400).send({
         message: `No user with ID: ${id} found`,
@@ -122,7 +121,7 @@ app.get('/getUserById/:id', (req, res) => {
       });
     } else {
       res.status(200).send({
-        message: 'User info updated',
+        message: `Found user with ID:${id}`,
         userInfo: results[0],
       });
     }
