@@ -22,7 +22,9 @@ export const getDrinkRecommendations = (allDrinks: Drink[], likedDrinks: number[
 
   const unlikedDrinks = getUsersUnLikedDrinks(likedDrinks, allDrinks);
 
-  console.table(getDrinkSimilarityRating(unqiueIngredientsList, unlikedDrinks));
+  const results = getDrinkSimilarityRating(unqiueIngredientsList, unlikedDrinks);
+
+  console.table(results, ['strDrink']);
   return [];
 };
 
@@ -76,13 +78,13 @@ const getUsersUnLikedDrinks = (likes: number[], allDrinks: Drink[]): Drink[] => 
   return tempLikeArray;
 };
 
-type DrinkRating = {
-  drinkName: string;
-  similarityRating: number;
+type DrinkWithRating = {
+  drink: Drink;
+  score: number;
 };
 
-const getDrinkSimilarityRating = (unqiueIngredientsList: string[], unlikedDrinks: Drink[]): DrinkRating[] => {
-  let similarityRatings: DrinkRating[] = [];
+const getDrinkSimilarityRating = (unqiueIngredientsList: string[], unlikedDrinks: Drink[]): Drink[] => {
+  let sortedDrinksByRating: DrinkWithRating[] = [];
 
   for (const drink of unlikedDrinks) {
     let score = 0;
@@ -94,8 +96,22 @@ const getDrinkSimilarityRating = (unqiueIngredientsList: string[], unlikedDrinks
       i++;
     }
 
-    similarityRatings.push({ drinkName: drink.strDrink, similarityRating: score });
+    //Sort Drinks by rating as they are Added
+    if (sortedDrinksByRating.length === 0) {
+      sortedDrinksByRating.push({ drink, score });
+      continue;
+    }
+
+    let wasAdded = false;
+    for (let i = 1; i < sortedDrinksByRating.length; i++) {
+      if (sortedDrinksByRating[i].score > score) {
+        sortedDrinksByRating.splice(i - 1, 0, { drink, score });
+        wasAdded = true;
+        break;
+      }
+    }
+    if (!wasAdded) sortedDrinksByRating.push({ drink, score });
   }
 
-  return similarityRatings;
+  return sortedDrinksByRating.reverse().map((el) => el.drink);
 };
