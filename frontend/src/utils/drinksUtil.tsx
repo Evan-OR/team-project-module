@@ -24,8 +24,8 @@ export const getDrinkRecommendations = (allDrinks: Drink[], likedDrinks: number[
 
   const results = getDrinkSimilarityRating(unqiueIngredientsList, unlikedDrinks);
 
-  console.table(results, ['strDrink']);
-  return [];
+  // console.table(results, ['strDrink']);
+  return results;
 };
 
 const getUnqiueIngredients = (allDrinks: Drink[]): string[] => {
@@ -96,6 +96,8 @@ const getDrinkSimilarityRating = (unqiueIngredientsList: string[], unlikedDrinks
       i++;
     }
 
+    //If there is nothing in common then dont add drink
+    if (score === 0) continue;
     //Sort Drinks by rating as they are Added
     if (sortedDrinksByRating.length === 0) {
       sortedDrinksByRating.push({ drink, score });
