@@ -18,8 +18,11 @@ function DrinkSearchBar(props: DrinkSearchBarProps) {
 
   const searchHandler = (e: React.FormEvent<HTMLInputElement>) => {
     setSearchText(e.currentTarget.value);
-    setSearchSuggestions(searchDrinksArray(searchText));
   };
+
+  useEffect(() => {
+    setSearchSuggestions(searchDrinksArray(searchText));
+  }, [searchText]);
 
   useEffect(() => {
     const handler = (event: MouseEvent) => {
