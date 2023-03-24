@@ -20,6 +20,10 @@ function DrinkSearchBar(props: DrinkSearchBarProps) {
     setSearchText(e.currentTarget.value);
   };
 
+  const suggestionClickedHandler = (name: string) => {
+    setSearchText(name);
+  };
+
   useEffect(() => {
     setSearchSuggestions(searchDrinksArray(searchText));
   }, [searchText]);
@@ -65,7 +69,11 @@ function DrinkSearchBar(props: DrinkSearchBarProps) {
         ) : (
           <div className={styles.autocompleteWrapper}>
             {searchSuggestions.map((d) => (
-              <div className={styles.autocompleteOption} key={d.idDrink}>
+              <div
+                onClick={() => suggestionClickedHandler(d.strDrink)}
+                className={styles.autocompleteOption}
+                key={d.idDrink}
+              >
                 {d.strDrink}
               </div>
             ))}
