@@ -6,6 +6,7 @@ import DrinkModal from './DrinkModal';
 import { UserContext } from '../context/UserContext';
 import { getDrinkRecommendations } from '../../utils/drinksUtil';
 import { Drink } from '../../types/UserTypes';
+import DrinkSearchBar from './DrinkSearchBar';
 
 const DrinkSec = () => {
   const [modalToggle, setToggleModal] = useState(false);
@@ -33,9 +34,8 @@ const DrinkSec = () => {
   return (
     <div className={drinksecStyles.DrinkDisplayWrapper}>
       {modalToggle ? <DrinkModal toggleModal={toggleModal} drink={currentDrink} /> : <></>}
-      <form className={drinksecStyles.Searchbar}>
-        <input type="text" placeholder="Search for drink!" className={drinksecStyles.drinkInput} />
-      </form>
+
+      <DrinkSearchBar drinks={drinks} />
 
       {/* RENDER DRINK RECOMMENDATIONS START*/}
       {drinkRecommendations.length > 0 ? (
