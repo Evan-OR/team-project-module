@@ -10,16 +10,16 @@ import DrinkSearchBar from './DrinkSearchBar';
 
 const DrinkSec = () => {
   const [modalToggle, setToggleModal] = useState(false);
-  const [currentDrink, setCurrentDrink] = useState(drinks[0]);
+  const [currentDrink, setCurrentDrink] = useState<Drink>(drinks[0]);
   const [drinkList, setDrinkList] = useState<Drink[]>(drinks);
   const userContext = useContext(UserContext);
   const [drinkRecommendations, setDrinkRecommendations] = useState<Drink[]>([]);
 
-  const toggleModal = (index: number | null) => {
+  const toggleModal = (drink: Drink | null) => {
     setToggleModal(!modalToggle);
 
-    if (index === null) return;
-    setCurrentDrink(drinks[index]);
+    if (drink === null) return;
+    setCurrentDrink(drink);
   };
 
   const initializeDrinkRecommendations = (): Drink[] => {
@@ -67,7 +67,7 @@ const DrinkSec = () => {
 
         <div className={drinksecStyles.cardDisplayWrapper}>
           {drinkList.map((drink, index) => (
-            <DrinkCard key={drink.idDrink} drink={drink} toggleModal={toggleModal} index={index} />
+            <DrinkCard key={drink.idDrink} drink={drink} toggleModal={toggleModal} />
           ))}
         </div>
       </div>
