@@ -88,7 +88,7 @@ function DrinkSearchBar(props: DrinkSearchBarProps) {
               <div
                 onClick={() => {
                   suggestionClickedHandler(d.strDrink);
-                  updateDrinkList(searchSuggestions);
+                  updateDrinkList(searchDrinksArray(d.strDrink));
                   setShowSuggestions(false);
                 }}
                 className={styles.autocompleteOption}
