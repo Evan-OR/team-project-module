@@ -9,7 +9,7 @@ import { assertIsNode, dealWithStupidFuckingJson } from '../../utils/utils';
 import { UserContext } from '../context/UserContext';
 
 type DrinkModalProps = {
-  toggleModal: (index: number | null) => void;
+  toggleModal: (index: Drink | null) => void;
   drink: Drink;
 };
 
