@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import drinksecStyles from '../../styles/drinksecStyles.module.scss';
+import styles from '../../styles/drinksecStyles.module.scss';
 import DrinkCard from './DrinkCard';
 import drinks from '../../dataset/drinks.json';
 import DrinkModal from './DrinkModal';
@@ -37,7 +37,7 @@ const DrinkSec = () => {
   }, [userContext]);
 
   return (
-    <div className={drinksecStyles.DrinkDisplayWrapper}>
+    <div className={styles.DrinkDisplayWrapper}>
       {modalToggle ? <DrinkModal toggleModal={toggleModal} drink={currentDrink} /> : <></>}
 
       <DrinkSearchBar updateDrinkList={updateDrinkList} drinks={drinks} />
@@ -60,13 +60,11 @@ const DrinkSec = () => {
       )} */}
       {/* RENDER DRINK RECOMMENDATIONS END*/}
 
-      <div className={drinksecStyles.DrinkMenuContainer}>
-        <div className={drinksecStyles.titleWrapper}>
-          <h2 className={drinksecStyles.title}>Drinks</h2>
-        </div>
+      <div className={styles.DrinkMenuContainer}>
+        <div className={styles.titleWrapper}>{/* <h2 className={drinksecStyles.title}>Drinks</h2> */}</div>
 
-        <div className={drinksecStyles.cardDisplayWrapper}>
-          {drinkList.map((drink, index) => (
+        <div className={styles.cardDisplayWrapper}>
+          {drinkList.map((drink) => (
             <DrinkCard key={drink.idDrink} drink={drink} toggleModal={toggleModal} />
           ))}
         </div>

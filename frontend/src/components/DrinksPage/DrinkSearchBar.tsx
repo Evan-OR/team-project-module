@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, FormEvent } from 'react';
-import styles from '../../styles/searchBarWrapper.module.scss';
+import styles from '../../styles/searchBarStyles.module.scss';
 import { Drink } from '../../types/UserTypes';
 import { assertIsNode } from '../../utils/utils';
 import SearchIcon from './SearchIcon';
@@ -21,7 +21,7 @@ function DrinkSearchBar(props: DrinkSearchBarProps) {
   const searchHandler = (e: React.FormEvent<HTMLInputElement>) => {
     setSearchText(e.currentTarget.value);
 
-    if (e.currentTarget.value !== '') {
+    if (e.currentTarget.value !== '' && searchSuggestions.length > 0) {
       setShowSuggestions(true);
     } else {
       setShowSuggestions(false);

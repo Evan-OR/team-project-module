@@ -2,12 +2,12 @@
 
 .heroWrapper {
   display: flex;
+  flex-shrink: 0;
   justify-content: space-around;
   align-items: center;
 
   width: 100%;
-  height: 400px;
-  padding: 100px 55px;
+  height: $hero-size;
 
   background-color: $transparent-hightlight;
 }

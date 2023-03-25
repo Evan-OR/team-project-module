@@ -69,6 +69,7 @@
   img {
     display: block;
     width: 100%;
+    -webkit-mask-image: -webkit-gradient(linear, left center, left bottom, from(#202020), to(rgba(0, 0, 0, 0)));
   }
 
   .title {
