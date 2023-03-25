@@ -79,7 +79,10 @@ function DrinkSearchBar(props: DrinkSearchBarProps) {
           type="text"
           placeholder="Search for drink!"
         />
-        <SearchIcon styles={{ width: '25px', fill: 'white' }} />
+        <SearchIcon
+          search={() => updateDrinkList(searchSuggestions)}
+          styles={{ width: '25px', fill: 'white', cursor: 'pointer' }}
+        />
 
         {/* AUTOCOMPLETE / SEARCH SUGGESTIONS */}
         {showSuggestions && (
