@@ -60,13 +60,6 @@ function DrinkModal(props: DrinkModalProps) {
         <div className={style.infoWrapper}>
           <div className={style.titleWrapper}>
             <div className={style.title}>{drink.strDrink}</div>
-            <div>
-              <FilledStar styles={style.ratingIcon} />
-              <FilledStar styles={style.ratingIcon} />
-              <FilledStar styles={style.ratingIcon} />
-              <FilledStar styles={style.ratingIcon} />
-              <HollowStar styles={style.ratingIcon} />
-            </div>
           </div>
 
           {/* Ingredients and Instructions */}

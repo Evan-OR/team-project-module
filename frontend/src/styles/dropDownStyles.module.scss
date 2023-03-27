@@ -34,7 +34,7 @@ $border-width: 2px;
     user-select: none;
     width: 100%;
     display: block;
-    color: white;
+    color: $default-text-color;
     cursor: pointer;
 
     &:hover {

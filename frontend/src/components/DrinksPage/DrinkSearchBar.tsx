@@ -54,6 +54,8 @@ function DrinkSearchBar(props: DrinkSearchBarProps) {
     if (searchText === '') {
       updateDrinkList(drinks);
     }
+
+    if (searchSuggestions.length === 0) setShowSuggestions(false);
   }, [searchText]);
 
   useEffect(() => {
@@ -81,7 +83,7 @@ function DrinkSearchBar(props: DrinkSearchBarProps) {
         />
         <SearchIcon
           search={() => updateDrinkList(searchSuggestions)}
-          styles={{ width: '25px', fill: 'white', cursor: 'pointer' }}
+          styles={{ width: '25px', fill: '#202020', cursor: 'pointer' }}
         />
 
         {/* AUTOCOMPLETE / SEARCH SUGGESTIONS */}

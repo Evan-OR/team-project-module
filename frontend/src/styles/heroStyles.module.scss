@@ -2,14 +2,14 @@
 
 .heroWrapper {
   display: flex;
-  flex-shrink: 0;
   justify-content: space-around;
   align-items: center;
 
   width: 100%;
   height: $hero-size;
-
-  background-color: $transparent-hightlight;
+  margin: 20px 0;
+  padding: 20px 0;
+  box-shadow: $default-box-shdadow;
 }
 
 .left {
@@ -38,4 +38,10 @@
   display: flex;
   justify-content: center;
   width: 50%;
+  height: 100%;
+
+  img {
+    display: block;
+    height: inherit;
+  }
 }
