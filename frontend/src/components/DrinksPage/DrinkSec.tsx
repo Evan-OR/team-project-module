@@ -36,6 +36,11 @@ const DrinkSec = () => {
     setDrinkRecommendations(initializeDrinkRecommendations());
   }, [userContext]);
 
+  // useEffect(() => {
+  //   const body = document.getElementsByTagName('body')[0];
+  //   modalToggle ? (body.style.overflow = 'hidden') : (body.style.overflow = 'scroll');
+  // }, [modalToggle]);
+
   return (
     <div className={styles.DrinkDisplayWrapper}>
       {modalToggle ? <DrinkModal toggleModal={toggleModal} drink={currentDrink} /> : <></>}

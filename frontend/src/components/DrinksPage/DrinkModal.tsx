@@ -1,4 +1,5 @@
 import { useContext, useEffect, useRef } from 'react';
+import CloseButton from '../../icons/CloseButton';
 import FilledStar from '../../icons/FilledStar';
 import HollowStar from '../../icons/HollowStar';
 import ThumbsUp from '../../icons/ThumbsUp';
@@ -54,7 +55,10 @@ function DrinkModal(props: DrinkModalProps) {
   return (
     <div className={style.modalWrapper}>
       <div ref={modal} className={style.modal}>
-        <img src={drink.strDrinkThumb}></img>
+        <div onClick={() => toggleModal(null)} className={style.closeBtn}>
+          <CloseButton />
+        </div>
+        <img draggable={false} alt={`Picture of ${drink.strDrink}`} src={drink.strDrinkThumb}></img>
 
         {/* Instructions & Ingredients */}
         <div className={style.infoWrapper}>
