@@ -23,7 +23,7 @@ export const dealWithStupidFuckingJson = (drink: Drink) => {
     const measureKey = drink[('strMeasure' + i) as keyof Drink];
     if (typeof ingredientKey !== 'string' || typeof measureKey !== 'string') continue;
     divs.push(
-      <div>
+      <div key={ingredientKey}>
         {ingredientKey} - {measureKey}
       </div>
     );
