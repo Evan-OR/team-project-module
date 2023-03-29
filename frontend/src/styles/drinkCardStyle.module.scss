@@ -1,6 +1,5 @@
 @import './default.module.scss';
 
-// NEW DESIGN
 .drinkDisplayWrapper {
   display: flex;
 }
@@ -16,7 +15,7 @@
   width: 250px;
   height: fit-content;
 
-  // border: solid 2px $transparent-hightlight;
+  border: solid 2px transparent;
   border-radius: 10px;
   overflow: hidden;
 
@@ -25,7 +24,6 @@
   img {
     display: block;
     width: 100%;
-    // -webkit-mask-image: -webkit-gradient(linear, left center, left bottom, from(#202020), to(rgba(0, 0, 0, 0)));
   }
 
   .title {
@@ -80,7 +78,7 @@
   &:hover {
     cursor: pointer;
     transform: scale(1.01);
-    box-shadow: 3px 4px 10px 5px #0000000a;
+    box-shadow: 3px 4px 12px 8px rgba(0, 0, 0, 0.1);
     border-color: $highlight-colour;
 
     .title {

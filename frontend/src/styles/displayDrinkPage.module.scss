@@ -1,0 +1,58 @@
+@import './default.module.scss';
+
+.pageWrapper {
+  position: relative;
+  display: flex;
+
+  width: 80%;
+  margin-top: 60px;
+
+  .wrapper {
+    display: flex;
+    width: 100%;
+
+    .imgWrapper {
+      width: 90%;
+      img {
+        display: block;
+        width: 100%;
+        user-select: none;
+        border-radius: 10px;
+      }
+    }
+    .contentWrapper {
+      width: 100%;
+      padding: 15px 30px;
+
+      .title {
+        font-size: 2rem;
+        font-weight: bold;
+        color: $highlight-colour;
+      }
+      .subTitle {
+        font-weight: bold;
+        font-weight: 1.6rem;
+        margin-top: 15px;
+      }
+      .description {
+      }
+      .ingredients {
+      }
+    }
+  }
+
+  .backBtn {
+    position: absolute;
+    right: 5px;
+    width: 27px;
+    fill: $background-highlight-colour;
+
+    cursor: pointer;
+
+    transition: fill 0.15s;
+
+    &:hover {
+      fill: $highlight-colour;
+    }
+  }
+}

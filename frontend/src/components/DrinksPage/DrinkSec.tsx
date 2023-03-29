@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import styles from '../../styles/drinksecStyles.module.scss';
 import DrinkCard from './DrinkCard';
 import drinks from '../../dataset/drinks.json';
-import DrinkModal from './DrinkModal';
+import DisplayDrinkPage from './DisplayDrinkPage';
 import { UserContext } from '../context/UserContext';
 import { getDrinkRecommendations } from '../../utils/drinksUtil';
 import { Drink } from '../../types/UserTypes';
@@ -32,20 +32,37 @@ const DrinkSec = () => {
     setDrinkList(drinks);
   };
 
+  // UPDATE DRINKS AFTER USER LOGS IN
   useEffect(() => {
     setDrinkRecommendations(initializeDrinkRecommendations());
-  }, [userContext]);
+  }, []);
 
-  // useEffect(() => {
-  //   const body = document.getElementsByTagName('body')[0];
-  //   modalToggle ? (body.style.overflow = 'hidden') : (body.style.overflow = 'scroll');
-  // }, [modalToggle]);
+  useEffect(() => {
+    if (modalToggle) return;
+
+    if (drinkRecommendations.length > 0) setDrinkList(drinkRecommendations);
+  }, []);
 
   return (
     <div className={styles.DrinkDisplayWrapper}>
-      {modalToggle ? <DrinkModal toggleModal={toggleModal} drink={currentDrink} /> : <></>}
+      {modalToggle ? (
+        <DisplayDrinkPage toggleModal={toggleModal} drink={currentDrink} />
+      ) : (
+        <>
+          <DrinkSearchBar updateDrinkList={updateDrinkList} drinks={drinks} />
 
-      <DrinkSearchBar updateDrinkList={updateDrinkList} drinks={drinks} />
+          {/* RENDER DRINK RECOMMENDATIONS END*/}
+          <div className={styles.DrinkMenuContainer}>
+            <div className={styles.titleWrapper}>{/* <h2 className={drinksecStyles.title}>Drinks</h2> */}</div>
+
+            <div className={styles.cardDisplayWrapper}>
+              {drinkList.map((drink) => (
+                <DrinkCard key={drink.idDrink} drink={drink} toggleModal={toggleModal} />
+              ))}
+            </div>
+          </div>
+        </>
+      )}
 
       {/* RENDER DRINK RECOMMENDATIONS START*/}
       {/* {drinkRecommendations.length > 0 ? (
@@ -63,17 +80,6 @@ const DrinkSec = () => {
       ) : (
         <></>
       )} */}
-      {/* RENDER DRINK RECOMMENDATIONS END*/}
-
-      <div className={styles.DrinkMenuContainer}>
-        <div className={styles.titleWrapper}>{/* <h2 className={drinksecStyles.title}>Drinks</h2> */}</div>
-
-        <div className={styles.cardDisplayWrapper}>
-          {drinkList.map((drink) => (
-            <DrinkCard key={drink.idDrink} drink={drink} toggleModal={toggleModal} />
-          ))}
-        </div>
-      </div>
     </div>
   );
 };

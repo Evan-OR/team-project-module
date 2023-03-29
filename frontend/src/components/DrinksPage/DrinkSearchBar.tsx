@@ -14,6 +14,7 @@ function DrinkSearchBar(props: DrinkSearchBarProps) {
 
   const searchRef = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
+  // HANDLE THIS IN PARENT COMPONENT TO FIX ISSUE WITH SEARCH RESULTS RESETING!!!!!!!!!!!!!!
   const [searchText, setSearchText] = useState('');
   const [searchSuggestions, setSearchSuggestions] = useState<Drink[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);

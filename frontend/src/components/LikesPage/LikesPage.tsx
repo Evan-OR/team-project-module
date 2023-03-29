@@ -5,7 +5,7 @@ import drinks from '../../dataset/drinks.json';
 import DrinkCard from '../DrinksPage/DrinkCard';
 import Navbar from '../Navbar';
 import { Drink } from '../../types/UserTypes';
-import DrinkModal from '../DrinksPage/DrinkModal';
+import DrinkModal from '../DrinksPage/DisplayDrinkPage';
 
 function LikesPage() {
   const [modalToggle, setToggleModal] = useState(false);
