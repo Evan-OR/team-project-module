@@ -1,5 +1,7 @@
 import { useContext, useEffect, useRef } from 'react';
 import CloseButton from '../../icons/CloseButton';
+import FilledHeartIcon from '../../icons/FilledHeartIcon';
+import HollowHeartIcon from '../../icons/HollowHeartIcon';
 import ThumbsUp from '../../icons/ThumbsUp';
 import style from '../../styles/displayDrinkPage.module.scss';
 import { Drink } from '../../types/UserTypes';
@@ -37,6 +39,12 @@ function DisplayDrinkPage(props: DisplayDrinkPageProps) {
     userContext.setUser({ ...userContext.user, likes: JSON.parse(res.newLikesArray) });
   };
 
+  const userHasLiked = (): boolean => {
+    if (userContext?.user === null || userContext?.user === undefined) return false;
+
+    return userContext.user.likes.includes(drink.idDrink) ? true : false;
+  };
+  console.log(userHasLiked());
   return (
     <div className={style.pageWrapper}>
       <div onClick={() => toggleModal(null)} className={style.backBtn}>
@@ -53,7 +61,12 @@ function DisplayDrinkPage(props: DisplayDrinkPageProps) {
           <div className={style.subTitle}>Instructions</div>
           <div className={style.description}>{drink.strInstructions}</div>
           <div className={style.subTitle}>Ingredients</div>
-          <div className={style.ingredients}>{dealWithStupidFuckingJson(drink)}</div>
+          <div className={style.ingredientsWrapper}>
+            {dealWithStupidFuckingJson(drink)}
+            <div onClick={likeDrink} className={style.likeIcon}>
+              {userHasLiked() ? <FilledHeartIcon /> : <HollowHeartIcon />}
+            </div>
+          </div>
         </div>
       </div>
     </div>
