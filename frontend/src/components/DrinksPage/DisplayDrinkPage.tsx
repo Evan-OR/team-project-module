@@ -14,7 +14,6 @@ type DisplayDrinkPageProps = {
 
 function DisplayDrinkPage(props: DisplayDrinkPageProps) {
   const { toggleModal, drink } = props;
-  const modal = useRef<HTMLDivElement>(null);
   const userContext = useContext(UserContext);
 
   const likeDrink = async () => {

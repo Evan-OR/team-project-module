@@ -14,6 +14,8 @@ const DrinkSec = () => {
   const [drinkList, setDrinkList] = useState<Drink[]>(drinks);
   const userContext = useContext(UserContext);
   const [drinkRecommendations, setDrinkRecommendations] = useState<Drink[]>([]);
+  //For search bar
+  const [searchText, setSearchText] = useState('');
 
   const toggleModal = (drink: Drink | null) => {
     setToggleModal(!modalToggle);
@@ -32,6 +34,10 @@ const DrinkSec = () => {
     setDrinkList(drinks);
   };
 
+  const setSearchTextHandler = (s: string) => {
+    setSearchText(s);
+  };
+
   // UPDATE DRINKS AFTER USER LOGS IN
   useEffect(() => {
     setDrinkRecommendations(initializeDrinkRecommendations());
@@ -45,12 +51,18 @@ const DrinkSec = () => {
 
   return (
     <div className={styles.DrinkDisplayWrapper}>
+      <DrinkSearchBar
+        searchText={searchText}
+        setSearchTextHandler={setSearchTextHandler}
+        updateDrinkList={updateDrinkList}
+        drinks={drinks}
+        toggleModal={toggleModal}
+      />
+
       {modalToggle ? (
         <DisplayDrinkPage toggleModal={toggleModal} drink={currentDrink} />
       ) : (
         <>
-          <DrinkSearchBar updateDrinkList={updateDrinkList} drinks={drinks} />
-
           {/* RENDER DRINK RECOMMENDATIONS END*/}
           <div className={styles.DrinkMenuContainer}>
             <div className={styles.titleWrapper}>{/* <h2 className={drinksecStyles.title}>Drinks</h2> */}</div>

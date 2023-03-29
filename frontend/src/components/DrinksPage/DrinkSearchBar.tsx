@@ -7,30 +7,32 @@ import SearchIcon from './SearchIcon';
 type DrinkSearchBarProps = {
   drinks: Drink[];
   updateDrinkList: (drinks: Drink[]) => void;
+  searchText: string;
+  setSearchTextHandler: (s: string) => void;
+  toggleModal: (drink: Drink | null) => void;
 };
 
 function DrinkSearchBar(props: DrinkSearchBarProps) {
-  const { drinks, updateDrinkList } = props;
+  const { drinks, searchText, setSearchTextHandler, updateDrinkList, toggleModal } = props;
 
   const searchRef = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
   // HANDLE THIS IN PARENT COMPONENT TO FIX ISSUE WITH SEARCH RESULTS RESETING!!!!!!!!!!!!!!
-  const [searchText, setSearchText] = useState('');
   const [searchSuggestions, setSearchSuggestions] = useState<Drink[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
   const searchHandler = (e: React.FormEvent<HTMLInputElement>) => {
-    setSearchText(e.currentTarget.value);
+    setSearchTextHandler(e.currentTarget.value);
 
     if (e.currentTarget.value !== '' && searchSuggestions.length > 0) {
       setShowSuggestions(true);
     } else {
-      setShowSuggestions(false);
     }
   };
 
   const suggestionClickedHandler = (name: string) => {
-    setSearchText(name);
+    setSearchTextHandler(name);
+    toggleModal(null);
   };
 
   const searchDrinksArray = (search: string) => {
@@ -46,6 +48,8 @@ function DrinkSearchBar(props: DrinkSearchBarProps) {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     updateDrinkList(searchSuggestions);
+    toggleModal(null);
+    setShowSuggestions(false);
   };
 
   useEffect(() => {
