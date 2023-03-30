@@ -8,7 +8,6 @@ import FoodPage from './components/FoodPage/FoodPage.js';
 import LoginAndRegisterModal from './components/login&register/LoginAndRegisterModal.js';
 import LikesPage from './components/LikesPage/LikesPage.js';
 import { getUserFromDatabaseByID } from './utils/userUtil.js';
-import style from './styles/index.scss';
 
 function App() {
   const { showLoginModal, setShowLoginModal } = useContext(LoginModalContext);

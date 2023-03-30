@@ -57,6 +57,7 @@ const DrinkSec = () => {
         updateDrinkList={updateDrinkList}
         drinks={drinks}
         toggleModal={toggleModal}
+        modalIsShowing={modalToggle}
       />
 
       {modalToggle ? (
