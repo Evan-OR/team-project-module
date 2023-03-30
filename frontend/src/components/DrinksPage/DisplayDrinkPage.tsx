@@ -44,7 +44,7 @@ function DisplayDrinkPage(props: DisplayDrinkPageProps) {
 
     return userContext.user.likes.includes(drink.idDrink) ? true : false;
   };
-  console.log(userHasLiked());
+
   return (
     <div className={style.pageWrapper}>
       <div onClick={() => toggleModal(null)} className={style.backBtn}>

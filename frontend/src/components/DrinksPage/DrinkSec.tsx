@@ -57,15 +57,35 @@ const DrinkSec = () => {
         updateDrinkList={updateDrinkList}
         drinks={drinks}
         toggleModal={toggleModal}
+        modalIsShowing={modalToggle}
       />
+
+      {/* RENDER DRINK RECOMMENDATIONS START*/}
+      {drinkRecommendations.length > 0 && searchText.length === 0 ? (
+        <div className={styles.DrinkMenuContainer}>
+          <div className={styles.titleWrapper}>
+            <h3 className={styles.title}>Suggestions based on your likes</h3>
+          </div>
+
+          <div className={styles.cardDisplayWrapper}>
+            {drinkRecommendations.map((drink) => (
+              <DrinkCard key={drink.idDrink} drink={drink} toggleModal={toggleModal} />
+            ))}
+          </div>
+        </div>
+      ) : (
+        <></>
+      )}
+      {/* RENDER DRINK RECOMMENDATIONS END*/}
 
       {modalToggle ? (
         <DisplayDrinkPage toggleModal={toggleModal} drink={currentDrink} />
       ) : (
         <>
-          {/* RENDER DRINK RECOMMENDATIONS END*/}
           <div className={styles.DrinkMenuContainer}>
-            <div className={styles.titleWrapper}>{/* <h2 className={drinksecStyles.title}>Drinks</h2> */}</div>
+            <div className={styles.titleWrapper}>
+              {searchText.length === 0 && <h3 className={styles.title}>Other Drinks</h3>}
+            </div>
 
             <div className={styles.cardDisplayWrapper}>
               {drinkList.map((drink) => (
@@ -76,22 +96,23 @@ const DrinkSec = () => {
         </>
       )}
 
-      {/* RENDER DRINK RECOMMENDATIONS START*/}
-      {/* {drinkRecommendations.length > 0 ? (
-        <div className={drinksecStyles.DrinkMenuContainer}>
-          <div className={drinksecStyles.titleWrapper}>
-            <h2 className={drinksecStyles.title}>Suggested Drinks</h2>
+      {/* getDrinkRecommendations(drinks, drinkList) */}
+      {drinkList.length > 0 && searchText.length > 0 && (
+        <div className={styles.DrinkMenuContainer}>
+          <div className={styles.titleWrapper}>
+            <h3 className={styles.title}>Drinks Similar To You Search</h3>
           </div>
 
-          <div className={drinksecStyles.cardDisplayWrapper}>
-            {drinkRecommendations.map((drink, index) => (
-              <DrinkCard key={drink.idDrink} drink={drink} toggleModal={toggleModal} index={index} />
+          <div className={styles.cardDisplayWrapper}>
+            {getDrinkRecommendations(
+              drinks,
+              drinkList.map((el) => el.idDrink)
+            ).map((drink) => (
+              <DrinkCard key={drink.idDrink} drink={drink} toggleModal={toggleModal} />
             ))}
           </div>
         </div>
-      ) : (
-        <></>
-      )} */}
+      )}
     </div>
   );
 };
