@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, FormEvent } from 'react';
-import styles from '../../styles/searchBarWrapper.module.scss';
+import styles from '../../styles/searchBarStyles.module.scss';
 import { Drink } from '../../types/UserTypes';
 import { assertIsNode } from '../../utils/utils';
 import SearchIcon from './SearchIcon';
@@ -7,29 +7,32 @@ import SearchIcon from './SearchIcon';
 type DrinkSearchBarProps = {
   drinks: Drink[];
   updateDrinkList: (drinks: Drink[]) => void;
+  searchText: string;
+  setSearchTextHandler: (s: string) => void;
+  toggleModal: (drink: Drink | null) => void;
 };
 
 function DrinkSearchBar(props: DrinkSearchBarProps) {
-  const { drinks, updateDrinkList } = props;
+  const { drinks, searchText, setSearchTextHandler, updateDrinkList, toggleModal } = props;
 
   const searchRef = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
-  const [searchText, setSearchText] = useState('');
+  // HANDLE THIS IN PARENT COMPONENT TO FIX ISSUE WITH SEARCH RESULTS RESETING!!!!!!!!!!!!!!
   const [searchSuggestions, setSearchSuggestions] = useState<Drink[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
   const searchHandler = (e: React.FormEvent<HTMLInputElement>) => {
-    setSearchText(e.currentTarget.value);
+    setSearchTextHandler(e.currentTarget.value);
 
-    if (e.currentTarget.value !== '') {
+    if (e.currentTarget.value !== '' && searchSuggestions.length > 0) {
       setShowSuggestions(true);
     } else {
-      setShowSuggestions(false);
     }
   };
 
   const suggestionClickedHandler = (name: string) => {
-    setSearchText(name);
+    setSearchTextHandler(name);
+    toggleModal(null);
   };
 
   const searchDrinksArray = (search: string) => {
@@ -45,6 +48,8 @@ function DrinkSearchBar(props: DrinkSearchBarProps) {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     updateDrinkList(searchSuggestions);
+    toggleModal(null);
+    setShowSuggestions(false);
   };
 
   useEffect(() => {
@@ -54,6 +59,8 @@ function DrinkSearchBar(props: DrinkSearchBarProps) {
     if (searchText === '') {
       updateDrinkList(drinks);
     }
+
+    if (searchSuggestions.length === 0) setShowSuggestions(false);
   }, [searchText]);
 
   useEffect(() => {
@@ -81,7 +88,7 @@ function DrinkSearchBar(props: DrinkSearchBarProps) {
         />
         <SearchIcon
           search={() => updateDrinkList(searchSuggestions)}
-          styles={{ width: '25px', fill: 'white', cursor: 'pointer' }}
+          styles={{ width: '25px', fill: '#202020', cursor: 'pointer' }}
         />
 
         {/* AUTOCOMPLETE / SEARCH SUGGESTIONS */}
