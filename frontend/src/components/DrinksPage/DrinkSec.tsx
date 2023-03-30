@@ -63,7 +63,6 @@ const DrinkSec = () => {
         <DisplayDrinkPage toggleModal={toggleModal} drink={currentDrink} />
       ) : (
         <>
-          {/* RENDER DRINK RECOMMENDATIONS END*/}
           <div className={styles.DrinkMenuContainer}>
             <div className={styles.titleWrapper}>{/* <h2 className={drinksecStyles.title}>Drinks</h2> */}</div>
 
