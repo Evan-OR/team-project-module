@@ -1,44 +1,95 @@
 @import "./default.module.scss";
 
-.foodMenu {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.foodCardWrapper {
-  padding: 0, 10px;
-  margin-bottom: 20px;
-}
-
-.foodCard {
+.drinkDisplayWrapper {
   display: flex;
 }
 
-.foodItem {
+.drinkCardWrapper2 {
+  $transition-time: 0.15s;
   display: flex;
   flex-direction: column;
   align-items: center;
+  user-select: none;
+
+  margin: 10px 20px;
   width: 250px;
-  background-color: $background-colour;
-  border-radius: 25px;
-  border: 1px solid $highlight-colour;
-}
+  height: fit-content;
 
-.foodImg {
-  margin-top: 3%;
-  border-radius: 25px;
-  width: 95%;
-}
+  border: solid 2px transparent;
+  border-radius: 10px;
+  overflow: hidden;
 
-.foodSmallInfo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+  box-shadow: $default-box-shdadow;
 
-.foodMoreInfoBtn {
-  border-radius: 25px;
-  border: none;
-  background-color: $highlight-colour;
+  img {
+    display: block;
+    width: 100%;
+  }
+
+  .title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-align: center;
+
+    transition-property: all;
+    transition-duration: $transition-time;
+  }
+
+  .infoWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 15px;
+
+    .tagWrapper {
+      display: flex;
+      flex-wrap: wrap;
+
+      .tag {
+        background-color: $transparent-hightlight;
+        text-align: center;
+        border-radius: 10px;
+        width: fit-content;
+        font-size: 0.8rem;
+
+        margin: 4px 4px;
+        padding: 2px 8px;
+      }
+    }
+
+    .ratingWrapper {
+      display: flex;
+      margin-top: 10px;
+
+      .filledStar,
+      .hollowStar {
+        fill: white;
+        width: 25px;
+        height: 25px;
+
+        transition-property: fill;
+      }
+    }
+  }
+
+  transition-property: all;
+  transition-duration: $transition-time;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.01);
+    box-shadow: 3px 4px 12px 8px rgba(0, 0, 0, 0.1);
+    border-color: $highlight-colour;
+
+    .title {
+      color: $highlight-colour;
+    }
+
+    .ratingWrapper {
+      .filledStar,
+      .hollowStar {
+        fill: $highlight-colour;
+      }
+    }
+  }
 }
