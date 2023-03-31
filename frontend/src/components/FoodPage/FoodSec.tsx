@@ -1,25 +1,30 @@
-import React from "react";
+import React, { Component } from "react";
+import { useState } from "react";
 import foodsecStyles from "../../styles/foodsecStyles.module.scss";
-import FoodCards from "./FoodCard";
-const foodSec = () => {
-  return (
-    <div className={foodsecStyles.foodDisplayWrapper}>
-      <form action="" className={foodsecStyles.Searchbar}>
-        <input
-          type="text"
-          placeholder="Search for Food!"
-          className={foodsecStyles.foodInput}
-        />
-      </form>
+import FoodCard from "./FoodCard";
+import food from "../../dataset/food.json"
 
-      <div className={foodsecStyles.foodMenuContainer}>
-        <div className={foodsecStyles.titleWrapper}>
-          <h2 className={foodsecStyles.title}>Suggested Food</h2>
-        </div>
-        <FoodCards />
-      </div>
+
+const foodSec = () => {
+  // const meals = () => {
+  //   <div>
+  //       {food.map((food) => (
+  //           <div className="CardWrapper"></div>
+  //       ))}
+  //   </div>
+  // }
+
+  const [meals, setMeals] = useState([
+        food.map((meals) => (
+          {mealName: meals.strMeal, mealID: meals.idMeal}
+        ))
+    ]);
+
+  return(
+    <div className="FoodWrapper">
+      <FoodCard meals={meals}/>
     </div>
-  );
+  )
 };
 
 export default foodSec;

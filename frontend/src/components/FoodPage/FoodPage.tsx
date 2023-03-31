@@ -1,6 +1,6 @@
 import React from 'react';
-import FoodSec from './FoodSec';
 import Navbar from '../Navbar';
+import FoodSec from './FoodSec';
 
 function FoodPage() {
   return (
