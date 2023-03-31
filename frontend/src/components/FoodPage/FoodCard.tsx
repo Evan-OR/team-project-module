@@ -1,23 +1,18 @@
 import React from 'react';
 import foodcardStyles from '../../styles/foodCardStyle.module.scss';
-import sotb from '../../images/drinkImgs/sexonthebeach.jpg';
+import { Meal } from '../../types/UserTypes';
 
-const FoodCard = (props: { meals: any; strTags: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; }) => {
-  const meals = props.meals;
-  console.log(meals)
+type foodCardProps = {
+  meal: Meal;
+}
+const FoodCard = (props: foodCardProps) => {
+  const{meal} = props;
   return (
-    <div className={foodcardStyles.foodMenu}>
-        <div className="CardWrapper">
-    <div className="Title">
-      {meals.mealName}
+    <div className="cardWrapper">
+      <div className="Title">
+        {meal.strMeal}
+      </div>
     </div>
-    <div className="Tags">
-      {props.strTags}
-    </div>
-  </div>
-    </div>
-
-    
   );
 }
 

@@ -3,28 +3,28 @@ import { useState } from "react";
 import foodsecStyles from "../../styles/foodsecStyles.module.scss";
 import FoodCard from "./FoodCard";
 import food from "../../dataset/food.json"
+import { Meal } from "../../types/UserTypes";
 
 
 const foodSec = () => {
-  // const meals = () => {
-  //   <div>
-  //       {food.map((food) => (
-  //           <div className="CardWrapper"></div>
-  //       ))}
-  //   </div>
-  // }
+  const [foodList, setFoodList] = useState<Meal[]>(food);
 
-  const [meals, setMeals] = useState([
-        food.map((meals) => (
-          {mealName: meals.strMeal, mealID: meals.idMeal}
-        ))
-    ]);
+
 
   return(
     <div className="FoodWrapper">
-      <FoodCard meals={meals}/>
+      {foodList.map((meal) => (
+        <FoodCard key={meal.idMeal} meal={meal}/> 
+        ))}
     </div>
   )
 };
 
-export default foodSec;
+export default foodSec;  
+
+//!This code words with getting out data from json
+  // const [meals, setMeals] = useState([
+  //       food.map((meals) => (
+  //         {mealName: meals.strMeal, mealID: meals.idMeal}
+  //       ))
+  //   ]);
