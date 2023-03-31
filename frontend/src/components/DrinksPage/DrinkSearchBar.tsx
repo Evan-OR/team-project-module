@@ -10,10 +10,11 @@ type DrinkSearchBarProps = {
   searchText: string;
   setSearchTextHandler: (s: string) => void;
   toggleModal: (drink: Drink | null) => void;
+  modalIsShowing: boolean;
 };
 
 function DrinkSearchBar(props: DrinkSearchBarProps) {
-  const { drinks, searchText, setSearchTextHandler, updateDrinkList, toggleModal } = props;
+  const { drinks, searchText, setSearchTextHandler, updateDrinkList, toggleModal, modalIsShowing } = props;
 
   const searchRef = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
@@ -32,7 +33,7 @@ function DrinkSearchBar(props: DrinkSearchBarProps) {
 
   const suggestionClickedHandler = (name: string) => {
     setSearchTextHandler(name);
-    toggleModal(null);
+    if (modalIsShowing) toggleModal(null);
   };
 
   const searchDrinksArray = (search: string) => {
@@ -48,8 +49,9 @@ function DrinkSearchBar(props: DrinkSearchBarProps) {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     updateDrinkList(searchSuggestions);
-    toggleModal(null);
     setShowSuggestions(false);
+
+    if (modalIsShowing) toggleModal(null);
   };
 
   useEffect(() => {
