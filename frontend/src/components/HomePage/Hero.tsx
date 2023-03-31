@@ -1,4 +1,5 @@
 import heroStyles from '../../styles/heroStyles.module.scss';
+import cocktails from '../../images/Cocktail.png';
 
 const Hero = () => {
   return (
@@ -14,10 +15,11 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className={heroStyles.right}>COOL ICONS OR IMAGES THAT MATCH THE THEME</div>
+      <div className={heroStyles.right}>
+        <img draggable={false} alt="cocktails" src={cocktails}></img>
+      </div>
     </div>
   );
 };
 
 export default Hero;
-0;
