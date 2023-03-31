@@ -1,25 +1,30 @@
-import React from "react";
+import React, { Component } from "react";
+import { useState } from "react";
 import foodsecStyles from "../../styles/foodsecStyles.module.scss";
-import FoodCards from "./FoodCard";
-const foodSec = () => {
-  return (
-    <div className={foodsecStyles.foodDisplayWrapper}>
-      <form action="" className={foodsecStyles.Searchbar}>
-        <input
-          type="text"
-          placeholder="Search for Food!"
-          className={foodsecStyles.foodInput}
-        />
-      </form>
+import FoodCard from "./FoodCard";
+import food from "../../dataset/food.json"
+import { Meal } from "../../types/UserTypes";
 
-      <div className={foodsecStyles.foodMenuContainer}>
-        <div className={foodsecStyles.titleWrapper}>
-          <h2 className={foodsecStyles.title}>Suggested Food</h2>
-        </div>
-        <FoodCards />
-      </div>
+
+const foodSec = () => {
+  const [foodList, setFoodList] = useState<Meal[]>(food);
+
+
+
+  return(
+    <div className="FoodWrapper">
+      {foodList.map((meal) => (
+        <FoodCard key={meal.idMeal} meal={meal}/> 
+        ))}
     </div>
-  );
+  )
 };
 
-export default foodSec;
+export default foodSec;  
+
+//!This code words with getting out data from json
+  // const [meals, setMeals] = useState([
+  //       food.map((meals) => (
+  //         {mealName: meals.strMeal, mealID: meals.idMeal}
+  //       ))
+  //   ]);
