@@ -70,7 +70,7 @@ function DisplayDrinkPage(props: DisplayDrinkPageProps) {
               </div>
             </div>
           </div>
-          <CommentForm />
+          <CommentForm drinkId={drink.id} />
         </div>
       </div>
     </div>

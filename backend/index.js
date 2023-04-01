@@ -149,8 +149,22 @@ app.post('/like/:userId/:newLikesArray', (req, res) => {
   });
 });
 
-app.post('/comment/:drinkId/:text', (req, res) => {
-  const { drinkId, text } = req.params;
+app.post('/comment/:drinkId/:userId/:text', (req, res) => {
+  const { drinkId, userId, text } = req.params;
+  const sql = 'insert into comments (drinkId, userId, text) values (?, ?, ?);';
+
+  connection.execute(sql, [drinkId, userId, text], (err, results, fields) => {
+    if (err) {
+      res.status(500).send({
+        message: 'comment added!',
+      });
+      throw err;
+    } else {
+      res.status(200).send({
+        message: 'comment added!',
+      });
+    }
+  });
 });
 
 app.get('/comments/:drinkId', (req, res) => {

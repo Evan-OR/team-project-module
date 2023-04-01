@@ -1,15 +1,35 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { FormEvent, useContext, useEffect, useRef, useState } from 'react';
 import style from '../../styles/commentStyles.module.scss';
+import { postCommentRequest } from '../../utils/apiUtil';
+import { UserContext } from '../context/UserContext';
 
-function CommentForm() {
+type CommentFormProps = {
+  drinkId: number;
+};
+
+function CommentForm(props: CommentFormProps) {
+  const { drinkId } = props;
+
   const [commentText, setCommentText] = useState('');
-  const defaultTextAreaHeight = document.getElementById('textarea')?.style.height;
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
+  const userContext = useContext(UserContext);
+
   const wordLimit = 100;
 
   const textAreaHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (e.currentTarget.value.length > wordLimit) return;
     setCommentText(e.currentTarget.value);
+  };
+
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!userContext || !userContext.user) return;
+    if (commentText.length === 0) return;
+
+    const m = await postCommentRequest(drinkId, userContext.user.userID, commentText);
+    console.log(m);
+    setCommentText('');
   };
 
   useEffect(() => {
@@ -19,13 +39,13 @@ function CommentForm() {
   }, [commentText]);
 
   return (
-    <form className={style.form}>
+    <form onSubmit={submitHandler} className={style.form}>
       <div className={style.commentWrapper}>
         <div className={style.commentUtil}>
           <div className={style.charCount}>
             {commentText.length}/{wordLimit}
           </div>
-          <button className={style.postBtn} type="button">
+          <button className={style.postBtn} type="submit">
             Post
           </button>
         </div>
@@ -35,7 +55,7 @@ function CommentForm() {
           value={commentText}
           onChange={textAreaHandler}
           className={style.text}
-          placeholder="Leave a comment?"
+          placeholder="Leave a comment..."
         ></textarea>
       </div>
     </form>
