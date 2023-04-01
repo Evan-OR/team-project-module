@@ -27,7 +27,7 @@ function LikesPage() {
     for (const drink of drinks) {
       if (userContext === null || userContext.user === null) break;
       for (const id of userContext.user.likes) {
-        if (drink.idDrink === id) {
+        if (drink.id === id) {
           tempLikeArray.push(drink);
         }
       }
@@ -51,7 +51,7 @@ function LikesPage() {
             <>
               <div className={drinksecStyles.cardDisplayWrapper}>
                 {likedDrinks.map((drink) => (
-                  <DrinkCard key={drink.idDrink} drink={drink} toggleModal={toggleModal} />
+                  <DrinkCard key={drink.id} drink={drink} toggleModal={toggleModal} />
                 ))}
               </div>
             </>

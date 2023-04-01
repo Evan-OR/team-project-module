@@ -39,7 +39,7 @@ function DrinkSearchBar(props: DrinkSearchBarProps) {
   const searchDrinksArray = (search: string) => {
     const s = search.toLowerCase();
 
-    return drinks.filter((d) => d.strDrink.toLowerCase().includes(s));
+    return drinks.filter((d) => d.name.toLowerCase().includes(s));
   };
 
   const focusSearch = () => {
@@ -99,14 +99,14 @@ function DrinkSearchBar(props: DrinkSearchBarProps) {
             {searchSuggestions.map((d) => (
               <div
                 onClick={() => {
-                  suggestionClickedHandler(d.strDrink);
-                  updateDrinkList(searchDrinksArray(d.strDrink));
+                  suggestionClickedHandler(d.name);
+                  updateDrinkList(searchDrinksArray(d.name));
                   setShowSuggestions(false);
                 }}
                 className={styles.autocompleteOption}
-                key={d.idDrink}
+                key={d.id}
               >
-                {d.strDrink}
+                {d.name}
               </div>
             ))}
           </div>
