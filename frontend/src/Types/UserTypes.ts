@@ -71,7 +71,7 @@ export type Meal = {
     strCategory?: string | null;
     strArea?: string | null;
     strInstructions?: string | null;
-    strMealThumb?: string | null;
+    strMealThumb?: string;
     strTags?: string | null;
     strYoutube?: string | null;
     strIngredient1?: string | null;
