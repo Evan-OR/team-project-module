@@ -17,7 +17,9 @@ function DrinkCard(props: DrinkCardProps) {
     >
       <img draggable="false" src={drink.strDrinkThumb}></img>
       <div className={styles.infoWrapper}>
-        <div className={styles.title}>{drink.strDrink}</div>
+        <div className={styles.title}>
+          {drink.strDrink}
+        </div>
         <div className={styles.tagWrapper}>
           {drink.strTags?.split(",").map((tag) => (
             <div key={tag} className={styles.tag}>
