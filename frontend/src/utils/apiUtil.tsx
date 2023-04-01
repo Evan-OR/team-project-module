@@ -19,3 +19,15 @@ export const postCommentRequest = async (drinkId: number, userId: number, text: 
     throw e;
   }
 };
+
+export const getCommentsRequest = async (drinkId: number) => {
+  try {
+    const req = await fetch(`http://localhost:3000/comments/${drinkId}`, {
+      method: 'get',
+    });
+    const { data } = await req.json();
+    return data;
+  } catch (e) {
+    throw e;
+  }
+};

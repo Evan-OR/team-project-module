@@ -4,7 +4,7 @@
   display: flex;
   width: 100%;
 
-  .commentWrapper {
+  .commentBoxWrapper {
     position: relative;
     display: flex;
     width: 100%;
@@ -56,5 +56,26 @@
         background-color: $highlight-colour;
       }
     }
+  }
+}
+
+.commentWrapper {
+  width: 100%;
+  background-color: $background-colour;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+
+  .username {
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+  .postDate {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    font-weight: lighter;
+  }
+  .comment {
+    font-size: 1rem;
   }
 }

@@ -40,7 +40,7 @@ function CommentForm(props: CommentFormProps) {
 
   return (
     <form onSubmit={submitHandler} className={style.form}>
-      <div className={style.commentWrapper}>
+      <div className={style.commentBoxWrapper}>
         <div className={style.commentUtil}>
           <div className={style.charCount}>
             {commentText.length}/{wordLimit}

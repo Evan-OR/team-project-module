@@ -1,12 +1,15 @@
-import { useContext, useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import CloseButton from '../../icons/CloseButton';
 import FilledHeartIcon from '../../icons/FilledHeartIcon';
 import HollowHeartIcon from '../../icons/HollowHeartIcon';
 import ThumbsUp from '../../icons/ThumbsUp';
 import style from '../../styles/displayDrinkPage.module.scss';
+import { DrinkComment } from '../../types/types';
 import { Drink } from '../../types/UserTypes';
+import { getCommentsRequest } from '../../utils/apiUtil';
 import { checkIfAlreadyLiked } from '../../utils/drinksUtil';
 import { assertIsNode, dealWithStupidFuckingJson } from '../../utils/utils';
+import Comment from '../comments/Comment';
 import CommentForm from '../comments/CommentForm';
 import { UserContext } from '../context/UserContext';
 
@@ -18,6 +21,7 @@ type DisplayDrinkPageProps = {
 function DisplayDrinkPage(props: DisplayDrinkPageProps) {
   const { toggleModal, drink } = props;
   const userContext = useContext(UserContext);
+  const [comments, setComments] = useState<DrinkComment[]>([]);
 
   const likeDrink = async () => {
     if (userContext?.user === null || userContext?.user === undefined) return;
@@ -46,6 +50,16 @@ function DisplayDrinkPage(props: DisplayDrinkPageProps) {
     return userContext.user.likes.includes(drink.id) ? true : false;
   };
 
+  const getComments = async () => {
+    const comments = await getCommentsRequest(drink.id);
+    console.log(comments);
+    setComments(comments);
+  };
+
+  useEffect(() => {
+    getComments();
+  }, []);
+
   return (
     <div className={style.pageWrapper}>
       <div onClick={() => toggleModal(null)} className={style.backBtn}>
@@ -71,6 +85,11 @@ function DisplayDrinkPage(props: DisplayDrinkPageProps) {
             </div>
           </div>
           <CommentForm drinkId={drink.id} />
+          <div className={style.commentWrapper}>
+            {comments.map((c) => (
+              <Comment key={c.id} comment={c} />
+            ))}
+          </div>
         </div>
       </div>
     </div>

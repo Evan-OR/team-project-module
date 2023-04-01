@@ -156,7 +156,7 @@ app.post('/comment/:drinkId/:userId/:text', (req, res) => {
   connection.execute(sql, [drinkId, userId, text], (err, results, fields) => {
     if (err) {
       res.status(500).send({
-        message: 'comment added!',
+        message: 'Error adding comment!',
       });
       throw err;
     } else {
@@ -169,7 +169,22 @@ app.post('/comment/:drinkId/:userId/:text', (req, res) => {
 
 app.get('/comments/:drinkId', (req, res) => {
   const { drinkId } = req.params;
-  const sql = `SELECT comments.text, users.username FROM comments INNER JOIN users ON users.userID=comments.userId WHERE comments.drinkId=?`;
+  const sql = `SELECT comments.id, users.username, comments.text, comments.datePosted  FROM comments INNER JOIN users ON users.userID=comments.userId WHERE comments.drinkId=? ORDER BY comments.datePosted desc`;
+
+  connection.execute(sql, [drinkId], (err, results, fields) => {
+    if (err) {
+      res.status(500).send({
+        message: 'comment added!',
+      });
+      throw err;
+    } else {
+      console.log(results);
+      res.status(200).send({
+        message: 'returning comments',
+        data: results,
+      });
+    }
+  });
 });
 
 app.listen(port, () => {
