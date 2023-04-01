@@ -1,0 +1,60 @@
+@import './default.module.scss';
+
+.form {
+  display: flex;
+  width: 100%;
+
+  .commentWrapper {
+    position: relative;
+    display: flex;
+    width: 100%;
+
+    .text {
+      font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      color: $default-text-color;
+
+      width: 100%;
+
+      padding: 8px;
+      padding-right: 125px;
+      resize: none;
+      border-radius: 7px 7px 7px 7px;
+
+      border-color: grey;
+      height: fit-content;
+
+      min-height: 53px;
+      overflow-y: hidden;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .commentUtil {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+
+      display: flex;
+      align-items: center;
+
+      .charCount {
+        margin: 0 10px;
+      }
+
+      .postBtn {
+        padding: 6px 12px;
+        height: fit-content;
+        border: solid 1px transparent;
+        border-radius: 7px 0 7px 0;
+        cursor: pointer;
+
+        font-size: 1rem;
+        color: white;
+        background-color: $highlight-colour;
+      }
+    }
+  }
+}

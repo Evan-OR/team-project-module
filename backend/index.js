@@ -149,6 +149,15 @@ app.post('/like/:userId/:newLikesArray', (req, res) => {
   });
 });
 
+app.post('/comment/:drinkId/:text', (req, res) => {
+  const { drinkId, text } = req.params;
+});
+
+app.get('/comments/:drinkId', (req, res) => {
+  const { drinkId } = req.params;
+  const sql = `SELECT comments.text, users.username FROM comments INNER JOIN users ON users.userID=comments.userId WHERE comments.drinkId=?`;
+});
+
 app.listen(port, () => {
   console.log(`Server listening on http://localhost:${port}`);
 });

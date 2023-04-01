@@ -7,6 +7,7 @@ import style from '../../styles/displayDrinkPage.module.scss';
 import { Drink } from '../../types/UserTypes';
 import { checkIfAlreadyLiked } from '../../utils/drinksUtil';
 import { assertIsNode, dealWithStupidFuckingJson } from '../../utils/utils';
+import CommentForm from '../comments/CommentForm';
 import { UserContext } from '../context/UserContext';
 
 type DisplayDrinkPageProps = {
@@ -57,16 +58,19 @@ function DisplayDrinkPage(props: DisplayDrinkPageProps) {
         </div>
 
         <div className={style.contentWrapper}>
-          <div className={style.title}>{drink.name}</div>
-          <div className={style.subTitle}>Instructions</div>
-          <div className={style.description}>{drink.instructions}</div>
-          <div className={style.subTitle}>Ingredients</div>
-          <div className={style.ingredientsWrapper}>
-            {dealWithStupidFuckingJson(drink)}
-            <div onClick={likeDrink} className={style.likeIcon}>
-              {userHasLiked() ? <FilledHeartIcon /> : <HollowHeartIcon />}
+          <div className={style.drinkInfoWrapper}>
+            <div className={style.title}>{drink.name}</div>
+            <div className={style.subTitle}>Instructions</div>
+            <div className={style.description}>{drink.instructions}</div>
+            <div className={style.subTitle}>Ingredients</div>
+            <div className={style.ingredientsWrapper}>
+              {dealWithStupidFuckingJson(drink)}
+              <div onClick={likeDrink} className={style.likeIcon}>
+                {userHasLiked() ? <FilledHeartIcon /> : <HollowHeartIcon />}
+              </div>
             </div>
           </div>
+          <CommentForm />
         </div>
       </div>
     </div>
