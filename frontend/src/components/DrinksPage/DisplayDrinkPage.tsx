@@ -22,14 +22,14 @@ function DisplayDrinkPage(props: DisplayDrinkPageProps) {
     if (userContext?.user === null || userContext?.user === undefined) return;
     // Client side check if user already liked drink
     const userLikes = userContext?.user?.likes;
-    if (userLikes && userLikes.includes(drink.idDrink)) {
+    if (userLikes && userLikes.includes(drink.id)) {
       console.log('user already liked this');
       // MAYBE ADD REMOVE LIKE
       return;
     }
 
     //Create new like array info
-    const newLikesArray = JSON.stringify([...userContext.user.likes, drink.idDrink]);
+    const newLikesArray = JSON.stringify([...userContext.user.likes, drink.id]);
 
     const req = await fetch(`http://localhost:3000/like/${userContext?.user?.userID}/${newLikesArray}`, {
       method: 'post',
@@ -42,7 +42,7 @@ function DisplayDrinkPage(props: DisplayDrinkPageProps) {
   const userHasLiked = (): boolean => {
     if (userContext?.user === null || userContext?.user === undefined) return false;
 
-    return userContext.user.likes.includes(drink.idDrink) ? true : false;
+    return userContext.user.likes.includes(drink.id) ? true : false;
   };
 
   return (
@@ -53,13 +53,13 @@ function DisplayDrinkPage(props: DisplayDrinkPageProps) {
 
       <div className={style.wrapper}>
         <div className={style.imgWrapper}>
-          <img draggable={false} alt={`Picture of ${drink.strDrink}`} src={drink.strDrinkThumb}></img>
+          <img draggable={false} alt={`Picture of ${drink.name}`} src={drink.imageURL}></img>
         </div>
 
         <div className={style.contentWrapper}>
-          <div className={style.title}>{drink.strDrink}</div>
+          <div className={style.title}>{drink.name}</div>
           <div className={style.subTitle}>Instructions</div>
-          <div className={style.description}>{drink.strInstructions}</div>
+          <div className={style.description}>{drink.instructions}</div>
           <div className={style.subTitle}>Ingredients</div>
           <div className={style.ingredientsWrapper}>
             {dealWithStupidFuckingJson(drink)}

@@ -19,8 +19,8 @@ export const dealWithStupidFuckingJson = (drink: Drink) => {
   let divs: JSX.Element[] = [];
 
   for (let i = 1; i < 15; i++) {
-    const ingredientKey = drink[('strIngredient' + i) as keyof Drink];
-    const measureKey = drink[('strMeasure' + i) as keyof Drink];
+    const ingredientKey = drink[('ingredient' + i) as keyof Drink];
+    const measureKey = drink[('measurement' + i) as keyof Drink];
     if (typeof ingredientKey !== 'string' || typeof measureKey !== 'string') continue;
     divs.push(
       <div key={ingredientKey + measureKey}>
