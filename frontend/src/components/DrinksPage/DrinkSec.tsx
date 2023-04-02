@@ -38,6 +38,28 @@ const DrinkSec = () => {
     setSearchText(s);
   };
 
+  const renderDrinkRecommendation = () => {
+    if (userContext === null || userContext.user === null) {
+      return <div>Login to Get Recommendations!</div>;
+    } else {
+      return drinkRecommendations.length > 0 && searchText.length === 0 ? (
+        <div className={styles.DrinkMenuContainer}>
+          <div className={styles.titleWrapper}>
+            <h3 className={styles.title}>Suggestions based on your likes</h3>
+          </div>
+
+          <div className={styles.cardDisplayWrapper}>
+            {drinkRecommendations.map((drink) => (
+              <DrinkCard key={drink.id} drink={drink} toggleModal={toggleModal} />
+            ))}
+          </div>
+        </div>
+      ) : (
+        <></>
+      );
+    }
+  };
+
   // UPDATE DRINKS AFTER USER LOGS IN
   useEffect(() => {
     setDrinkRecommendations(initializeDrinkRecommendations());
@@ -108,28 +130,11 @@ const DrinkSec = () => {
         modalIsShowing={modalToggle}
       />
 
-      {/* RENDER DRINK RECOMMENDATIONS START*/}
-      {drinkRecommendations.length > 0 && searchText.length === 0 ? (
-        <div className={styles.DrinkMenuContainer}>
-          <div className={styles.titleWrapper}>
-            <h3 className={styles.title}>Suggestions based on your likes</h3>
-          </div>
-
-          <div className={styles.cardDisplayWrapper}>
-            {drinkRecommendations.map((drink) => (
-              <DrinkCard key={drink.id} drink={drink} toggleModal={toggleModal} />
-            ))}
-          </div>
-        </div>
-      ) : (
-        <></>
-      )}
-      {/* RENDER DRINK RECOMMENDATIONS END*/}
-
       {modalToggle ? (
         <DisplayDrinkPage toggleModal={toggleModal} drink={currentDrink} />
       ) : (
         <>
+          {renderDrinkRecommendation()}
           <div className={styles.DrinkMenuContainer}>
             <div className={styles.titleWrapper}>
               {searchText.length === 0 && <h3 className={styles.title}>Other Drinks</h3>}
