@@ -7,6 +7,7 @@ import { UserContext } from '../context/UserContext';
 import { getDrinkRecommendations } from '../../utils/drinksUtil';
 import { Drink } from '../../types/UserTypes';
 import DrinkSearchBar from './DrinkSearchBar';
+import LoginPrompt from '../LoginPrompt';
 
 const DrinkSec = () => {
   const [modalToggle, setToggleModal] = useState(false);
@@ -40,7 +41,7 @@ const DrinkSec = () => {
 
   const renderDrinkRecommendation = () => {
     if (userContext === null || userContext.user === null) {
-      return <div>Login to Get Recommendations!</div>;
+      return <LoginPrompt text="Login to get drink Recommendations" />;
     } else {
       return drinkRecommendations.length > 0 && searchText.length === 0 ? (
         <div className={styles.DrinkMenuContainer}>
