@@ -1,4 +1,3 @@
-import React, { Component } from "react";
 import { useState } from "react";
 import foodStyles from "../../styles/foodsecStyles.module.scss";
 import FoodCard from "./FoodCard";
@@ -11,7 +10,7 @@ const foodSec = () => {
   return(
     <div className={foodStyles.FoodDisplayWrapper}>
       <div className={foodStyles.titleWrapper}>
-          <h3 className={foodStyles.title}>Other Drinks</h3>
+          <h3 className={foodStyles.title}>Other Food</h3>
       </div>
       <div className={foodStyles.FoodMenuContainer}>
         <div className={foodStyles.cardDisplayWrapper}>
