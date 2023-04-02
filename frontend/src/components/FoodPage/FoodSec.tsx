@@ -11,7 +11,7 @@ const foodSec = () => {
   const [searchResults, setSearchResults] = useState<Meal[]>(food);
 
   const handleSearchChange = (e: { target: { value: string; }; }) => {
-      const mealResults = foodList.filter(foodList => foodList.strMeal?.includes(e.target.value))
+      const mealResults = foodList.filter(foodList => foodList.strMeal?.toLowerCase().includes(e.target.value.toLowerCase()))
 
       setSearchResults(mealResults)
     }
