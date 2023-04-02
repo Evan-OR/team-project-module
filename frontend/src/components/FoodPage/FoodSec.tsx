@@ -3,12 +3,14 @@ import foodStyles from "../../styles/foodsecStyles.module.scss";
 import FoodCard from "./FoodCard";
 import food from "../../dataset/food.json"
 import { Meal } from "../../types/UserTypes";
+import FoodSearchBar from "./FoodSearchBar";
 
 const foodSec = () => {
   const [foodList, setFoodList] = useState<Meal[]>(food);
 
   return(
     <div className={foodStyles.FoodDisplayWrapper}>
+      <FoodSearchBar />
       <div className={foodStyles.titleWrapper}>
           <h3 className={foodStyles.title}>Other Food</h3>
       </div>

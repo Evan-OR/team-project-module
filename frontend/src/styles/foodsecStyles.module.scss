@@ -1,6 +1,6 @@
 @import './default.module.scss';
 
-.DrinkDisplayWrapper {
+.FoodDisplayWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,7 +8,7 @@
   margin-bottom: 60px;
 }
 
-.DrinkMenuContainer {
+.FoodMenuContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
