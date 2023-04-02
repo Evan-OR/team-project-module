@@ -7,6 +7,9 @@
   width: 80%;
   margin-top: 10px;
 
+  box-shadow: 3px 4px 10px 5px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+
   .wrapper {
     display: flex;
     width: 100%;
@@ -69,6 +72,7 @@
   .backBtn {
     position: absolute;
     right: 5px;
+    top: 1px;
     width: 27px;
     fill: $background-highlight-colour;
 
