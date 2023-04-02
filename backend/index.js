@@ -66,7 +66,7 @@ app.get('/login/:username/:password', (req, res) => {
         userInfo: results[0],
       });
     } else {
-      res.status(220).send({
+      res.status(400).send({
         message: 'Incorrect Credentials!',
         userInfo: null,
       });
@@ -132,8 +132,6 @@ app.post('/like/:userId/:newLikesArray', (req, res) => {
   const { userId, newLikesArray } = req.params;
 
   const sql = 'UPDATE users SET likes = ? WHERE userID = ?;';
-
-  console.log(newLikesArray);
 
   connection.execute(sql, [newLikesArray, userId], (err) => {
     if (err) {

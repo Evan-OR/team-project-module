@@ -5,7 +5,7 @@ import HollowHeartIcon from '../../icons/HollowHeartIcon';
 import style from '../../styles/displayDrinkPage.module.scss';
 import { DrinkComment } from '../../types/types';
 import { Drink } from '../../types/UserTypes';
-import { getCommentsRequest } from '../../utils/apiUtil';
+import { getCommentsRequest, updateLikesRequest } from '../../utils/apiUtil';
 import { dealWithStupidFuckingJson } from '../../utils/utils';
 import Comment from '../comments/Comment';
 import CommentForm from '../comments/CommentForm';
@@ -24,23 +24,17 @@ function DisplayDrinkPage(props: DisplayDrinkPageProps) {
 
   const likeDrink = async () => {
     if (userContext?.user === null || userContext?.user === undefined) return;
-    // Client side check if user already liked drink
-    const userLikes = userContext.user.likes;
-    if (userLikes && userLikes.includes(drink.id)) {
-      console.log('user already liked this');
-      // MAYBE ADD REMOVE LIKE
-      return;
+
+    const user = userContext.user;
+    const addToLikes = !user.likes.includes(drink.id);
+
+    const [res, newArrayjson] = await updateLikesRequest(user.likes, drink.id, user.userID, addToLikes);
+
+    if (res.status === 200) {
+      userContext.setUser({ ...user, likes: JSON.parse(newArrayjson) });
+    } else {
+      alert('error updating likes!');
     }
-
-    //Create new like array info
-    const newLikesArray = JSON.stringify([...userContext.user.likes, drink.id]);
-
-    const req = await fetch(`http://localhost:3000/like/${userContext?.user?.userID}/${newLikesArray}`, {
-      method: 'post',
-    });
-
-    const res = await req.json();
-    userContext.setUser({ ...userContext.user, likes: JSON.parse(res.newLikesArray) });
   };
 
   const userHasLiked = (): boolean => {
