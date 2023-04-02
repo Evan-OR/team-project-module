@@ -15,7 +15,6 @@ const foodSec = () => {
 
       setSearchResults(mealResults)
     }
-  
   return(
     <div className={foodStyles.FoodDisplayWrapper}>
 
@@ -38,57 +37,51 @@ const foodSec = () => {
         </form>
       {/* End of Search Bar */}
 
+    {searchResults.length > 0 ?
+      <>
       <div className={foodStyles.titleWrapper}>
-          <h3 className={foodStyles.title}>Other Food</h3>
+        <h3 className={foodStyles.title}>Searched Food</h3>
       </div>
-      <div className={foodStyles.FoodMenuContainer}>
-        <div className={foodStyles.cardDisplayWrapper}>
-          {searchResults.length > 0
-            ? searchResults.map((meal) => (
+        <div className={foodStyles.FoodMenuContainer}>
+          <div className={foodStyles.cardDisplayWrapper}>
+            {searchResults.map((meal) => (
               <FoodCard key={meal.idMeal} meal={meal}/>
-            ))
-          : foodList.map((meal) => (
-            <FoodCard key={meal.idMeal} meal={meal}/>
-          ))
-          }
+            ))}
+          </div>
         </div>
-      </div>
-
-
-
-
-
-
-
-      {/* Shows list of all food in json file under title "Other Food" */}
-      {/* <div className={foodStyles.titleWrapper}>
-          <h3 className={foodStyles.title}>Other Food</h3>
-      </div>
-      <div className={foodStyles.FoodMenuContainer}>
-        <div className={foodStyles.cardDisplayWrapper}>
-          {foodList.map((meal) => (
-          <FoodCard key={meal.idMeal} meal={meal}/> 
-          ))}
+        </>
+        :
+        <>
+        <div className={foodStyles.titleWrapper}>
+          <h3 className={foodStyles.title}>All Food</h3>
         </div>
-      </div> */}
-      {/* End of showing all food under title "Other Food" */}
-
-      {/* Start of searched Food */}
-      {/* <div className={foodStyles.titleWrapper}>
-          <h3 className={foodStyles.title}>Searched Food</h3>
-      </div>
-      <div className={foodStyles.FoodMenuContainer}>
-        <div className={foodStyles.cardDisplayWrapper}>
-          {searchResults.map((meal) => (
-            <FoodCard key={meal.idMeal} meal={meal}/>
-          ))}
-        </div>
-      </div> */}
-      {/* End of searched food */}
-
-
+        <div className={foodStyles.FoodMenuContainer}>
+            <div className={foodStyles.cardDisplayWrapper}>
+            {foodList.map((meal) => (
+              <FoodCard key={meal.idMeal} meal={meal}/>
+            ))}
+            </div>
+        </div> 
+      </>
+    }
     </div>
-  )
-};
+  )}
 
 export default foodSec;  
+
+
+// {/* <div className={foodStyles.titleWrapper}>
+//           <h3 className={foodStyles.title}>Other Food</h3>
+//       </div>
+//       <div className={foodStyles.FoodMenuContainer}>
+//         <div className={foodStyles.cardDisplayWrapper}>
+//           {searchResults.length > 0
+//             ? searchResults.map((meal) => (
+//               <FoodCard key={meal.idMeal} meal={meal}/>
+//             ))
+//           : foodList.map((meal) => (
+//             <FoodCard key={meal.idMeal} meal={meal}/>
+//           ))
+//           }
+//         </div>
+//         </div> */}
