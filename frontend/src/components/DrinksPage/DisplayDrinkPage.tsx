@@ -1,14 +1,12 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import CloseButton from '../../icons/CloseButton';
 import FilledHeartIcon from '../../icons/FilledHeartIcon';
 import HollowHeartIcon from '../../icons/HollowHeartIcon';
-import ThumbsUp from '../../icons/ThumbsUp';
 import style from '../../styles/displayDrinkPage.module.scss';
 import { DrinkComment } from '../../types/types';
 import { Drink } from '../../types/UserTypes';
 import { getCommentsRequest } from '../../utils/apiUtil';
-import { checkIfAlreadyLiked } from '../../utils/drinksUtil';
-import { assertIsNode, dealWithStupidFuckingJson } from '../../utils/utils';
+import { dealWithStupidFuckingJson } from '../../utils/utils';
 import Comment from '../comments/Comment';
 import CommentForm from '../comments/CommentForm';
 import { UserContext } from '../context/UserContext';
@@ -26,7 +24,7 @@ function DisplayDrinkPage(props: DisplayDrinkPageProps) {
   const likeDrink = async () => {
     if (userContext?.user === null || userContext?.user === undefined) return;
     // Client side check if user already liked drink
-    const userLikes = userContext?.user?.likes;
+    const userLikes = userContext.user.likes;
     if (userLikes && userLikes.includes(drink.id)) {
       console.log('user already liked this');
       // MAYBE ADD REMOVE LIKE
@@ -50,14 +48,17 @@ function DisplayDrinkPage(props: DisplayDrinkPageProps) {
     return userContext.user.likes.includes(drink.id) ? true : false;
   };
 
-  const getComments = async () => {
+  const addCommentLocally = (comment: DrinkComment) => {
+    setComments([comment, ...comments]);
+  };
+
+  const getCommentsFromDataBase = async () => {
     const comments = await getCommentsRequest(drink.id);
-    console.log(comments);
     setComments(comments);
   };
 
   useEffect(() => {
-    getComments();
+    getCommentsFromDataBase();
   }, []);
 
   return (
@@ -84,7 +85,7 @@ function DisplayDrinkPage(props: DisplayDrinkPageProps) {
               </div>
             </div>
           </div>
-          <CommentForm drinkId={drink.id} />
+          <CommentForm addCommentLocally={addCommentLocally} drinkId={drink.id} />
           <div className={style.commentWrapper}>
             {comments.map((c) => (
               <Comment key={c.id} comment={c} />
