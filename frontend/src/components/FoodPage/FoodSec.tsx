@@ -8,7 +8,6 @@ import SearchIcon from "../DrinksPage/SearchIcon";
 
 const foodSec = () => {
   const [foodList, setFoodList] = useState<Meal[]>(food);
-  const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState<Meal[]>(food);
 
   const handleSearchChange = (e: { target: { value: string; }; }) => {
@@ -39,8 +38,30 @@ const foodSec = () => {
         </form>
       {/* End of Search Bar */}
 
-      {/* Shows list of all food in json file under title "Other Food" */}
       <div className={foodStyles.titleWrapper}>
+          <h3 className={foodStyles.title}>Other Food</h3>
+      </div>
+      <div className={foodStyles.FoodMenuContainer}>
+        <div className={foodStyles.cardDisplayWrapper}>
+          {searchResults.length > 0
+            ? searchResults.map((meal) => (
+              <FoodCard key={meal.idMeal} meal={meal}/>
+            ))
+          : foodList.map((meal) => (
+            <FoodCard key={meal.idMeal} meal={meal}/>
+          ))
+          }
+        </div>
+      </div>
+
+
+
+
+
+
+
+      {/* Shows list of all food in json file under title "Other Food" */}
+      {/* <div className={foodStyles.titleWrapper}>
           <h3 className={foodStyles.title}>Other Food</h3>
       </div>
       <div className={foodStyles.FoodMenuContainer}>
@@ -49,9 +70,11 @@ const foodSec = () => {
           <FoodCard key={meal.idMeal} meal={meal}/> 
           ))}
         </div>
-      </div>
+      </div> */}
       {/* End of showing all food under title "Other Food" */}
-      <div className={foodStyles.titleWrapper}>
+
+      {/* Start of searched Food */}
+      {/* <div className={foodStyles.titleWrapper}>
           <h3 className={foodStyles.title}>Searched Food</h3>
       </div>
       <div className={foodStyles.FoodMenuContainer}>
@@ -60,7 +83,8 @@ const foodSec = () => {
             <FoodCard key={meal.idMeal} meal={meal}/>
           ))}
         </div>
-      </div>
+      </div> */}
+      {/* End of searched food */}
 
 
     </div>
