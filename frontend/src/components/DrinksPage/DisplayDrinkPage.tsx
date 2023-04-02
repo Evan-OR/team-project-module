@@ -10,6 +10,7 @@ import { dealWithStupidFuckingJson } from '../../utils/utils';
 import Comment from '../comments/Comment';
 import CommentForm from '../comments/CommentForm';
 import { UserContext } from '../context/UserContext';
+import LoginPrompt from '../LoginPrompt';
 
 type DisplayDrinkPageProps = {
   toggleModal: (index: Drink | null) => void;
@@ -57,6 +58,14 @@ function DisplayDrinkPage(props: DisplayDrinkPageProps) {
     setComments(comments);
   };
 
+  const renderCommentForm = () => {
+    if (userContext?.user === null || userContext?.user === undefined) {
+      return <LoginPrompt text="Login to post comments" />;
+    } else {
+      return <CommentForm addCommentLocally={addCommentLocally} drinkId={drink.id} />;
+    }
+  };
+
   useEffect(() => {
     getCommentsFromDataBase();
   }, []);
@@ -85,7 +94,9 @@ function DisplayDrinkPage(props: DisplayDrinkPageProps) {
               </div>
             </div>
           </div>
-          <CommentForm addCommentLocally={addCommentLocally} drinkId={drink.id} />
+
+          {renderCommentForm()}
+
           <div className={style.commentWrapper}>
             {comments.map((c) => (
               <Comment key={c.id} comment={c} />
