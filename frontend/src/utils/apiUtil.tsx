@@ -1,8 +1,31 @@
 import { saveUserToLocalStorage, loadUserFromLocalStorage } from './userUtil';
 
-export const likeRequest = () => {};
+export const updateLikesRequest = async (
+  userLikes: number[],
+  drinkId: number,
+  userId: number,
+  addToLikes: boolean
+): Promise<[Response, any]> => {
+  let newLikesJSON;
 
-export const unLikeRequest = () => {};
+  if (addToLikes) {
+    newLikesJSON = JSON.stringify([...userLikes, drinkId]);
+  } else {
+    userLikes.splice(userLikes.indexOf(drinkId), 1);
+    newLikesJSON = JSON.stringify(userLikes);
+  }
+
+  try {
+    const req = await fetch(`http://localhost:3000/like/${userId}/${newLikesJSON}`, {
+      method: 'post',
+    });
+
+    const { newLikesArray } = await req.json();
+    return [req, newLikesArray];
+  } catch (e) {
+    throw e;
+  }
+};
 
 export const loginRequest = () => {};
 
