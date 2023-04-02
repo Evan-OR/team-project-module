@@ -1,5 +1,5 @@
 import React from 'react'
-
+import FoodStyles from "../../styles/foodsecStyles.module.scss"
  function FoodSearchBar() {
   return (
     <div>
