@@ -178,7 +178,6 @@ app.get('/comments/:drinkId', (req, res) => {
       });
       throw err;
     } else {
-      console.log(results);
       res.status(200).send({
         message: 'returning comments',
         data: results,

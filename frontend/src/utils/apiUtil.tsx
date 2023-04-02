@@ -8,13 +8,13 @@ export const loginRequest = () => {};
 
 export const registerRequest = () => {};
 
-export const postCommentRequest = async (drinkId: number, userId: number, text: string) => {
+export const postCommentRequest = async (drinkId: number, userId: number, text: string): Promise<[Response, any]> => {
   try {
     const req = await fetch(`http://localhost:3000/comment/${drinkId}/${userId}/${text}`, {
       method: 'post',
     });
-    const { message } = await req.json();
-    return message;
+    const jsonRes = await req.json();
+    return [req, jsonRes];
   } catch (e) {
     throw e;
   }

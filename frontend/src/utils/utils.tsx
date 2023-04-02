@@ -30,6 +30,11 @@ export const dealWithStupidFuckingJson = (drink: Drink) => {
   return divs;
 };
 
+export const convertToIrishTime = (datePosted: string) => {
+  const date = new Date(datePosted);
+  return date.toLocaleString('en-IE', { timeZone: 'Europe/Dublin' });
+};
+
 export const convertOldInfoToV2 = (drinks: Drinkv1[]) => {
   return drinks.map((drink) => {
     return {
