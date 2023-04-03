@@ -11,7 +11,7 @@ const foodSec = () => {
   const [searchResults, setSearchResults] = useState<Meal[]>(food);
 
   const handleSearchChange = (e: { target: { value: string; }; }) => {
-      const mealResults = foodList.filter(foodList => foodList.strMeal?.toLowerCase().includes(e.target.value.toLowerCase()))
+      const mealResults = foodList.filter(foodList => foodList.mealName?.toLowerCase().includes(e.target.value.toLowerCase()))
 
       setSearchResults(mealResults)
     }
@@ -45,7 +45,7 @@ const foodSec = () => {
         <div className={foodStyles.FoodMenuContainer}>
           <div className={foodStyles.cardDisplayWrapper}>
             {searchResults.map((meal) => (
-              <FoodCard key={meal.idMeal} meal={meal}/>
+              <FoodCard key={meal.mealID} meal={meal}/>
             ))}
           </div>
         </div>
@@ -58,7 +58,7 @@ const foodSec = () => {
         <div className={foodStyles.FoodMenuContainer}>
             <div className={foodStyles.cardDisplayWrapper}>
             {foodList.map((meal) => (
-              <FoodCard key={meal.idMeal} meal={meal}/>
+              <FoodCard key={meal.mealID} meal={meal}/>
             ))}
             </div>
         </div> 

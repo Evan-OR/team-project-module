@@ -9,13 +9,13 @@ const FoodCard = (props: foodCardProps) => {
   const{meal} = props;
   return (
     <div className={foodStyles.foodCardWrapper}>
-      <img draggable="false" src={meal.strMealThumb}/>
+      <img draggable="false" src={meal.imageURL}/>
       <div className={foodStyles.infoWrapper}>
         <div className={foodStyles.title}>
-          {meal.strMeal}
+          {meal.mealName}
         </div>
         <div className={foodStyles.tagWrapper}>
-        {meal.strTags?.split(',').map((tag) => (
+        {meal.tags?.split(',').map((tag) => (
             <div key={tag} className={foodStyles.tag}>
               {tag}
             </div>

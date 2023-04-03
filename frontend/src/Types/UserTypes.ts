@@ -113,6 +113,16 @@ export type Drink = {
 };
 
 export type Meal = {
+  mealID: number;
+  mealName: string;
+  imageURL: string;
+  tags: string | null;
+  instructions: string;
+  ingredients: (string | null)[];
+  measurements: (string | null)[];
+};
+
+export type MealV1 = {
   idMeal?: string | null;
   strMeal?: string | null;
   strDrinkAlternate?: string | null;
