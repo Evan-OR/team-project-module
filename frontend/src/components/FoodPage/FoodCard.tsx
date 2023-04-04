@@ -4,11 +4,13 @@ import { Meal } from '../../types/UserTypes';
 
 type foodCardProps = {
   meal: Meal;
+  toggleModal: (index: Meal) => void;
 }
 const FoodCard = (props: foodCardProps) => {
-  const{meal} = props;
+  const{meal, toggleModal} = props;
+  
   return (
-    <div className={foodStyles.foodCardWrapper}>
+    <div onClick={() => toggleModal(meal)} className={foodStyles.foodCardWrapper}>
       <img draggable="false" src={meal.imageURL}/>
       <div className={foodStyles.infoWrapper}>
         <div className={foodStyles.title}>

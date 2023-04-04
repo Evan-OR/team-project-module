@@ -1,4 +1,4 @@
-import { Drink, Drinkv1, Drinkv2, UserInfo, UserInfoUnParsed } from '../types/UserTypes';
+import { Drink, Drinkv1, Drinkv2, Meal, UserInfo, UserInfoUnParsed } from '../types/UserTypes';
 
 export function assertIsNode(e: EventTarget | null): asserts e is Node {
   if (!e || !('nodeType' in e)) {
@@ -23,6 +23,22 @@ export const dealWithStupidFuckingJson = (drink: Drink) => {
     divs.push(
       <div key={i}>
         {drink.ingredients[i]} - {drink.measurements[i]}
+      </div>
+    );
+  }
+
+  return divs;
+};
+
+//For food modal (same code as above)
+export const getFoodIngredients = (food: Meal) => {
+  let divs: JSX.Element[] = [];
+
+  for (let i = 0; i < food.ingredients.length; i++) {
+    if (food.ingredients[i] === null || food.measurements[i] === null) continue;
+    divs.push(
+      <div key={i}>
+        {food.ingredients[i]} - {food.measurements[i]}
       </div>
     );
   }

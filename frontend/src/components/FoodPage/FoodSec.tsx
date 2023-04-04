@@ -5,10 +5,20 @@ import FoodCard from "./FoodCard";
 import food from "../../dataset/food.json"
 import { Meal } from "../../types/UserTypes";
 import SearchIcon from "../DrinksPage/SearchIcon";
+import FoodModal from "./FoodModal";
 
 const foodSec = () => {
   const [foodList, setFoodList] = useState<Meal[]>(food);
   const [searchResults, setSearchResults] = useState<Meal[]>(food);
+  const [modalToggle, setToggleModal] = useState(false);
+  const [currentMeal, setCurrentMeal] = useState<Meal>(food[0]);
+
+  const toggleModal = (food: Meal | null) => {
+    setToggleModal(!modalToggle);
+
+    if(food === null) return;
+    setCurrentMeal(food);
+  };
 
   const handleSearchChange = (e: { target: { value: string; }; }) => {
       const mealResults = foodList.filter(foodList => foodList.mealName?.toLowerCase().includes(e.target.value.toLowerCase()))
@@ -37,6 +47,11 @@ const foodSec = () => {
         </form>
       {/* End of Search Bar */}
 
+    {modalToggle ? (
+      <FoodModal toggleModal={toggleModal} food={currentMeal}/>
+    ):(
+      <></>
+    )}
     {searchResults.length > 0 ?
       <>
       <div className={foodStyles.titleWrapper}>
@@ -45,7 +60,7 @@ const foodSec = () => {
         <div className={foodStyles.FoodMenuContainer}>
           <div className={foodStyles.cardDisplayWrapper}>
             {searchResults.map((meal) => (
-              <FoodCard key={meal.mealID} meal={meal}/>
+              <FoodCard key={meal.mealID} meal={meal} toggleModal={toggleModal}/>
             ))}
           </div>
         </div>
@@ -58,7 +73,7 @@ const foodSec = () => {
         <div className={foodStyles.FoodMenuContainer}>
             <div className={foodStyles.cardDisplayWrapper}>
             {foodList.map((meal) => (
-              <FoodCard key={meal.mealID} meal={meal}/>
+              <FoodCard key={meal.mealID} meal={meal} toggleModal={toggleModal}/>
             ))}
             </div>
         </div> 
