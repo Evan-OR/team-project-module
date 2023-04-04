@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import styles from '../../styles/drinksecStyles.module.scss';
+import styles from '../../styles/drinkStyles/drinksecStyles.module.scss';
 import DrinkCard from './DrinkCard';
 import drinks from '../../dataset/drinks.json';
 import DisplayDrinkPage from './DisplayDrinkPage';

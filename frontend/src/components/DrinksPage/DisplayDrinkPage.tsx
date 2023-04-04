@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import CloseButton from '../../icons/CloseButton';
 import FilledHeartIcon from '../../icons/FilledHeartIcon';
 import HollowHeartIcon from '../../icons/HollowHeartIcon';
-import style from '../../styles/displayDrinkPage.module.scss';
+import style from '../../styles/drinkStyles/displayDrinkPage.module.scss';
 import { DrinkComment } from '../../types/types';
 import { Drink } from '../../types/UserTypes';
 import { getCommentsRequest, updateLikesRequest } from '../../utils/apiUtil';
