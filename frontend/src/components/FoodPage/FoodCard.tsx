@@ -1,5 +1,5 @@
 import React from 'react';
-import foodStyles from '../../styles/foodCardStyle.module.scss';
+import foodStyles from '../../styles/foodStyles/foodCardStyle.module.scss';
 import { Meal } from '../../types/UserTypes';
 
 type foodCardProps = {

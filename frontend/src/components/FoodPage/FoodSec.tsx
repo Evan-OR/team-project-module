@@ -1,6 +1,5 @@
 import { useState } from "react";
-import foodStyles from "../../styles/foodsecStyles.module.scss";
-import searchBarStyles from "../../styles/searchbarStyles.module.scss";
+import foodStyles from "../../styles/foodStyles/foodsecStyles.module.scss";
 import FoodCard from "./FoodCard";
 import food from "../../dataset/food.json"
 import { Meal } from "../../types/UserTypes";
@@ -29,12 +28,12 @@ const foodSec = () => {
     <div className={foodStyles.FoodDisplayWrapper}>
 
       {/* Search Bar */}
-      <form className={searchBarStyles.foodForm}>
-            <div className={searchBarStyles.searchWrapper}>
+      <form className={foodStyles.foodForm}>
+            <div className={foodStyles.searchWrapper}>
                 {/* Search term now changes when you type not when you press enter */}
                 <input 
                 onChange={handleSearchChange} 
-                className={searchBarStyles.searchBar} 
+                className={foodStyles.searchBar} 
                 placeholder="Search for food" 
                 id="search"
                 type="text"
