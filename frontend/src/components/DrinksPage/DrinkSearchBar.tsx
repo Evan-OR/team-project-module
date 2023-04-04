@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, FormEvent } from 'react';
-import styles from '../../styles/searchBarStyles.module.scss';
+import styles from '../../styles/drinkStyles/searchBarStyles.module.scss';
 import { Drink } from '../../types/UserTypes';
 import { assertIsNode } from '../../utils/utils';
 import SearchIcon from './SearchIcon';

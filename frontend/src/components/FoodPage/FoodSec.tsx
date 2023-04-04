@@ -1,17 +1,26 @@
 import { useState } from "react";
-import foodStyles from "../../styles/foodsecStyles.module.scss";
-import searchBarStyles from "../../styles/searchbarStyles.module.scss";
+import foodStyles from "../../styles/foodStyles/foodsecStyles.module.scss";
 import FoodCard from "./FoodCard";
 import food from "../../dataset/food.json"
 import { Meal } from "../../types/UserTypes";
 import SearchIcon from "../DrinksPage/SearchIcon";
+import FoodModal from "./FoodModal";
 
 const foodSec = () => {
   const [foodList, setFoodList] = useState<Meal[]>(food);
   const [searchResults, setSearchResults] = useState<Meal[]>(food);
+  const [modalToggle, setToggleModal] = useState(false);
+  const [currentMeal, setCurrentMeal] = useState<Meal>(food[0]);
+
+  const toggleModal = (food: Meal | null) => {
+    setToggleModal(!modalToggle);
+
+    if(food === null) return;
+    setCurrentMeal(food);
+  };
 
   const handleSearchChange = (e: { target: { value: string; }; }) => {
-      const mealResults = foodList.filter(foodList => foodList.strMeal?.toLowerCase().includes(e.target.value.toLowerCase()))
+      const mealResults = foodList.filter(foodList => foodList.mealName?.toLowerCase().includes(e.target.value.toLowerCase()))
 
       setSearchResults(mealResults)
     }
@@ -19,12 +28,12 @@ const foodSec = () => {
     <div className={foodStyles.FoodDisplayWrapper}>
 
       {/* Search Bar */}
-      <form className={searchBarStyles.foodForm}>
-            <div className={searchBarStyles.searchWrapper}>
+      <form className={foodStyles.foodForm}>
+            <div className={foodStyles.searchWrapper}>
                 {/* Search term now changes when you type not when you press enter */}
                 <input 
                 onChange={handleSearchChange} 
-                className={searchBarStyles.searchBar} 
+                className={foodStyles.searchBar} 
                 placeholder="Search for food" 
                 id="search"
                 type="text"
@@ -37,6 +46,11 @@ const foodSec = () => {
         </form>
       {/* End of Search Bar */}
 
+    {modalToggle ? (
+      <FoodModal toggleModal={toggleModal} food={currentMeal}/>
+    ):(
+      <></>
+    )}
     {searchResults.length > 0 ?
       <>
       <div className={foodStyles.titleWrapper}>
@@ -45,7 +59,7 @@ const foodSec = () => {
         <div className={foodStyles.FoodMenuContainer}>
           <div className={foodStyles.cardDisplayWrapper}>
             {searchResults.map((meal) => (
-              <FoodCard key={meal.idMeal} meal={meal}/>
+              <FoodCard key={meal.mealID} meal={meal} toggleModal={toggleModal}/>
             ))}
           </div>
         </div>
@@ -58,7 +72,7 @@ const foodSec = () => {
         <div className={foodStyles.FoodMenuContainer}>
             <div className={foodStyles.cardDisplayWrapper}>
             {foodList.map((meal) => (
-              <FoodCard key={meal.idMeal} meal={meal}/>
+              <FoodCard key={meal.mealID} meal={meal} toggleModal={toggleModal}/>
             ))}
             </div>
         </div> 

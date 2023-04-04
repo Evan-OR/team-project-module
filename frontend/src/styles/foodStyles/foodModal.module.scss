@@ -1,6 +1,6 @@
-@import './default.module.scss';
+@import '../default.module.scss';
 
-.pageWrapper {
+.modalWrapper {
   position: relative;
   display: flex;
 
@@ -28,7 +28,7 @@
       padding: 15px 30px;
       width: 100%;
 
-      .drinkInfoWrapper {
+      .foodInfoWrapper {
         width: 100%;
         margin-bottom: 50px;
 
