@@ -27,15 +27,18 @@ function RegisterPage(props: LoginPageProps) {
 
   const handleSubmit = async () => {
     if (passwordOne !== passwordTwo) {
-      setError({ showError: true, errorMessage: '*Passwords must be the same!' });
+      setError({ showError: true, errorMessage: 'Passwords must be the same!' });
       return;
     }
 
     setDisableBtn(true);
     try {
-      const res = await fetch(`http://localhost:3000/signup/${username}/${passwordOne}`, {
-        method: 'post',
-      });
+      const res = await fetch(
+        `http://localhost:3000/signup/${encodeURIComponent(username)}/${encodeURIComponent(passwordOne)}`,
+        {
+          method: 'post',
+        }
+      );
       const message = await res.json();
       console.log(message, res);
 
@@ -49,7 +52,7 @@ function RegisterPage(props: LoginPageProps) {
         setShowLoginModal(!showLoginModal);
       }
     } catch (err) {
-      setError({ showError: true, errorMessage: '*Error with register system!' });
+      setError({ showError: true, errorMessage: 'Error with register system!' });
     }
 
     setDisableBtn(false);
@@ -57,7 +60,7 @@ function RegisterPage(props: LoginPageProps) {
 
   const usernameHandler = (e: any) => {
     if (usernameIsInValid(e.target.value)) {
-      setError({ showError: true, errorMessage: '*Username cannot include special characters!' });
+      setError({ showError: true, errorMessage: 'Username cannot include special characters!' });
     } else {
       setError({ showError: false, errorMessage: '' });
     }
