@@ -28,9 +28,12 @@ function LoginPage(props: LoginPageProps) {
     setDisableBtn(true);
 
     try {
-      const res = await fetch(`http://localhost:3000/login/${username}/${password}`, {
-        method: 'get',
-      });
+      const res = await fetch(
+        `http://localhost:3000/login/${encodeURIComponent(username)}/${encodeURIComponent(password)}`,
+        {
+          method: 'get',
+        }
+      );
       const message = await res.json();
       console.log(message);
 
