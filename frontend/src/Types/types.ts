@@ -9,3 +9,8 @@ export type DrinkComment = {
   text: string;
   datePosted: string;
 };
+
+export type FormError = {
+  showError: boolean;
+  errorMessage: string;
+};

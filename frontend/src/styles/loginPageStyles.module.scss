@@ -81,3 +81,12 @@
 .switch {
   margin-top: 10px;
 }
+
+.formError {
+  color: rgb(235, 80, 80);
+}
+.inputError {
+  border-color: rgb(235, 80, 80);
+  border-style: solid;
+  border-radius: 2px;
+}
