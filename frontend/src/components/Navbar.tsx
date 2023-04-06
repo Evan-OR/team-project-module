@@ -25,20 +25,18 @@ function Navbar(props: NavbarProps) {
     setShowUserDropDown(false);
   };
 
-  const [navbarOpen, setnavBarOpen] = useState(true);
+  const[isMobile, setMobile] = useState(false);
+  function toggleMobile(){
+    setMobile(!isMobile);
+  }
 
-  function toggleNavbar() {
-    setnavBarOpen(!navbarOpen);
-  };
-
-
+console.log(isMobile)
   return (
     <>
       <nav className={navStyles.navContainer}>
         <div className={navStyles.logo}>FlavorFinds</div>
 
-        {navbarOpen &&
-        <div className={navStyles.pagesWrapper}>
+        <div className={isMobile ? navStyles.pagesWrapperMobile : navStyles.pagesWrapper} onClick={() => setMobile(false)}>
           <div className={`${navStyles.pageOption} ${currentPage === 'Home' ? navStyles.active : ''}`}>
             <Link to="/" className={navStyles.pageLink}>
               HOME
@@ -72,12 +70,13 @@ function Navbar(props: NavbarProps) {
             )}
           </div>
           
+          
         </div>
-        }
         <div className={navStyles.barsWrapper}>
+          {/* Need if else to change from bars to cross */}
             <svg 
             className={navStyles.barsIcon} 
-            onClick={toggleNavbar}
+            onClick={toggleMobile}
             xmlns="http://www.w3.org/2000/svg" 
             viewBox="0 0 448 512"
             >              

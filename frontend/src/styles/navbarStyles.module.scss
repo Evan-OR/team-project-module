@@ -91,9 +91,7 @@ a {
   fill: $default-text-color;
 }
 
-@media (orientation: portrait) {
-
-
+@media (max-width: 780px) {
   .navContainer{
     position: fixed;
     display: flex;
@@ -109,6 +107,10 @@ a {
   }
 
   .pagesWrapper{
+    display: none;
+  }
+
+  .pagesWrapperMobile{
     background-color: red;
     position: fixed;
     display: flex;
