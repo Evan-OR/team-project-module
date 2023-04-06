@@ -78,10 +78,11 @@ a {
   position: relative;
 }
 
-.navToggler{
+.barsWrapper{
   cursor: pointer;
   display: none;
 }
+
 .barsIcon{
   position: relative;
   margin: 0 20px;
@@ -100,9 +101,10 @@ a {
     margin-top: 0;
     justify-content: space-between;
     box-shadow: $default-box-shdadow;
+
   } 
   
-  .navToggler{
+  .barsWrapper{
     display: block;
   }
 
@@ -116,6 +118,8 @@ a {
     right: 0;
     width: 25%;
     height: 93vh;
+
+    transition: all 0.5 ease-in-out;
   }
   .pageOption{
     justify-content: space-between;
