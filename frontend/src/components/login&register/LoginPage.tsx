@@ -4,6 +4,7 @@ import { saveUserToLocalStorage } from '../../utils/userUtil';
 import { assertIsNode, parseUserInfo } from '../../utils/utils';
 import { LoginModalContext } from '../context/LoginModalContext';
 import { UserContext } from '../context/UserContext';
+import { FormError } from '../../types/types';
 
 type LoginPageProps = {
   toggleLoginOrRegister: () => void;
@@ -18,6 +19,7 @@ function LoginPage(props: LoginPageProps) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [disableBtn, setDisableBtn] = useState(false);
+  const [error, setError] = useState<FormError>({ showError: false, errorMessage: '' });
 
   const modal = useRef<HTMLDivElement>(null);
   const usernameRef = useRef<HTMLInputElement>(null);
@@ -26,9 +28,12 @@ function LoginPage(props: LoginPageProps) {
     setDisableBtn(true);
 
     try {
-      const res = await fetch(`http://localhost:3000/login/${username}/${password}`, {
-        method: 'get',
-      });
+      const res = await fetch(
+        `http://localhost:3000/login/${encodeURIComponent(username)}/${encodeURIComponent(password)}`,
+        {
+          method: 'get',
+        }
+      );
       const message = await res.json();
       console.log(message);
 
@@ -36,18 +41,22 @@ function LoginPage(props: LoginPageProps) {
         userContext?.setUser(parseUserInfo(message.userInfo));
         saveUserToLocalStorage(parseUserInfo(message.userInfo));
         setShowLoginModal(!showLoginModal);
+      } else {
+        setError({ showError: true, errorMessage: '*Incorrect username or password!' });
       }
     } catch (err) {
-      alert('ERROR WITH LOGIN SYSTEM! IDK');
+      setError({ showError: true, errorMessage: '*Error with login system!' });
     }
 
     setDisableBtn(false);
   };
 
   const usernameHandler = (e: any) => {
+    setError({ showError: false, errorMessage: '' });
     setUsername(e.target.value);
   };
   const passwordHandler = (e: any) => {
+    setError({ showError: false, errorMessage: '' });
     setPassword(e.target.value);
   };
 
@@ -69,6 +78,8 @@ function LoginPage(props: LoginPageProps) {
     <div ref={modal} className={styles.loginPageWrapper}>
       <div className={styles.title}>LOGIN</div>
       <form className={styles.loginForm}>
+        {error.showError && <div className={styles.formError}>{error.errorMessage}</div>}
+
         <div className={styles.formElement}>
           <input
             ref={usernameRef}

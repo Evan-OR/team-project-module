@@ -72,7 +72,10 @@ function DisplayDrinkPage(props: DisplayDrinkPageProps) {
 
       <div className={style.wrapper}>
         <div className={style.imgWrapper}>
-          <img draggable={false} alt={`Picture of ${drink.name}`} src={drink.imageURL}></img>
+          <div style={{ position: 'relative', overflow: 'hidden', borderRadius: '11px' }}>
+            <div className={style.imgGradientOverLay}></div>
+            <img draggable={false} alt={`Picture of ${drink.name}`} src={drink.imageURL}></img>
+          </div>
         </div>
 
         <div className={style.contentWrapper}>

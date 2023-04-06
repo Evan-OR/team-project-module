@@ -85,3 +85,46 @@
     }
   }
 }
+
+@media only screen and (max-width: 1000px) {
+  .pageWrapper {
+    max-width: 600px;
+    .wrapper {
+      flex-direction: column;
+      position: relative;
+
+      .imgWrapper {
+        position: absolute;
+        width: 100%;
+        aspect-ratio: 1/1;
+        overflow: hidden;
+
+        .imgGradientOverLay {
+          position: absolute;
+          width: 100%;
+          aspect-ratio: 1/1;
+          border-radius: 10px;
+          background: linear-gradient(rgba(255, 255, 255, 0) 30%, white 80%);
+        }
+
+        img {
+          display: block;
+          width: 100%;
+          user-select: none;
+          // border-radius: 11px;
+          // border-bottom: solid 1px white;
+          // border-bottom-style: groove;
+        }
+      }
+
+      .contentWrapper {
+        margin-top: 70%;
+        z-index: 1;
+      }
+    }
+
+    .backBtn {
+      z-index: 1;
+    }
+  }
+}

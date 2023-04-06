@@ -4,6 +4,7 @@ import styles from '../../styles/loginPageStyles.module.scss';
 import { LoginModalContext } from '../context/LoginModalContext';
 import { assertIsNode, parseUserInfo } from '../../utils/utils';
 import { saveUserToLocalStorage } from '../../utils/userUtil';
+import { FormError } from '../../types/types';
 
 type LoginPageProps = {
   toggleLoginOrRegister: () => void;
@@ -19,26 +20,30 @@ function RegisterPage(props: LoginPageProps) {
   const [passwordOne, setPasswordOne] = useState('');
   const [passwordTwo, setPasswordTwo] = useState('');
   const [disableBtn, setDisableBtn] = useState(false);
+  const [error, setError] = useState<FormError>({ showError: false, errorMessage: '' });
 
   const modal = useRef<HTMLDivElement>(null);
   const usernameRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = async () => {
     if (passwordOne !== passwordTwo) {
-      alert('Passwords must be the same');
+      setError({ showError: true, errorMessage: 'Passwords must be the same!' });
       return;
     }
 
     setDisableBtn(true);
     try {
-      const res = await fetch(`http://localhost:3000/signup/${username}/${passwordOne}`, {
-        method: 'post',
-      });
+      const res = await fetch(
+        `http://localhost:3000/signup/${encodeURIComponent(username)}/${encodeURIComponent(passwordOne)}`,
+        {
+          method: 'post',
+        }
+      );
       const message = await res.json();
       console.log(message, res);
 
       if (res.status === 220) {
-        alert('username already exists!');
+        setError({ showError: true, errorMessage: 'Username Already Exists!' });
       }
 
       if (message.userInfo != null) {
@@ -47,20 +52,31 @@ function RegisterPage(props: LoginPageProps) {
         setShowLoginModal(!showLoginModal);
       }
     } catch (err) {
-      alert('ERROR WITH signup SYSTEM! IDK');
+      setError({ showError: true, errorMessage: 'Error with register system!' });
     }
 
     setDisableBtn(false);
   };
 
   const usernameHandler = (e: any) => {
+    if (usernameIsInValid(e.target.value)) {
+      setError({ showError: true, errorMessage: 'Username cannot include special characters!' });
+    } else {
+      setError({ showError: false, errorMessage: '' });
+    }
+
     setUsername(e.target.value);
   };
   const passwordOneHandler = (e: any) => {
     setPasswordOne(e.target.value);
   };
   const passwordTwoHandler = (e: any) => {
+    setError({ showError: false, errorMessage: '' });
     setPasswordTwo(e.target.value);
+  };
+
+  const usernameIsInValid = (username: string): boolean => {
+    return /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(username);
   };
 
   useEffect(() => {
@@ -81,6 +97,8 @@ function RegisterPage(props: LoginPageProps) {
     <div ref={modal} className={styles.loginPageWrapper}>
       <div className={styles.title}>SIGN UP</div>
       <form className={styles.loginForm}>
+        {error.showError && <div className={styles.formError}>{error.errorMessage}</div>}
+
         <div className={styles.formElement}>
           <input
             ref={usernameRef}

@@ -13,3 +13,10 @@
     }
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .wrapper {
+    text-align: center;
+    width: 90%;
+  }
+}
