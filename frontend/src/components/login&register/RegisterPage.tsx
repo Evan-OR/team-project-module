@@ -43,7 +43,7 @@ function RegisterPage(props: LoginPageProps) {
       console.log(message, res);
 
       if (res.status === 220) {
-        alert('username already exists!');
+        setError({ showError: true, errorMessage: 'Username Already Exists!' });
       }
 
       if (message.userInfo != null) {
