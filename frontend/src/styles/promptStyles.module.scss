@@ -1,0 +1,15 @@
+@import './default.module.scss';
+
+.wrapper {
+  margin: 15px 0;
+
+  .link {
+    color: $highlight-colour;
+    font-weight: bold;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

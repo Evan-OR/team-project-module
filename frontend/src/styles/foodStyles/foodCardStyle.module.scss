@@ -1,10 +1,6 @@
-@import './default.module.scss';
+@import '../default.module.scss';
 
-.drinkDisplayWrapper {
-  display: flex;
-}
-
-.drinkCardWrapper2 {
+.foodCardWrapper {
   $transition-time: 0.15s;
   display: flex;
   flex-direction: column;

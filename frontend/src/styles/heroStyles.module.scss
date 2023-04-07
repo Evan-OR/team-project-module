@@ -45,3 +45,42 @@
     height: inherit;
   }
 }
+
+@media (orientation: portrait) {
+  .heroWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    margin-top: 6%;
+    width: 60%;
+    height: 60%;
+  }
+
+  .left{
+    display: flex;
+    width: 100%;
+    .aboutWrapper{
+
+      .title{
+        font-size: 1.75rem;
+      }
+
+      .about{
+        font-size: .75rem;
+      }
+    }
+  }
+
+  .right{
+    display: flex;
+    justify-content: center;
+    width: 25%;
+    height: 75%;
+
+    .img{
+      display: block;
+      height: inherit;
+    }
+  }
+}

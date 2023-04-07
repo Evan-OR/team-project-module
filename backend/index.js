@@ -66,7 +66,7 @@ app.get('/login/:username/:password', (req, res) => {
         userInfo: results[0],
       });
     } else {
-      res.status(220).send({
+      res.status(400).send({
         message: 'Incorrect Credentials!',
         userInfo: null,
       });
@@ -133,8 +133,6 @@ app.post('/like/:userId/:newLikesArray', (req, res) => {
 
   const sql = 'UPDATE users SET likes = ? WHERE userID = ?;';
 
-  console.log(newLikesArray);
-
   connection.execute(sql, [newLikesArray, userId], (err) => {
     if (err) {
       res.status(500).send({
@@ -146,6 +144,43 @@ app.post('/like/:userId/:newLikesArray', (req, res) => {
       message: 'User info updated',
       newLikesArray: newLikesArray,
     });
+  });
+});
+
+app.post('/comment/:drinkId/:userId/:text', (req, res) => {
+  const { drinkId, userId, text } = req.params;
+  const sql = 'insert into comments (drinkId, userId, text) values (?, ?, ?);';
+
+  connection.execute(sql, [drinkId, userId, text], (err, results, fields) => {
+    if (err) {
+      res.status(500).send({
+        message: 'Error adding comment!',
+      });
+      throw err;
+    } else {
+      res.status(200).send({
+        message: 'comment added!',
+      });
+    }
+  });
+});
+
+app.get('/comments/:drinkId', (req, res) => {
+  const { drinkId } = req.params;
+  const sql = `SELECT comments.id, users.username, comments.text, comments.datePosted  FROM comments INNER JOIN users ON users.userID=comments.userId WHERE comments.drinkId=? ORDER BY comments.datePosted desc`;
+
+  connection.execute(sql, [drinkId], (err, results, fields) => {
+    if (err) {
+      res.status(500).send({
+        message: 'comment added!',
+      });
+      throw err;
+    } else {
+      res.status(200).send({
+        message: 'returning comments',
+        data: results,
+      });
+    }
   });
 });
 

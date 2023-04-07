@@ -34,12 +34,10 @@ const getUnqiueIngredients = (allDrinks: Drink[]): string[] => {
   // BOIS I AM A FUCKING GENIUS FOR THIS ONE!!!!!!!!!!!!!!!!!!!!!!!
   for (const drink of allDrinks) {
     //Shout out https://stackoverflow.com/questions/57086672/element-implicitly-has-an-any-type-because-expression-of-type-string-cant-b for explaining why 'as keyof Drink' needs to be used when dynamically referencing object keys in Typescript :)
-    for (let i = 1; i < 15; i++) {
-      const valueAtKey = drink[('strIngredient' + i) as keyof Drink];
-      if (typeof valueAtKey === 'string') {
-        ingredients.push(valueAtKey);
+    for (const value of drink.ingredients) {
+      if (typeof value === 'string') {
+        ingredients.push(value);
       }
-      i++;
     }
   }
 
@@ -51,7 +49,7 @@ export const getDrinksByID = (likes: number[], allDrinks: Drink[]): Drink[] => {
 
   for (const drink of allDrinks) {
     for (const id of likes) {
-      if (drink.idDrink === id) {
+      if (drink.id === id) {
         tempLikeArray.push(drink);
       }
     }
@@ -66,7 +64,7 @@ const getUsersUnLikedDrinks = (likes: number[], allDrinks: Drink[]): Drink[] => 
   for (const drink of allDrinks) {
     let userLikedDrink = false;
     for (const id of likes) {
-      if (drink.idDrink === id) {
+      if (drink.id === id) {
         userLikedDrink = true;
         break;
       }
@@ -88,12 +86,10 @@ const getDrinkSimilarityRating = (unqiueIngredientsList: string[], unlikedDrinks
 
   for (const drink of unlikedDrinks) {
     let score = 0;
-    for (let i = 1; i < 15; i++) {
-      const valueAtKey = drink[('strIngredient' + i) as keyof Drink];
-      if (typeof valueAtKey !== 'string') continue;
+    for (const value of drink.ingredients) {
+      if (typeof value !== 'string') continue;
       //Check if drink has any similar ingredients to unqiueIngredientsList
-      if (unqiueIngredientsList.includes(valueAtKey)) score++;
-      i++;
+      if (unqiueIngredientsList.includes(value)) score++;
     }
 
     //If there is nothing in common then dont add drink

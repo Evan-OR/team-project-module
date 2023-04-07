@@ -41,3 +41,9 @@ body {
 .noScroll {
   overflow: hidden;
 }
+
+@media (orientation: portrait) {
+  html{
+    width: 100vw;
+  }
+}
