@@ -59,19 +59,13 @@ export const getDrinksByID = (likes: number[], allDrinks: Drink[]): Drink[] => {
 };
 
 const getUsersUnLikedDrinks = (likes: number[], allDrinks: Drink[]): Drink[] => {
-  const tempLikeArray = [];
+  const tempLikeArray: Drink[] = [];
 
-  for (const drink of allDrinks) {
-    let userLikedDrink = false;
-    for (const id of likes) {
-      if (drink.id === id) {
-        userLikedDrink = true;
-        break;
-      }
+  allDrinks.forEach((drink) => {
+    if (!likes.includes(drink.id)) {
+      tempLikeArray.push(drink);
     }
-
-    if (!userLikedDrink) tempLikeArray.push(drink);
-  }
+  });
 
   return tempLikeArray;
 };

@@ -52,7 +52,7 @@ const DrinkSec = () => {
   };
 
   const renderDrinkRecommendation = () => {
-    if (userContext === null || userContext.user === null) {
+    if (!userContext || !userContext.user) {
       return <LoginPrompt text="Login to get drink Recommendations" />;
     } else {
       return drinkRecommendations.length > 0 && searchText.length === 0 ? (
@@ -108,6 +108,10 @@ const DrinkSec = () => {
   useEffect(() => {
     updateDrinkList(DRINKS.slice(drinkPageIndex, drinkPageIndex + drinksPerPage), true);
   }, [drinkPageIndex]);
+
+  useEffect(() => {
+    setDrinkRecommendations(initializeDrinkRecommendations());
+  }, [userContext]);
 
   return (
     <div className={styles.DrinkDisplayWrapper}>
