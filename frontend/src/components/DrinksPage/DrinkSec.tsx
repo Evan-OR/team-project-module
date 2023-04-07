@@ -131,7 +131,7 @@ const DrinkSec = () => {
           {renderDrinkRecommendation()}
           <div className={styles.DrinkMenuContainer}>
             <div className={styles.titleWrapper}>
-              {searchText.length === 0 && userContext?.user && <h3 className={styles.title}>Other Drinks</h3>}
+              {searchText.length === 0 && userContext?.user && <h3 className={styles.title}>Browse Drinks</h3>}
             </div>
 
             <div className={styles.cardDisplayWrapper}>
