@@ -52,7 +52,7 @@ const DrinkSec = () => {
   };
 
   const renderDrinkRecommendation = () => {
-    if (userContext === null || userContext.user === null) {
+    if (!userContext || !userContext.user) {
       return <LoginPrompt text="Login to get drink Recommendations" />;
     } else {
       return drinkRecommendations.length > 0 && searchText.length === 0 ? (
