@@ -6,7 +6,7 @@ import SearchIcon from './SearchIcon';
 
 type DrinkSearchBarProps = {
   drinks: Drink[];
-  updateDrinkList: (drinks: Drink[]) => void;
+  updateDrinkList: (drinks: Drink[], dontAffectConfirmedSearch?: boolean) => void;
   searchText: string;
   setSearchTextHandler: (s: string) => void;
   toggleModal: (drink: Drink | null) => void;
@@ -49,8 +49,8 @@ function DrinkSearchBar(props: DrinkSearchBarProps) {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    updateDrinkList(searchSuggestions);
     setShowSuggestions(false);
+    updateDrinkList(searchSuggestions);
 
     if (modalIsShowing) toggleModal(null);
   };
@@ -60,7 +60,7 @@ function DrinkSearchBar(props: DrinkSearchBarProps) {
 
     // // If searachText is an empty string then show all drinks again
     if (searchText === '') {
-      updateDrinkList(drinks);
+      updateDrinkList(drinks, true);
     }
 
     if (searchSuggestions.length === 0) setShowSuggestions(false);

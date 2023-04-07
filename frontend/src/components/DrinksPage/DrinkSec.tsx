@@ -21,6 +21,7 @@ const DrinkSec = () => {
   const [drinkRecommendations, setDrinkRecommendations] = useState<Drink[]>([]);
   //For search bar
   const [searchText, setSearchText] = useState('');
+  const [confirmedSearch, setConfirmedSearch] = useState<boolean>(false);
 
   const toggleModal = (drink: Drink | null) => {
     setToggleModal(!modalToggle);
@@ -35,7 +36,9 @@ const DrinkSec = () => {
     return dr.length > 5 ? dr.slice(0, 4) : dr;
   };
 
-  const updateDrinkList = (drinks: Drink[]) => {
+  const updateDrinkList = (drinks: Drink[], dontAffectConfirmedSearch?: boolean) => {
+    if (!dontAffectConfirmedSearch) setConfirmedSearch(true);
+
     if (drinks === DRINKS) {
       setDrinkList(drinks.slice(drinkPageIndex, drinkPageIndex + drinksPerPage));
     } else {
@@ -44,6 +47,7 @@ const DrinkSec = () => {
   };
 
   const setSearchTextHandler = (s: string) => {
+    setConfirmedSearch(false);
     setSearchText(s);
   };
 
@@ -102,8 +106,12 @@ const DrinkSec = () => {
   }, []);
 
   useEffect(() => {
-    updateDrinkList(DRINKS.slice(drinkPageIndex, drinkPageIndex + drinksPerPage));
+    updateDrinkList(DRINKS.slice(drinkPageIndex, drinkPageIndex + drinksPerPage), true);
   }, [drinkPageIndex]);
+
+  useEffect(() => {
+    console.log(confirmedSearch);
+  }, [confirmedSearch]);
 
   return (
     <div className={styles.DrinkDisplayWrapper}>
@@ -123,7 +131,7 @@ const DrinkSec = () => {
           {renderDrinkRecommendation()}
           <div className={styles.DrinkMenuContainer}>
             <div className={styles.titleWrapper}>
-              {searchText.length === 0 && <h3 className={styles.title}>Other Drinks</h3>}
+              {searchText.length === 0 && userContext?.user && <h3 className={styles.title}>Other Drinks</h3>}
             </div>
 
             <div className={styles.cardDisplayWrapper}>
@@ -137,7 +145,7 @@ const DrinkSec = () => {
       )}
 
       {/* getDrinkRecommendations(drinks, drinkList) */}
-      {drinkList.length > 0 && searchText.length > 0 && (
+      {confirmedSearch && (
         <div className={styles.DrinkMenuContainer}>
           <div className={styles.titleWrapper}>
             <h3 className={styles.title}>Drinks Similar To You Search</h3>
