@@ -109,10 +109,6 @@ const DrinkSec = () => {
     updateDrinkList(DRINKS.slice(drinkPageIndex, drinkPageIndex + drinksPerPage), true);
   }, [drinkPageIndex]);
 
-  useEffect(() => {
-    console.log(confirmedSearch);
-  }, [confirmedSearch]);
-
   return (
     <div className={styles.DrinkDisplayWrapper}>
       <DrinkSearchBar
@@ -155,9 +151,11 @@ const DrinkSec = () => {
             {getDrinkRecommendations(
               DRINKS,
               drinkList.map((el) => el.id)
-            ).map((drink) => (
-              <DrinkCard key={drink.id} drink={drink} toggleModal={toggleModal} />
-            ))}
+            )
+              .slice(0, 4)
+              .map((drink) => (
+                <DrinkCard key={drink.id} drink={drink} toggleModal={toggleModal} />
+              ))}
           </div>
         </div>
       )}
