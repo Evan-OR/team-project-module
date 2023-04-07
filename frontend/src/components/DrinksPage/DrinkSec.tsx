@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styles from '../../styles/drinkStyles/drinksecStyles.module.scss';
 import DrinkCard from './DrinkCard';
-import drinks from '../../dataset/drinks.json';
+import DRINKS from '../../dataset/drinks.json';
 import DisplayDrinkPage from './DisplayDrinkPage';
 import { UserContext } from '../context/UserContext';
 import { getDrinkRecommendations } from '../../utils/drinksUtil';
@@ -11,8 +11,12 @@ import LoginPrompt from '../LoginPrompt';
 
 const DrinkSec = () => {
   const [modalToggle, setToggleModal] = useState(false);
-  const [currentDrink, setCurrentDrink] = useState<Drink>(drinks[0]);
-  const [drinkList, setDrinkList] = useState<Drink[]>(drinks);
+
+  const [currentDrink, setCurrentDrink] = useState<Drink>(DRINKS[0]);
+  const drinksPerPage = 12;
+  const [drinkPageIndex, setDrinkPageIndex] = useState<number>(0);
+  const [drinkList, setDrinkList] = useState<Drink[]>(DRINKS.slice(drinkPageIndex, drinkPageIndex + drinksPerPage));
+
   const userContext = useContext(UserContext);
   const [drinkRecommendations, setDrinkRecommendations] = useState<Drink[]>([]);
   //For search bar
@@ -27,12 +31,16 @@ const DrinkSec = () => {
 
   const initializeDrinkRecommendations = (): Drink[] => {
     if (userContext === null || userContext.user === null) return [];
-    const dr = getDrinkRecommendations(drinks, userContext.user.likes);
+    const dr = getDrinkRecommendations(DRINKS, userContext.user.likes);
     return dr.length > 5 ? dr.slice(0, 4) : dr;
   };
 
   const updateDrinkList = (drinks: Drink[]) => {
-    setDrinkList(drinks);
+    if (drinks === DRINKS) {
+      setDrinkList(drinks.slice(drinkPageIndex, drinkPageIndex + drinksPerPage));
+    } else {
+      setDrinkList(drinks);
+    }
   };
 
   const setSearchTextHandler = (s: string) => {
@@ -61,64 +69,41 @@ const DrinkSec = () => {
     }
   };
 
+  const generatePages = () => {
+    const pageCount = Math.ceil(DRINKS.length / drinksPerPage);
+    const divs = [];
+
+    for (let i = 0; i < pageCount; i++) {
+      let pageIndex = drinksPerPage * i;
+      divs.push(
+        <div
+          key={i}
+          onClick={() => changePage(pageIndex)}
+          className={`${styles.drinkDisplayPageLink} ${drinkPageIndex === pageIndex && styles.currentPage}`}
+        >
+          {i + 1}
+        </div>
+      );
+    }
+
+    return divs;
+  };
+
+  const changePage = (startingIndex: number) => {
+    setDrinkPageIndex(startingIndex);
+  };
+
   // UPDATE DRINKS AFTER USER LOGS IN
   useEffect(() => {
     setDrinkRecommendations(initializeDrinkRecommendations());
-  }, []);
-
-  useEffect(() => {
     if (modalToggle) return;
-
-    // console.log(
-    //   JSON.stringify(
-    //     drinks.map((drink) => {
-    //       return {
-    //         id: drink.id,
-    //         name: drink.name,
-    //         imageURL: drink.imageURL,
-    //         tags: drink.tags,
-    //         instructions: drink.instructions,
-    //         ingredients: [
-    //           drink.ingredient1,
-    //           drink.ingredient2,
-    //           drink.ingredient3,
-    //           drink.ingredient4,
-    //           drink.ingredient5,
-    //           drink.ingredient6,
-    //           drink.ingredient7,
-    //           drink.ingredient8,
-    //           drink.ingredient9,
-    //           drink.ingredient10,
-    //           drink.ingredient11,
-    //           drink.ingredient12,
-    //           drink.ingredient13,
-    //           drink.ingredient14,
-    //           drink.ingredient15,
-    //         ],
-    //         measurements: [
-    //           drink.measurement1,
-    //           drink.measurement2,
-    //           drink.measurement3,
-    //           drink.measurement4,
-    //           drink.measurement5,
-    //           drink.measurement6,
-    //           drink.measurement7,
-    //           drink.measurement8,
-    //           drink.measurement9,
-    //           drink.measurement10,
-    //           drink.measurement11,
-    //           drink.measurement12,
-    //           drink.measurement13,
-    //           drink.measurement14,
-    //           drink.measurement15,
-    //         ],
-    //       };
-    //     })
-    //   )
-    // );
 
     if (drinkRecommendations.length > 0) setDrinkList(drinkRecommendations);
   }, []);
+
+  useEffect(() => {
+    updateDrinkList(DRINKS.slice(drinkPageIndex, drinkPageIndex + drinksPerPage));
+  }, [drinkPageIndex]);
 
   return (
     <div className={styles.DrinkDisplayWrapper}>
@@ -126,7 +111,7 @@ const DrinkSec = () => {
         searchText={searchText}
         setSearchTextHandler={setSearchTextHandler}
         updateDrinkList={updateDrinkList}
-        drinks={drinks}
+        drinks={DRINKS}
         toggleModal={toggleModal}
         modalIsShowing={modalToggle}
       />
@@ -147,6 +132,7 @@ const DrinkSec = () => {
               ))}
             </div>
           </div>
+          <div style={{ display: 'flex' }}>{generatePages()}</div>
         </>
       )}
 
@@ -159,7 +145,7 @@ const DrinkSec = () => {
 
           <div className={styles.cardDisplayWrapper}>
             {getDrinkRecommendations(
-              drinks,
+              DRINKS,
               drinkList.map((el) => el.id)
             ).map((drink) => (
               <DrinkCard key={drink.id} drink={drink} toggleModal={toggleModal} />
