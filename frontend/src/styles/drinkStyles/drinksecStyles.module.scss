@@ -31,3 +31,16 @@
   justify-content: center;
   width: fit-content;
 }
+
+.drinkDisplayPageLink {
+  margin: 0 5px;
+  color: $highlight-colour;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+.currentPage {
+  font-weight: bold;
+}
