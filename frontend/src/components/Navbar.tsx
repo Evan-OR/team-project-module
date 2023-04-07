@@ -5,7 +5,6 @@ import { removeUserFromLocalStorage } from "../utils/userUtil";
 import { LoginModalContext } from "./context/LoginModalContext";
 import { UserContext } from "./context/UserContext";
 import UserDropDownMenu from "./UserDropDownMenu";
-import sideNavBar from "./sideNavBar";
 
 type NavbarProps = {
   currentPage: "Home" | "Drinks" | "Food" | undefined;
@@ -55,53 +54,34 @@ function Navbar(props: NavbarProps) {
           >
             <div
               className={`${navStyles.sideLinkOption} ${
-                currentPage === "Home" ? navStyles.active : ""
+                currentPage === "Home" ? navStyles.sideActive : ""
               }`}
             >
-              <Link to="/" className={navStyles.pageLink}>
+              <Link to="/" className={navStyles.sidepageLink}>
                 HOME
               </Link>
             </div>
             <div
               className={`${navStyles.sideLinkOption} ${
-                currentPage === "Drinks" ? navStyles.active : ""
+                currentPage === "Drinks" ? navStyles.sideActive : ""
               }`}
             >
-              <Link to="/drinks" className={navStyles.pageLink}>
+              <Link to="/drinks" className={navStyles.sidepageLink}>
                 DRINKS
               </Link>
             </div>
             <div
               className={`${navStyles.sideLinkOption} ${
-                currentPage === "Food" ? navStyles.active : ""
+                currentPage === "Food" ? navStyles.sideActive : ""
               }`}
             >
-              <Link to="/food" className={navStyles.pageLink}>
+              <Link to="/food" className={navStyles.sidepageLink}>
                 FOOD
               </Link>
             </div>
-
-            <div className={navStyles.loginIconWrapper}>
-              <svg
-                onClick={toggleUserDropDown}
-                className={`${navStyles.userIcon} ${
-                  userContext?.user ? navStyles.userIconLoggedIn : ""
-                }`}
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 448 512"
-              >
-                <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
-              </svg>
-
-              {showUserDropDown ? (
-                <UserDropDownMenu
-                  toggleUserDropDown={toggleUserDropDown}
-                  user={userContext?.user}
-                  signOut={signOut}
-                />
-              ) : (
-                <></>
-              )}
+            <div className={navStyles.sideLinkOption}>
+              LOGIN
+              {/* If user wants to login change the div navsidecontainer to add more space? */}
             </div>
           </div>
           <div className={navStyles.barsWrapper}>
