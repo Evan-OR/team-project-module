@@ -1,4 +1,4 @@
-@import './default.module.scss';
+@import "./default.module.scss";
 
 a {
   text-decoration: none;
@@ -69,6 +69,114 @@ a {
 .divider {
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, transparent 0%, $transparent-hightlight 50%, transparent 100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    $transparent-hightlight 50%,
+    transparent 100%
+  );
   flex-shrink: 0;
+}
+
+.barsWrapper,
+.barsIcon {
+  fill: White;
+  display: block;
+}
+
+//!This is all side navbar container
+a {
+  text-decoration: none;
+}
+
+.navSideContainer {
+  width: 80%;
+  margin: 20px 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  z-index: 1;
+}
+
+.sideLinkWrapper {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  background-color: grey;
+  align-items: center;
+  right: 0vh;
+  top: 15%;
+}
+
+.sideLinkOption {
+  margin: 0 40px;
+  padding: 5px;
+  user-select: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.pageLink {
+  color: inherit;
+}
+
+.active {
+  color: $highlight-colour;
+  border-bottom: solid 2px $highlight-colour;
+  text-shadow: 0px 0px 1px $highlight-colour;
+}
+
+.loginIconWrapper {
+  position: relative;
+}
+
+.userIcon {
+  position: relative;
+  margin: 0 20px;
+  padding: 5px;
+  width: 30px;
+  fill: $default-text-color;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.userIconLoggedIn {
+  fill: $highlight-colour;
+}
+
+.sidelogo {
+  font-weight: bold;
+  font-size: 2rem;
+  user-select: none;
+  color: $highlight-colour;
+}
+
+.divider {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    $transparent-hightlight 50%,
+    transparent 100%
+  );
+  flex-shrink: 0;
+}
+
+.barsWrapper {
+  cursor: pointer;
+}
+
+.barsIcon {
+  position: relative;
+  margin: 0 20px;
+  padding: 5px;
+  width: 30px;
+  fill: $default-text-color;
 }
