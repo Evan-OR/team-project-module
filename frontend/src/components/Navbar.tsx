@@ -27,7 +27,7 @@ function Navbar(props: NavbarProps) {
 
   return (
     <>
-      <nav className={navStyles.navContainer}>
+      <nav id="nav" className={navStyles.navContainer}>
         <div className={navStyles.logo}>FlavorFinds</div>
 
         <div className={navStyles.pagesWrapper}>

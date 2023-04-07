@@ -80,13 +80,14 @@ const DrinkSec = () => {
     for (let i = 0; i < pageCount; i++) {
       let pageIndex = drinksPerPage * i;
       divs.push(
-        <div
+        <a
+          href="#nav"
           key={i}
           onClick={() => changePage(pageIndex)}
           className={`${styles.drinkDisplayPageLink} ${drinkPageIndex === pageIndex && styles.currentPage}`}
         >
           {i + 1}
-        </div>
+        </a>
       );
     }
 
