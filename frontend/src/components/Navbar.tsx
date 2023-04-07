@@ -36,13 +36,23 @@ function Navbar(props: NavbarProps) {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const [navbarActive, setnavbarActive] = useState(false);
+  function toggleNavbar() {
+    setnavbarActive(!navbarActive);
+  }
   return (
     <>
       {screenWidth < 800 ? (
         <nav className={navStyles.navSideContainer}>
           <div className={navStyles.sidelogo}>FlavorFinds</div>
 
-          <div className={navStyles.sideLinkWrapper}>
+          <div
+            className={
+              navbarActive
+                ? navStyles.sideLinkWrapper
+                : navStyles.sideLinkWrapperHidden
+            }
+          >
             <div
               className={`${navStyles.sideLinkOption} ${
                 currentPage === "Home" ? navStyles.active : ""
@@ -97,6 +107,7 @@ function Navbar(props: NavbarProps) {
           <div className={navStyles.barsWrapper}>
             <svg
               className={navStyles.barsIcon}
+              onClick={toggleNavbar}
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 448 512"
             >
