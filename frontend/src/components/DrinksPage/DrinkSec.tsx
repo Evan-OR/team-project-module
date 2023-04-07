@@ -109,6 +109,10 @@ const DrinkSec = () => {
     updateDrinkList(DRINKS.slice(drinkPageIndex, drinkPageIndex + drinksPerPage), true);
   }, [drinkPageIndex]);
 
+  useEffect(() => {
+    setDrinkRecommendations(initializeDrinkRecommendations());
+  }, [userContext]);
+
   return (
     <div className={styles.DrinkDisplayWrapper}>
       <DrinkSearchBar
