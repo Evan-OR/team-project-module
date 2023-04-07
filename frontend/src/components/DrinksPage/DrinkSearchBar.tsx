@@ -25,9 +25,10 @@ function DrinkSearchBar(props: DrinkSearchBarProps) {
   const searchHandler = (e: React.FormEvent<HTMLInputElement>) => {
     setSearchTextHandler(e.currentTarget.value);
 
-    if (e.currentTarget.value !== '' && searchSuggestions.length > 0) {
+    if (e.currentTarget.value !== '' && searchDrinksArray(e.currentTarget.value).length > 0) {
       setShowSuggestions(true);
     } else {
+      setShowSuggestions(false);
     }
   };
 
