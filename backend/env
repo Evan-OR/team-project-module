@@ -1,0 +1,4 @@
+HOST="task-manager-db.mysql.database.azure.com"
+USER="evan" 
+PASSWORD="Celtsql01$"
+DATABASE="team_project"
