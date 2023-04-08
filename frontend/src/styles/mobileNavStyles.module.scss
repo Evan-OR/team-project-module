@@ -1,0 +1,116 @@
+@import './default.module.scss';
+
+$nav-width: 240px;
+
+.navWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: $nav-width;
+  position: fixed;
+  right: -$nav-width;
+  top: 0;
+
+  padding: 20px 5px;
+
+  background-color: white;
+
+  transition: right 0.15s;
+
+  .contentWrapper {
+    padding: 0 20px;
+    color: $default-text-color;
+
+    .pageLink {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      margin: 10px 0;
+      font-size: 1.2rem;
+      color: $default-text-color;
+
+      .icon {
+        width: 25px;
+        margin-right: 15px;
+        fill: $default-text-color;
+      }
+
+      &:active {
+        &:visited,
+        :hover,
+        :active {
+          color: $highlight-colour;
+        }
+
+        .icon {
+          width: 25px;
+          margin-right: 15px;
+          fill: $highlight-colour;
+        }
+      }
+    }
+    .currentPage {
+      font-weight: bold;
+
+      &:visited,
+      :hover,
+      :active {
+        color: $highlight-colour;
+      }
+
+      .icon {
+        fill: $highlight-colour;
+      }
+    }
+  }
+
+  .contentWrapper:not(:last-child) {
+    border-bottom: solid 1px rgba($color: $default-text-color, $alpha: 0.3);
+  }
+}
+
+.signInOut {
+  position: fixed;
+  bottom: 20px;
+}
+
+.background {
+  position: fixed;
+  pointer-events: none;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0);
+  opacity: 0;
+  top: 0;
+
+  transition: opacity 0.55s;
+}
+
+.closeBtn {
+  width: 32px;
+  padding: 4px;
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+.showNav {
+  right: 0;
+}
+.showBackground {
+  display: block;
+  pointer-events: initial;
+  opacity: 0.2;
+}
+
+@media only screen and (min-width: 900px) {
+  .showNav {
+    right: -$nav-width;
+  }
+  .showBackground {
+    display: block;
+    pointer-events: none;
+    opacity: 0;
+  }
+}
