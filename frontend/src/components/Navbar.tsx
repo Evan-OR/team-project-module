@@ -1,22 +1,26 @@
-import { useContext, useState, useRef } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import navStyles from '../styles/navbarStyles.module.scss';
 import { removeUserFromLocalStorage } from '../utils/userUtil';
-import { LoginModalContext } from './context/LoginModalContext';
 import { UserContext } from './context/UserContext';
 import UserDropDownMenu from './UserDropDownMenu';
+import MobileNavBar from './MobileNavBar';
 
 type NavbarProps = {
-  currentPage: 'Home' | 'Drinks' | 'Food' | undefined;
+  currentPage: 'Home' | 'Drinks' | 'Food' | 'Your Likes' | undefined;
 };
 
 function Navbar(props: NavbarProps) {
   const { currentPage } = props;
   const userContext = useContext(UserContext);
   const [showUserDropDown, setShowUserDropDown] = useState(false);
+  const [showMobileNav, setShowMobileNav] = useState(false);
 
   const toggleUserDropDown = () => {
     setShowUserDropDown(!showUserDropDown);
+  };
+  const toggleMobileNav = () => {
+    setShowMobileNav(!showMobileNav);
   };
 
   const signOut = () => {
@@ -27,7 +31,7 @@ function Navbar(props: NavbarProps) {
 
   return (
     <>
-      <nav className={navStyles.navContainer}>
+      <nav id="nav" className={navStyles.navContainer}>
         <div className={navStyles.logo}>FlavorFinds</div>
 
         <div className={navStyles.pagesWrapper}>
@@ -64,8 +68,21 @@ function Navbar(props: NavbarProps) {
             )}
           </div>
         </div>
+
+        <div onClick={toggleMobileNav} className={navStyles.burgerMenuWrapper}>
+          <div className={navStyles.burgerMenuLine}></div>
+          <div className={navStyles.burgerMenuLine}></div>
+          <div className={navStyles.burgerMenuLine}></div>
+        </div>
+
+        <MobileNavBar
+          currentPage={currentPage}
+          toggleMobileNav={toggleMobileNav}
+          user={userContext?.user}
+          showMobileNav={showMobileNav}
+          signOut={signOut}
+        />
       </nav>
-      {/* <div className={navStyles.divider}></div> */}
     </>
   );
 }

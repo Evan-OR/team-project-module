@@ -80,13 +80,14 @@ const DrinkSec = () => {
     for (let i = 0; i < pageCount; i++) {
       let pageIndex = drinksPerPage * i;
       divs.push(
-        <div
+        <a
+          href="#nav"
           key={i}
           onClick={() => changePage(pageIndex)}
           className={`${styles.drinkDisplayPageLink} ${drinkPageIndex === pageIndex && styles.currentPage}`}
         >
           {i + 1}
-        </div>
+        </a>
       );
     }
 
@@ -131,7 +132,7 @@ const DrinkSec = () => {
           {renderDrinkRecommendation()}
           <div className={styles.DrinkMenuContainer}>
             <div className={styles.titleWrapper}>
-              {searchText.length === 0 && userContext?.user && <h3 className={styles.title}>Other Drinks</h3>}
+              {searchText.length === 0 && userContext?.user && <h3 className={styles.title}>Browse Drinks</h3>}
             </div>
 
             <div className={styles.cardDisplayWrapper}>

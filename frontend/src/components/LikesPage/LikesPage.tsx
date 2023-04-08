@@ -38,7 +38,7 @@ function LikesPage() {
 
   return (
     <>
-      <Navbar currentPage={undefined} />
+      <Navbar currentPage={'Your Likes'} />
       <div className={drinksecStyles.DrinkDisplayWrapper}>
         <div className={drinksecStyles.DrinkMenuContainer}>
           <div className={drinksecStyles.titleWrapper}>
