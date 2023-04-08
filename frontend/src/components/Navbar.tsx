@@ -45,11 +45,6 @@ function Navbar(props: NavbarProps) {
               DRINKS
             </Link>
           </div>
-          <div className={`${navStyles.pageOption} ${currentPage === 'Food' ? navStyles.active : ''}`}>
-            <Link to="/food" className={navStyles.pageLink}>
-              FOOD
-            </Link>
-          </div>
 
           <div className={navStyles.loginIconWrapper}>
             <svg
