@@ -79,10 +79,15 @@ function Navbar(props: NavbarProps) {
                 FOOD
               </Link>
             </div>
-            <div className={navStyles.sideLinkOption}>
-              LOGIN
-              {/* If user wants to login change the div navsidecontainer to add more space? */}
-            </div>
+            {UserLoggedIn ? (
+              <>
+                <div className={navStyles.sideLinkOption}>LOGIN</div>
+              </>
+            ) : (
+              <>
+                <div className={navStyles.sideLinkOption}>SIGN OUT</div>
+              </>
+            )}
           </div>
           <div className={navStyles.barsWrapper}>
             <svg
