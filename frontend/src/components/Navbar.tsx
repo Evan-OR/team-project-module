@@ -79,13 +79,15 @@ function Navbar(props: NavbarProps) {
                 FOOD
               </Link>
             </div>
-            {UserLoggedIn ? (
+            {userContext?.user ? (
               <>
-                <div className={navStyles.sideLinkOption}>LOGIN</div>
+                <div className={navStyles.sideLinkOption} onClick={signOut}>
+                  SIGN OUT
+                </div>
               </>
             ) : (
               <>
-                <div className={navStyles.sideLinkOption}>SIGN OUT</div>
+                <div className={navStyles.sideLinkOption}>LOGIN</div>
               </>
             )}
           </div>
