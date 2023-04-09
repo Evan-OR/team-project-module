@@ -37,6 +37,20 @@
           font-weight: bold;
           color: $highlight-colour;
         }
+        .drinkRatingWrapper {
+          display: flex;
+
+          .star {
+            width: 24px;
+            fill: $default-text-color;
+            opacity: 0.4;
+            cursor: pointer;
+          }
+          .active {
+            fill: $highlight-colour;
+            opacity: 1;
+          }
+        }
         .subTitle {
           font-weight: bold;
           font-weight: 1.6rem;
@@ -111,15 +125,20 @@
           display: block;
           width: 100%;
           user-select: none;
-          // border-radius: 11px;
-          // border-bottom: solid 1px white;
-          // border-bottom-style: groove;
         }
       }
 
       .contentWrapper {
         margin-top: 70%;
         z-index: 1;
+
+        .drinkInfoWrapper {
+          .drinkRatingWrapper {
+            .star {
+              width: 24px;
+            }
+          }
+        }
       }
     }
 

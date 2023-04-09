@@ -21,7 +21,7 @@ function LikesPage() {
     setCurrentDrink(drink);
   };
 
-  useEffect(() => {
+  const getLikedDrinks = () => {
     const tempLikeArray: Drink[] = [];
 
     for (const drink of drinks) {
@@ -34,7 +34,15 @@ function LikesPage() {
     }
 
     setLikedDrinks(tempLikeArray);
+  };
+
+  useEffect(() => {
+    getLikedDrinks();
   }, []);
+
+  useEffect(() => {
+    getLikedDrinks();
+  }, [userContext]);
 
   return (
     <>

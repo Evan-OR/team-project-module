@@ -6,11 +6,12 @@ import style from '../../styles/drinkStyles/displayDrinkPage.module.scss';
 import { DrinkComment } from '../../types/types';
 import { Drink } from '../../types/UserTypes';
 import { getCommentsRequest, updateLikesRequest } from '../../utils/apiUtil';
-import { dealWithStupidFuckingJson } from '../../utils/utils';
+import { checkIfUserCommented, dealWithStupidFuckingJson, getAverageFromReviews } from '../../utils/utils';
 import Comment from '../comments/Comment';
 import CommentForm from '../comments/CommentForm';
 import { UserContext } from '../context/UserContext';
 import LoginPrompt from '../LoginPrompt';
+import FilledStar from '../../icons/FilledStar';
 
 type DisplayDrinkPageProps = {
   toggleModal: (index: Drink | null) => void;
@@ -21,6 +22,7 @@ function DisplayDrinkPage(props: DisplayDrinkPageProps) {
   const { toggleModal, drink } = props;
   const userContext = useContext(UserContext);
   const [comments, setComments] = useState<DrinkComment[]>([]);
+  const [userCanComment, setUserCanComment] = useState(true);
 
   const likeDrink = async () => {
     if (userContext?.user === null || userContext?.user === undefined) return;
@@ -44,20 +46,48 @@ function DisplayDrinkPage(props: DisplayDrinkPageProps) {
   };
 
   const addCommentLocally = (comment: DrinkComment) => {
+    setUserCanComment(false);
     setComments([comment, ...comments]);
   };
 
   const getCommentsFromDataBase = async () => {
     const comments = await getCommentsRequest(drink.id);
     setComments(comments);
+
+    if (userContext !== null && userContext.user !== null) {
+      setUserCanComment(!checkIfUserCommented(comments, userContext.user.userID));
+    }
   };
 
   const renderCommentForm = () => {
     if (userContext?.user === null || userContext?.user === undefined) {
       return <LoginPrompt text="Login to post comments" />;
+    } else if (!userCanComment) {
+      return <div>Thanks for your input!</div>;
     } else {
       return <CommentForm addCommentLocally={addCommentLocally} drinkId={drink.id} />;
     }
+  };
+
+  const renderStars = (r: number) => {
+    let divs = [];
+    for (let i = 0; i < 5; i++) {
+      if (i < r) {
+        divs.push(
+          <div key={i}>
+            <FilledStar className={`${style.star} ${style.active}`} />
+          </div>
+        );
+      } else {
+        divs.push(
+          <div key={i}>
+            <FilledStar className={style.star} />
+          </div>
+        );
+      }
+    }
+
+    return divs;
   };
 
   useEffect(() => {
@@ -81,6 +111,7 @@ function DisplayDrinkPage(props: DisplayDrinkPageProps) {
         <div className={style.contentWrapper}>
           <div className={style.drinkInfoWrapper}>
             <div className={style.title}>{drink.name}</div>
+            <div className={style.drinkRatingWrapper}>{renderStars(getAverageFromReviews(comments))}</div>
             <div className={style.subTitle}>Instructions</div>
             <div className={style.description}>{drink.instructions}</div>
             <div className={style.subTitle}>Ingredients</div>
