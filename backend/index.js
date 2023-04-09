@@ -147,11 +147,11 @@ app.post('/like/:userId/:newLikesArray', (req, res) => {
   });
 });
 
-app.post('/comment/:drinkId/:userId/:text', (req, res) => {
-  const { drinkId, userId, text } = req.params;
-  const sql = 'insert into comments (drinkId, userId, text) values (?, ?, ?);';
+app.post('/comment/:drinkId/:userId/:text/:rating', (req, res) => {
+  const { drinkId, userId, text, rating } = req.params;
+  const sql = 'insert into comments (drinkId, userId, text, rating) values (?, ?, ?, ?);';
 
-  connection.execute(sql, [drinkId, userId, text], (err, results, fields) => {
+  connection.execute(sql, [drinkId, userId, text, rating], (err, results, fields) => {
     if (err) {
       res.status(500).send({
         message: 'Error adding comment!',
@@ -167,7 +167,7 @@ app.post('/comment/:drinkId/:userId/:text', (req, res) => {
 
 app.get('/comments/:drinkId', (req, res) => {
   const { drinkId } = req.params;
-  const sql = `SELECT comments.id, users.username, comments.text, comments.datePosted  FROM comments INNER JOIN users ON users.userID=comments.userId WHERE comments.drinkId=? ORDER BY comments.datePosted desc`;
+  const sql = `SELECT comments.id, users.username, comments.userId, comments.text, comments.rating, comments.datePosted  FROM comments INNER JOIN users ON users.userID=comments.userId WHERE comments.drinkId=? ORDER BY comments.datePosted desc`;
 
   connection.execute(sql, [drinkId], (err, results, fields) => {
     if (err) {

@@ -6,7 +6,7 @@ import style from '../../styles/drinkStyles/displayDrinkPage.module.scss';
 import { DrinkComment } from '../../types/types';
 import { Drink } from '../../types/UserTypes';
 import { getCommentsRequest, updateLikesRequest } from '../../utils/apiUtil';
-import { dealWithStupidFuckingJson } from '../../utils/utils';
+import { checkIfUserCommented, dealWithStupidFuckingJson } from '../../utils/utils';
 import Comment from '../comments/Comment';
 import CommentForm from '../comments/CommentForm';
 import { UserContext } from '../context/UserContext';
@@ -21,6 +21,7 @@ function DisplayDrinkPage(props: DisplayDrinkPageProps) {
   const { toggleModal, drink } = props;
   const userContext = useContext(UserContext);
   const [comments, setComments] = useState<DrinkComment[]>([]);
+  const [userCanComment, setUserCanComment] = useState(true);
 
   const likeDrink = async () => {
     if (userContext?.user === null || userContext?.user === undefined) return;
@@ -44,17 +45,26 @@ function DisplayDrinkPage(props: DisplayDrinkPageProps) {
   };
 
   const addCommentLocally = (comment: DrinkComment) => {
+    setUserCanComment(false);
     setComments([comment, ...comments]);
   };
 
   const getCommentsFromDataBase = async () => {
     const comments = await getCommentsRequest(drink.id);
     setComments(comments);
+
+    if (userContext !== null && userContext.user !== null) {
+      const result = checkIfUserCommented(comments, userContext.user.userID);
+      setUserCanComment(!result);
+      console.log(result ? 'user has commented' : 'user has not commented');
+    }
   };
 
   const renderCommentForm = () => {
     if (userContext?.user === null || userContext?.user === undefined) {
       return <LoginPrompt text="Login to post comments" />;
+    } else if (!userCanComment) {
+      return <div>Thanks for your input!</div>;
     } else {
       return <CommentForm addCommentLocally={addCommentLocally} drinkId={drink.id} />;
     }

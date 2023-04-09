@@ -6,7 +6,9 @@ export type svgProps = {
 export type DrinkComment = {
   id: number;
   username: string;
+  userId: number;
   text: string;
+  rating: number;
   datePosted: string;
 };
 

@@ -4,6 +4,7 @@ import { DrinkComment } from '../../types/types';
 import { postCommentRequest } from '../../utils/apiUtil';
 import { convertToIrishTime } from '../../utils/utils';
 import { UserContext } from '../context/UserContext';
+import FilledStar from '../../icons/FilledStar';
 
 type CommentFormProps = {
   drinkId: number;
@@ -14,6 +15,8 @@ function CommentForm(props: CommentFormProps) {
   const { drinkId, addCommentLocally } = props;
 
   const [commentText, setCommentText] = useState('');
+  const [rating, setRating] = useState(1);
+
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const userContext = useContext(UserContext);
 
@@ -30,7 +33,7 @@ function CommentForm(props: CommentFormProps) {
     if (!userContext || !userContext.user) return;
     if (commentText.length === 0) return;
 
-    const response = await postCommentRequest(drinkId, userContext.user.userID, commentText);
+    const response = await postCommentRequest(drinkId, userContext.user.userID, commentText, rating);
     const [res, json] = response;
 
     const time = new Date().getTime() - 1000 * 3600;
@@ -40,7 +43,9 @@ function CommentForm(props: CommentFormProps) {
       const comment = {
         id: 69,
         username: userContext.user.username,
+        userId: userContext.user.userID,
         text: commentText,
+        rating: 4,
         datePosted: convertToIrishTime(new Date(irishTime).toISOString()),
       };
       addCommentLocally(comment);
@@ -49,6 +54,31 @@ function CommentForm(props: CommentFormProps) {
     } else {
       console.log([json, 'Comment POST Failed']);
     }
+  };
+
+  const ratingHandler = (r: number) => {
+    setRating(r);
+  };
+
+  const renderStars = (r: number) => {
+    let divs = [];
+    for (let i = 0; i < 5; i++) {
+      if (i < r) {
+        divs.push(
+          <div key={i} onClick={() => ratingHandler(i + 1)}>
+            <FilledStar className={`${style.star} ${style.active}`} />
+          </div>
+        );
+      } else {
+        divs.push(
+          <div key={i} onClick={() => ratingHandler(i + 1)}>
+            <FilledStar className={style.star} />
+          </div>
+        );
+      }
+    }
+
+    return divs;
   };
 
   useEffect(() => {
@@ -60,22 +90,26 @@ function CommentForm(props: CommentFormProps) {
   return (
     <form onSubmit={submitHandler} className={style.form}>
       <div className={style.commentBoxWrapper}>
-        <div className={style.commentUtil}>
-          <div className={style.charCount}>
-            {commentText.length}/{wordLimit}
-          </div>
-          <button className={style.postBtn} type="submit">
-            Post
-          </button>
-        </div>
         <textarea
           id="textarea"
           ref={textAreaRef}
           value={commentText}
           onChange={textAreaHandler}
           className={style.text}
-          placeholder="Leave a comment..."
+          placeholder="Leave a rating..."
         ></textarea>
+        <div className={style.commentUtil}>
+          <div className={style.ratingWrapper}>{renderStars(rating)}</div>
+
+          <div className={style.postCountWrapper}>
+            <div className={style.charCount}>
+              {commentText.length}/{wordLimit}
+            </div>
+            <button className={style.postBtn} type="submit">
+              Post
+            </button>
+          </div>
+        </div>
       </div>
     </form>
   );
