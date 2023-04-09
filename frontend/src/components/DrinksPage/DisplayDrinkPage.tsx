@@ -6,11 +6,12 @@ import style from '../../styles/drinkStyles/displayDrinkPage.module.scss';
 import { DrinkComment } from '../../types/types';
 import { Drink } from '../../types/UserTypes';
 import { getCommentsRequest, updateLikesRequest } from '../../utils/apiUtil';
-import { checkIfUserCommented, dealWithStupidFuckingJson } from '../../utils/utils';
+import { checkIfUserCommented, dealWithStupidFuckingJson, getAverageFromReviews } from '../../utils/utils';
 import Comment from '../comments/Comment';
 import CommentForm from '../comments/CommentForm';
 import { UserContext } from '../context/UserContext';
 import LoginPrompt from '../LoginPrompt';
+import FilledStar from '../../icons/FilledStar';
 
 type DisplayDrinkPageProps = {
   toggleModal: (index: Drink | null) => void;
@@ -54,9 +55,7 @@ function DisplayDrinkPage(props: DisplayDrinkPageProps) {
     setComments(comments);
 
     if (userContext !== null && userContext.user !== null) {
-      const result = checkIfUserCommented(comments, userContext.user.userID);
-      setUserCanComment(!result);
-      console.log(result ? 'user has commented' : 'user has not commented');
+      setUserCanComment(!checkIfUserCommented(comments, userContext.user.userID));
     }
   };
 
@@ -68,6 +67,27 @@ function DisplayDrinkPage(props: DisplayDrinkPageProps) {
     } else {
       return <CommentForm addCommentLocally={addCommentLocally} drinkId={drink.id} />;
     }
+  };
+
+  const renderStars = (r: number) => {
+    let divs = [];
+    for (let i = 0; i < 5; i++) {
+      if (i < r) {
+        divs.push(
+          <div key={i}>
+            <FilledStar className={`${style.star} ${style.active}`} />
+          </div>
+        );
+      } else {
+        divs.push(
+          <div key={i}>
+            <FilledStar className={style.star} />
+          </div>
+        );
+      }
+    }
+
+    return divs;
   };
 
   useEffect(() => {
@@ -91,6 +111,7 @@ function DisplayDrinkPage(props: DisplayDrinkPageProps) {
         <div className={style.contentWrapper}>
           <div className={style.drinkInfoWrapper}>
             <div className={style.title}>{drink.name}</div>
+            <div className={style.drinkRatingWrapper}>{renderStars(getAverageFromReviews(comments))}</div>
             <div className={style.subTitle}>Instructions</div>
             <div className={style.description}>{drink.instructions}</div>
             <div className={style.subTitle}>Ingredients</div>

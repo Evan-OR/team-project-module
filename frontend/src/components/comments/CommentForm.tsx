@@ -45,7 +45,7 @@ function CommentForm(props: CommentFormProps) {
         username: userContext.user.username,
         userId: userContext.user.userID,
         text: commentText,
-        rating: 4,
+        rating: rating,
         datePosted: convertToIrishTime(new Date(irishTime).toISOString()),
       };
       addCommentLocally(comment);

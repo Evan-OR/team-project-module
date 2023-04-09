@@ -9,6 +9,12 @@ export const checkIfUserCommented = (commnets: DrinkComment[], userId: number): 
   return hasCommented;
 };
 
+export const getAverageFromReviews = (commnets: DrinkComment[]) => {
+  let total = 0;
+  commnets.forEach((c) => (total += c.rating));
+  return total / commnets.length;
+};
+
 export function assertIsNode(e: EventTarget | null): asserts e is Node {
   if (!e || !('nodeType' in e)) {
     throw new Error(`Node expected`);
