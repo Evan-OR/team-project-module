@@ -8,9 +8,9 @@ const Hero = () => {
         <div className={heroStyles.aboutWrapper}>
           <div className={heroStyles.title}>Find What's Good For You</div>
           <div className={heroStyles.about}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec congue nibh sapien, vitae efficitur lectus
-            imperdiet in. Ut molestie gravida eros, ut scelerisque lacus malesuada in. Quisque maximus erat nec metus
-            ornare luctus.
+            Looking for the perfect cocktail? Our website has you covered. With expertly curated recipes, search and
+            filter features, and a community of cocktail enthusiasts, we're your go-to source for drink recommendations
+            and reviews. Cheers to finding your new favorite drink!
           </div>
         </div>
       </div>
