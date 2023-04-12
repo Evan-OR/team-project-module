@@ -57,11 +57,15 @@ function LikesPage() {
             <DisplayDrinkPage toggleModal={toggleModal} drink={currentDrink} />
           ) : (
             <>
-              <div className={drinksecStyles.cardDisplayWrapper}>
-                {likedDrinks.map((drink) => (
-                  <DrinkCard key={drink.id} drink={drink} toggleModal={toggleModal} />
-                ))}
-              </div>
+              {likedDrinks.length > 0 ? (
+                <div className={drinksecStyles.cardDisplayWrapper}>
+                  {likedDrinks.map((drink) => (
+                    <DrinkCard key={drink.id} drink={drink} toggleModal={toggleModal} />
+                  ))}
+                </div>
+              ) : (
+                <div>You haven't liked any drinks</div>
+              )}
             </>
           )}
         </div>
