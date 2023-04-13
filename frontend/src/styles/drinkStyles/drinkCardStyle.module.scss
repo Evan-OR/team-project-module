@@ -116,9 +116,17 @@
 
 @media only screen and (max-width: 450px) {
   .drinkDisplayWrapper {
-    width: 90%;
+    width: 95%;
   }
   .drinkCardWrapper2 {
-    width: 80%;
+    width: 40%;
+    .infoWrapper {
+      .tagWrapper {
+        .tag {
+          font-size: 0.6rem;
+          padding: 1px 6px;
+        }
+      }
+    }
   }
 }

@@ -24,16 +24,13 @@ export const getDrinkRecommendations = (allDrinks: Drink[], likedDrinks: number[
 
   const results = getDrinkSimilarityRating(unqiueIngredientsList, unlikedDrinks);
 
-  // console.table(results, ['strDrink']);
   return results;
 };
 
 const getUnqiueIngredients = (allDrinks: Drink[]): string[] => {
   let ingredients: string[] = [];
 
-  // BOIS I AM A FUCKING GENIUS FOR THIS ONE!!!!!!!!!!!!!!!!!!!!!!!
   for (const drink of allDrinks) {
-    //Shout out https://stackoverflow.com/questions/57086672/element-implicitly-has-an-any-type-because-expression-of-type-string-cant-b for explaining why 'as keyof Drink' needs to be used when dynamically referencing object keys in Typescript :)
     for (const value of drink.ingredients) {
       if (typeof value === 'string') {
         ingredients.push(value);
@@ -105,5 +102,5 @@ const getDrinkSimilarityRating = (unqiueIngredientsList: string[], unlikedDrinks
     if (!wasAdded) sortedDrinksByRating.push({ drink, score });
   }
 
-  return sortedDrinksByRating.reverse().map((el) => el.drink);
+  return sortedDrinksByRating.reverse().map((DWR) => DWR.drink);
 };
