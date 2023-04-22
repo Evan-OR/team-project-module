@@ -4,7 +4,7 @@ import DrinkCard from './DrinkCard';
 import DRINKS from '../../dataset/drinks.json';
 import DisplayDrinkPage from './DisplayDrinkPage';
 import { UserContext } from '../context/UserContext';
-import { getDrinkRecommendations } from '../../utils/drinksUtil';
+import { getDrinkRecommendations, getDrinksByID } from '../../utils/drinksUtil';
 import { Drink } from '../../types/UserTypes';
 import DrinkSearchBar from './DrinkSearchBar';
 import LoginPrompt from '../LoginPrompt';
@@ -104,6 +104,12 @@ const DrinkSec = () => {
     if (modalToggle) return;
 
     if (drinkRecommendations.length > 0) setDrinkList(drinkRecommendations);
+
+    console.log(
+      getDrinksByID([24, 11, 4, 1, 28, 25, 22, 20, 19, 18, 17, 16, 15, 14, 13, 9, 8], DRINKS)
+        .map((d) => d.name)
+        .join(',')
+    );
   }, []);
 
   useEffect(() => {

@@ -44,8 +44,8 @@ const getUnqiueIngredients = (allDrinks: Drink[]): string[] => {
 export const getDrinksByID = (likes: number[], allDrinks: Drink[]): Drink[] => {
   const tempLikeArray = [];
 
-  for (const drink of allDrinks) {
-    for (const id of likes) {
+  for (const id of likes) {
+    for (const drink of allDrinks) {
       if (drink.id === id) {
         tempLikeArray.push(drink);
       }

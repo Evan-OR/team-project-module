@@ -3,15 +3,16 @@ import CloseButton from '../../icons/CloseButton';
 import FilledHeartIcon from '../../icons/FilledHeartIcon';
 import HollowHeartIcon from '../../icons/HollowHeartIcon';
 import style from '../../styles/drinkStyles/displayDrinkPage.module.scss';
-import { DrinkComment } from '../../types/types';
+import { DrinkComment } from '../../Types/types';
 import { Drink } from '../../types/UserTypes';
 import { getCommentsRequest, updateLikesRequest } from '../../utils/apiUtil';
-import { checkIfUserCommented, dealWithStupidFuckingJson, getAverageFromReviews } from '../../utils/utils';
+import { checkIfUserCommented, dealWithJson, getAverageFromReviews } from '../../utils/utils';
 import Comment from '../comments/Comment';
 import CommentForm from '../comments/CommentForm';
 import { UserContext } from '../context/UserContext';
 import LoginPrompt from '../LoginPrompt';
 import FilledStar from '../../icons/FilledStar';
+import { getDrinkRecommendations } from '../../utils/drinksUtil';
 
 type DisplayDrinkPageProps = {
   toggleModal: (index: Drink | null) => void;
@@ -116,7 +117,7 @@ function DisplayDrinkPage(props: DisplayDrinkPageProps) {
             <div className={style.description}>{drink.instructions}</div>
             <div className={style.subTitle}>Ingredients</div>
             <div className={style.ingredientsWrapper}>
-              {dealWithStupidFuckingJson(drink)}
+              {dealWithJson(drink)}
               <div onClick={likeDrink} className={style.likeIcon}>
                 {userHasLiked() ? <FilledHeartIcon /> : <HollowHeartIcon />}
               </div>
